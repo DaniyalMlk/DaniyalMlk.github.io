@@ -84,9 +84,7 @@ export default function Page() {
 
   return (
     <div className="app">
-      <div className="hoist" aria-hidden="true">
-        <Ornament />
-      </div>
+      <Ornament />
 
       <div className="main">
         <nav className="nav">
