@@ -14,37 +14,69 @@ export const credentials = [
   { k: "NYU 2028", v: "Computer Science and Economics" },
 ];
 
-export const work = [
+export type Job = {
+  yr: string;
+  org: string;
+  role: string;
+  loc: string;
+  href?: string;
+  points: string[];
+};
+
+export const work: Job[] = [
   {
-    yr: "2025 — NOW",
+    yr: "2025 — Now",
     org: "Terran Denizen",
-    note: "Full-stack engineering intern. Four-level role system, 133 row-level security policies, Stripe billing, iOS releases.",
+    role: "Full-Stack Engineering Intern",
     loc: "New York",
+    href: "https://terrandenizen.com",
+    points: [
+      "Lead contributor across four Next.js apps, a Node API and an Expo iOS app on one shared Postgres database.",
+      "Built the four-level role system and its 133 row-level security policies, and closed a session-hijacking path between subdomains.",
+      "Shipped Stripe subscription billing, and own the iOS pipeline from EAS builds to App Store release.",
+    ],
   },
   {
     yr: "2026",
     org: "AidenCare",
-    href: "https://aidencare.space",
-    note: "Full-stack engineer. Bilingual patient portal and clinic dashboard for a dental practice: React and Supabase, 29 row-level security policies across 11 tables, and a role-scoped AI assistant running as an edge function.",
+    role: "Full-Stack Engineer",
     loc: "Shanghai",
+    href: "https://aidencare.space",
+    points: [
+      "Bilingual (Chinese and English) platform for a dental clinic: a patient portal for booking, records and documents, and a staff dashboard for appointments, review and reports.",
+      "Defence in depth on the database: 29 row-level security policies across 11 tables, six roles with an approval workflow, and a trigger that blocks privilege escalation.",
+      "Role-scoped AI assistant as a Deno edge function, so the model key never reaches the browser and patients cannot read clinic-wide data.",
+    ],
   },
   {
     yr: "2026",
     org: "North Caspian Operating Company",
-    note: "Full-stack engineering intern. HSSE platform for 150 staff in four weeks; Visio parser generating process guides.",
+    role: "Full-Stack Engineering Intern",
     loc: "Atyrau",
+    points: [
+      "HSSE platform for 150 staff built in four weeks: six SPFx web parts in React over nine SharePoint lists.",
+      "Visio parser that turned 40+ process diagrams into Word guides, cutting each write-up from two hours to under a minute.",
+    ],
   },
   {
     yr: "2024",
     org: "Nazarbayev University",
-    note: "Research engineering intern. Sensor integration on a tensegrity robot; 1,200-record soil database.",
+    role: "Research Engineering Intern",
     loc: "Astana",
+    points: [
+      "Integrated six IMU and load-cell sensors into a tensegrity robot and recalibrated chord tension between runs.",
+      "Built a 1,200-record soil database in Postgres and fitted van Genuchten curves in Python for the sensor design.",
+    ],
   },
   {
     yr: "2023",
     org: "National Information Technologies",
-    note: "Data engineering intern. Rewrote 14 production SQL queries; nightly ETL from three hours to under two.",
+    role: "Data Engineering Intern",
     loc: "Astana",
+    points: [
+      "Rewrote 14 production SQL queries and took a nightly ETL job over 25 tables from three hours to under two.",
+      "Wrote 30+ validation queries that caught roughly 500 bad records a week before they reached reports.",
+    ],
   },
 ];
 

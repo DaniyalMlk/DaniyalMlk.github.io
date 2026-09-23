@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Ornament from "@/components/Ornament";
 import Eagle from "@/components/Eagle";
-import { credentials, profile, projects, skills, tabs, work } from "@/lib/content";
+import { credentials, profile, projects, skills, tabs, work, type Job } from "@/lib/content";
 
 type Row = { yr: string; org: string; note?: string; loc?: string; href?: string };
 
@@ -32,6 +32,56 @@ function Rows({ items }: { items: Row[] }) {
         );
       })}
     </div>
+  );
+}
+
+
+function Timeline({ jobs }: { jobs: Job[] }) {
+  const [open, setOpen] = useState(0);
+  return (
+    <ol className="tl">
+      {jobs.map((j, i) => {
+        const isOpen = open === i;
+        return (
+          <li key={j.org} className={`tl-item${isOpen ? " open" : ""}`}>
+            <span className="tl-dot" aria-hidden="true" />
+            <button
+              type="button"
+              className="tl-head"
+              aria-expanded={isOpen}
+              onClick={() => setOpen(isOpen ? -1 : i)}
+            >
+              <span className="tl-yr">{j.yr}</span>
+              <span className="tl-title">
+                <span className="tl-org">{j.org}</span>
+                <span className="tl-role">{j.role}</span>
+              </span>
+              <span className="tl-loc">{j.loc}</span>
+              <svg className="tl-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div className="tl-body">
+              <div className="tl-body-inner">
+                <ul>
+                  {j.points.map((pt) => (
+                    <li key={pt}>{pt}</li>
+                  ))}
+                </ul>
+                {j.href && (
+                  <a className="tl-link" href={j.href} target="_blank" rel="noreferrer noopener">
+                    {j.href.replace("https://", "")}
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                      <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          </li>
+        );
+      })}
+    </ol>
   );
 }
 
@@ -150,7 +200,7 @@ export default function Page() {
 
           <section className={`view${view === 1 ? " on" : ""}`} role="tabpanel" aria-label="Experience">
             <ViewHead title="Experience" label="ЖҰМЫС · WORK" />
-            <Rows items={work} />
+            <Timeline jobs={work} />
           </section>
 
           <section className={`view${view === 2 ? " on" : ""}`} role="tabpanel" aria-label="Projects">
