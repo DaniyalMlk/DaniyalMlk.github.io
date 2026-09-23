@@ -149,7 +149,7 @@ export default function Page() {
           </section>
 
           <section className={`view${view === 1 ? " on" : ""}`} role="tabpanel" aria-label="Experience">
-            <ViewHead title="Experience" label="ЖҰМЫС · FOUR ROLES, THREE COUNTRIES" />
+            <ViewHead title="Experience" label="ЖҰМЫС · WORK" />
             <Rows items={work} />
           </section>
 

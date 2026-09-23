@@ -11,7 +11,7 @@ export const profile = {
 export const credentials = [
   { k: "2023 — NOW", v: "Four engineering internships, three countries" },
   { k: "IN PRODUCTION", v: "Six apps and services, web and iOS" },
-  { k: "NYU 2028", v: "Computer science and economics" },
+  { k: "NYU 2028", v: "Computer Science and Economics" },
 ];
 
 export const work = [
