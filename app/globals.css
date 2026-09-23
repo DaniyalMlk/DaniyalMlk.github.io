@@ -3,7 +3,7 @@
 [data-theme="light"]{--bg:#efece4;--panel:#f8f6f0;--edge:#d5d0c3;--edge-2:#e1dcd0;--fg:#191b1c;--fg-2:#494d4c;--fg-3:#6e726f;--accent:#a76a10;--accent-ink:#fffaf0;--accent-soft:rgba(167,106,16,0.12)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-geist-sans),system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;transition:background-color .4s cubic-bezier(.16,1,.3,1),color .4s cubic-bezier(.16,1,.3,1)}
-.app{width:1280px;height:832px;display:grid;grid-template-columns:76px minmax(0,1fr);overflow:hidden}
+.app{width:100%;height:100dvh;display:grid;grid-template-columns:76px minmax(0,1fr);overflow:hidden}
 .hoist{order:-1;background:transparent;overflow:hidden;line-height:0}
 .main{display:flex;flex-direction:column;min-width:0;overflow:hidden}
 .disp{font-family:var(--font-geist-sans),sans-serif}
@@ -127,7 +127,10 @@ a.item:hover h3 { color: var(--accent); }
 
 /* Above the phone breakpoint the nav is one row: brand, tabs, links */
 @media (min-width: 901px) {
+  .nav { position: relative; }
   .nav-top { display: contents; }
+  /* centred on the page, not on whatever is left over beside the name */
+  .tabs { position: absolute; left: 50%; transform: translateX(-50%); }
   .brand { order: 1; }
   .tabs { order: 2; }
   .util { order: 3; }

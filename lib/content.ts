@@ -1,7 +1,6 @@
 export const profile = {
   name: "Daniyal Malik",
   role: "Full-stack web and iOS engineer",
-  place: "New York",
   line: "Web platforms and iOS apps, built and shipped end to end.",
   email: "dm6008@nyu.edu",
   github: "https://github.com/DaniyalMlk",

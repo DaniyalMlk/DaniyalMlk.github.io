@@ -47,20 +47,8 @@ function ViewHead({ title, label }: { title: string; label: string }) {
 export default function Page() {
   const [view, setView] = useState(0);
   const [dark, setDark] = useState(true);
-  const [time, setTime] = useState("");
-
   useEffect(() => {
     setDark(document.documentElement.dataset.theme !== "light");
-    const f = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "America/New_York",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
-    const tick = () => setTime(f.format(new Date()));
-    tick();
-    const id = setInterval(tick, 30_000);
-    return () => clearInterval(id);
   }, []);
 
   // Left and right arrows move between views, like tabs in an app.
@@ -132,10 +120,7 @@ export default function Page() {
             <div className="hero">
               <div>
                 <h1 className="big">{profile.name}</h1>
-                <p className="role">
-                  {profile.role} <span className="dot">·</span> {profile.place}
-                  {time && <span className="clock-inline"> {time}</span>}
-                </p>
+                <p className="role">{profile.role}</p>
                 <p className="sub">{profile.line}</p>
                 <a className="cta" href={`mailto:${profile.email}`}>
                   {profile.email}
