@@ -1,5 +1,6 @@
 export const profile = {
   name: "Daniyal Malik",
+  short: "Daniyal",
   role: "Full-stack web and iOS engineer",
   line: "Web platforms and iOS apps, built and shipped end to end.",
   email: "dm6008@nyu.edu",

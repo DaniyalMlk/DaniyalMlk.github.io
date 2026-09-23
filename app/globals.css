@@ -10,18 +10,23 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-geist-
 .disp{font-family:var(--font-geist-sans),sans-serif}
 .nav{display:flex;align-items:center;justify-content:space-between;height:82px;padding:0 40px;border-bottom:1px solid var(--edge-2)}
 .band{height:30px;border-top:1px solid var(--edge-2);border-bottom:1px solid var(--edge-2);opacity:.9}
-.brand{display:flex;align-items:center;font-family:var(--font-geist-sans),sans-serif;font-size:18px;font-weight:700;letter-spacing:-0.02em}
+.brand{display:inline-flex;align-items:center;gap:10px;padding:8px 2px;border:0;background:none;cursor:pointer;
+font-family:var(--font-geist-sans),sans-serif;font-size:17px;font-weight:600;letter-spacing:-0.01em;color:var(--fg-2);
+position:relative;transition:color .25s var(--ease),text-shadow .25s var(--ease)}
+.brand.on{color:var(--fg)}
+.brand::after{content:"";position:absolute;left:2px;right:2px;bottom:2px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .32s var(--ease)}
+.brand.on::after{transform:scaleX(1)}
 .brand i{width:9px;height:9px;background:var(--accent);border-radius:2px;transform:rotate(45deg);display:inline-block}
 .tabs{display:flex;gap:34px}
 .tabs button{background:none;border:0;font-family:var(--font-geist-sans),sans-serif;font-size:15.5px;font-weight:500;letter-spacing:-0.01em;color:var(--fg-2);cursor:pointer;padding:8px 2px;position:relative;transition:color .25s cubic-bezier(.16,1,.3,1)}
 .tabs button:hover{color:var(--fg)}
 .tabs button.on{color:var(--accent)}
 
-.util{display:flex;align-items:center;gap:6px}
-.util a,.util button{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:0;background:none;color:var(--fg-3);cursor:pointer;transition:color .2s,background-color .2s,transform .18s}
-.util a:hover,.util button:hover{color:var(--accent);background:var(--accent-soft)}
+.util{display:flex;align-items:center;gap:8px}
+.util a,.util button{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--edge-2);background:var(--panel);color:var(--fg-2);cursor:pointer;transition:color .2s,background-color .2s,transform .18s}
+.util a:hover,.util button:hover{color:var(--accent);background:var(--accent-soft);border-color:var(--accent-line)}
 .util a:active,.util button:active{transform:scale(.93)}
-.util .sep{width:1px;height:22px;background:var(--edge);margin:0 8px}
+.util .sep{width:1px;height:26px;background:var(--edge);margin:0 10px}
 .stage{flex:1;position:relative;overflow:hidden}
 .eagle{position:absolute;right:26px;bottom:20px;width:400px;opacity:.18;pointer-events:none}
 .view{position:absolute;inset:52px 64px;display:none}
@@ -188,3 +193,8 @@ a.item:hover h3 { color: var(--accent); }
 .hero .stat:nth-child(1) { animation: rise-in .6s var(--ease) .18s both; }
 .hero .stat:nth-child(2) { animation: rise-in .6s var(--ease) .26s both; }
 .hero .stat:nth-child(3) { animation: rise-in .6s var(--ease) .34s both; }
+
+@media (hover: hover) {
+  .brand:hover { color: var(--fg); text-shadow: 0 0 20px var(--accent-glow); }
+  .brand:hover::after { transform: scaleX(1); }
+}
