@@ -23,6 +23,13 @@ export const work = [
   },
   {
     yr: "2026",
+    org: "AidenCare",
+    href: "https://aidencare.space",
+    note: "Full-stack engineer. Bilingual patient portal and clinic dashboard for a dental practice: React and Supabase, 29 row-level security policies across 11 tables, and a role-scoped AI assistant running as an edge function.",
+    loc: "Shanghai",
+  },
+  {
+    yr: "2026",
     org: "North Caspian Operating Company",
     note: "Full-stack engineering intern. HSSE platform for 150 staff in four weeks; Visio parser generating process guides.",
     loc: "Atyrau",
