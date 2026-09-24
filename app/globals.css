@@ -1,7 +1,7 @@
 :root{--ease:cubic-bezier(.16,1,.3,1)}
 
-[data-theme="dark"]{--bg:#16191b;--panel:#1d2124;--edge:#2f3538;--edge-2:#262b2e;--fg:#f0efeb;--fg-2:#bcc0bf;--fg-3:#8b918f;--accent:#e2a33e;--accent-ink:#1d1607;--accent-soft:rgba(226,163,62,0.14);--accent-glow:rgba(226,163,62,0.38);--accent-line:rgba(226,163,62,0.55);--gh:#f4f3f0;--li:#4aa3f0;--eagle:.085}
-[data-theme="light"]{--bg:#efece4;--panel:#f8f6f0;--edge:#d5d0c3;--edge-2:#e1dcd0;--fg:#191b1c;--fg-2:#494d4c;--fg-3:#6e726f;--accent:#a76a10;--accent-ink:#fffaf0;--accent-soft:rgba(167,106,16,0.12);--accent-glow:rgba(167,106,16,0.30);--accent-line:rgba(167,106,16,0.5);--gh:#181717;--li:#0a66c2;--eagle:.10}
+[data-theme="dark"]{--bg:#16191b;--panel:#1d2124;--edge:#2f3538;--edge-2:#262b2e;--fg:#f0efeb;--fg-2:#bcc0bf;--fg-3:#8b918f;--accent:#e2a33e;--accent-ink:#1d1607;--accent-soft:rgba(226,163,62,0.14);--accent-glow:rgba(226,163,62,0.38);--accent-line:rgba(226,163,62,0.55);--gh:#f4f3f0;--li:#4aa3f0;--eagle:.22;--eagle-a:#f3c46e;--eagle-b:#e2a33e;--eagle-c:#b9741f}
+[data-theme="light"]{--bg:#efece4;--panel:#f8f6f0;--edge:#d5d0c3;--edge-2:#e1dcd0;--fg:#191b1c;--fg-2:#494d4c;--fg-3:#6e726f;--accent:#a76a10;--accent-ink:#fffaf0;--accent-soft:rgba(167,106,16,0.12);--accent-glow:rgba(167,106,16,0.30);--accent-line:rgba(167,106,16,0.5);--gh:#181717;--li:#0a66c2;--eagle:.28;--eagle-a:#d99a2c;--eagle-b:#b9741f;--eagle-c:#8a5a12}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-geist-sans),system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;transition:background-color .4s cubic-bezier(.16,1,.3,1),color .4s cubic-bezier(.16,1,.3,1)}
 .app{width:100%;height:100dvh;display:grid;grid-template-columns:76px minmax(0,1fr);overflow:hidden}
@@ -458,4 +458,17 @@ a.item:hover h3 { color: var(--accent); }
 .view > * { position: relative; z-index: 1; }
 @media (max-width: 900px) {
   .eagle { width: 118%; opacity: calc(var(--eagle) * .8); transform: translate(-50%, -50%); }
+}
+
+/* Stronger colour, but faded away from the column the text sits in,
+   so the wings read on the open right side and never fight the copy. */
+.eagle {
+  -webkit-mask-image: linear-gradient(100deg, transparent 6%, rgba(0,0,0,.35) 26%, #000 58%);
+  mask-image: linear-gradient(100deg, transparent 6%, rgba(0,0,0,.35) 26%, #000 58%);
+}
+@media (max-width: 900px) {
+  .eagle {
+    -webkit-mask-image: linear-gradient(180deg, transparent 10%, rgba(0,0,0,.4) 40%, #000 75%);
+    mask-image: linear-gradient(180deg, transparent 10%, rgba(0,0,0,.4) 40%, #000 75%);
+  }
 }
