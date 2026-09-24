@@ -119,10 +119,11 @@ function Skills() {
     <div className="skills">
       {skills.map((g, gi) => (
         <section className="skill-group" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
-          <h3>
-            {g.label}
-            <span>{g.note}</span>
-          </h3>
+          <div className="skill-meta">
+            <span className="skill-no">{String(gi + 1).padStart(2, "0")}</span>
+            <h3>{g.label}</h3>
+            <p>{g.note}</p>
+          </div>
           <ul>
             {g.items.map((it, i) => (
               <li
