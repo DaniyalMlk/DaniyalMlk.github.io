@@ -367,3 +367,43 @@ a.item:hover h3 { color: var(--accent); }
 
 /* colour belongs to the languages; everything else is amber on hover only */
 .chip:not(:has(.chip-dot)) { padding-left: 15px; }
+
+/* ---------- skills motion ---------- */
+/* each group arrives after the one above it: rule first, then its chips */
+.skill-group h3::after {
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: rule-draw .55s var(--ease) both;
+  animation-delay: calc(var(--g) * 105ms);
+}
+@keyframes rule-draw { to { transform: scaleX(1); } }
+
+.chip {
+  animation: chip-in .5s var(--ease) both;
+  animation-delay: calc(var(--g) * 105ms + var(--i) * 36ms + 90ms);
+}
+
+/* hover: the chip lifts, a light passes across it, and the dot flares */
+.chip::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 45%;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--chip) 22%, transparent), transparent);
+  transform: translateX(-160%); opacity: 0; pointer-events: none;
+}
+.chip-dot { transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+.chip-label { transition: transform .3s var(--ease); }
+
+@media (hover: hover) {
+  .chip:hover::after { opacity: 1; animation: chip-sweep .62s var(--ease); }
+  .chip:hover .chip-dot { transform: scale(1.35); box-shadow: 0 0 14px var(--chip); }
+  .chip:hover .chip-label { transform: translateX(1px); }
+}
+@keyframes chip-sweep {
+  from { transform: translateX(-160%); }
+  to { transform: translateX(260%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-group h3::after { animation: none; transform: scaleX(1); }
+  .chip { animation: none; opacity: 1; }
+  .chip::after { display: none; }
+}

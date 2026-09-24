@@ -115,29 +115,25 @@ function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | 
 }
 
 function Skills() {
-  let n = 0;
   return (
     <div className="skills">
-      {skills.map((g) => (
-        <section className="skill-group" key={g.label}>
+      {skills.map((g, gi) => (
+        <section className="skill-group" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
           <h3>
             {g.label}
             <span>{g.note}</span>
           </h3>
           <ul>
-            {g.items.map((it) => {
-              n += 1;
-              return (
-                <li
-                  className="chip"
-                  key={it.name}
-                  style={{ "--i": n, "--chip": it.color ?? "var(--accent)" } as React.CSSProperties}
-                >
-                  {it.color && <span className="chip-dot" />}
-                  {it.name}
-                </li>
-              );
-            })}
+            {g.items.map((it, i) => (
+              <li
+                className="chip"
+                key={it.name}
+                style={{ "--i": i, "--chip": it.color ?? "var(--accent)" } as React.CSSProperties}
+              >
+                {it.color && <span className="chip-dot" />}
+                <span className="chip-label">{it.name}</span>
+              </li>
+            ))}
           </ul>
         </section>
       ))}
