@@ -39,10 +39,11 @@ export const work: Job[] = [
   {
     yr: "2026",
     org: "AidenCare",
-    role: "Full-Stack Engineer",
+    role: "Lead Full-Stack Engineer",
     loc: "Shanghai",
     href: "https://aidencare.space",
     points: [
+      "Led the build with two other engineers: set the architecture, split the work between us and reviewed what they wrote.",
       "Bilingual (Chinese and English) platform for a dental clinic: a patient portal for booking, records and documents, and a staff dashboard for appointments, review and reports.",
       "Defence in depth on the database: 29 row-level security policies across 11 tables, six roles with an approval workflow, and a trigger that blocks privilege escalation.",
       "Role-scoped AI assistant as a Deno edge function, so the model key never reaches the browser and patients cannot read clinic-wide data.",
