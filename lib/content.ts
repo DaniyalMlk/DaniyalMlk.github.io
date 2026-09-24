@@ -85,10 +85,36 @@ export const work: Job[] = [
 ];
 
 export const projects = [
-  { yr: "TypeScript", org: "recalc", note: "Spreadsheet formula engine. Parses to an AST and recalculates only what an edit invalidated.", href: "https://github.com/DaniyalMlk/recalc" },
-  { yr: "TypeScript", org: "tallyd", note: "Double-entry ledger and reconciliation. A year of transactions in 0.2 s, down from 16.8 s.", href: "https://github.com/DaniyalMlk/tallyd" },
-  { yr: "Python", org: "capstack", note: "Leveraged buyout engine: debt schedules with cash sweep, covenant tests, returns waterfall.", href: "https://github.com/DaniyalMlk/capstack" },
-  { yr: "Swift", org: "spaceVoyageApp", note: "SwiftUI application with trip planning, search and recommendations.", href: "https://github.com/DaniyalMlk/spaceVoyageApp" },
+  {
+    yr: "MCP · Python",
+    org: "abacus",
+    href: "https://github.com/DaniyalMlk/abacus",
+    note: "MCP server exposing option and portfolio analytics to an AI assistant, with its own validated numerical core rather than a wrapper over someone else's API.",
+  },
+  {
+    yr: "Python",
+    org: "moneyness",
+    href: "https://github.com/DaniyalMlk/moneyness",
+    note: "Options pricing library: Black-Scholes-Merton, analytic Greeks and implied-volatility solving, checked against closed-form results.",
+  },
+  {
+    yr: "Python",
+    org: "shortfall",
+    href: "https://github.com/DaniyalMlk/shortfall",
+    note: "Portfolio risk engine: shrinkage covariance, value at risk, expected shortfall, risk contributions and drawdown statistics.",
+  },
+  {
+    yr: "TypeScript",
+    org: "recalc",
+    href: "https://github.com/DaniyalMlk/recalc",
+    note: "Spreadsheet formula engine: lexer, parser, dependency graph and incremental recalculation, so an edit only touches what depends on it.",
+  },
+  {
+    yr: "TypeScript",
+    org: "tallyd",
+    href: "https://github.com/DaniyalMlk/tallyd",
+    note: "Double-entry ledger and bank reconciliation with a live dashboard. A year of transactions reconciles in 0.2 s, down from 16.8 s.",
+  },
 ];
 
 export const skills = [
