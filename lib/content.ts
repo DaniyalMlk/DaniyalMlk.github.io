@@ -92,6 +92,18 @@ export const projects = [
     note: "MCP server exposing option and portfolio analytics to an AI assistant, with its own validated numerical core rather than a wrapper over someone else's API.",
   },
   {
+    yr: "TypeScript",
+    org: "recalc",
+    href: "https://github.com/DaniyalMlk/recalc",
+    note: "Spreadsheet formula engine: lexer, parser, dependency graph and incremental recalculation, so an edit only touches the cells that depend on it.",
+  },
+  {
+    yr: "TypeScript",
+    org: "tallyd",
+    href: "https://github.com/DaniyalMlk/tallyd",
+    note: "Double-entry ledger and bank reconciliation with a live dashboard. A year of transactions reconciles in 0.2 s, down from 16.8 s.",
+  },
+  {
     yr: "Python",
     org: "moneyness",
     href: "https://github.com/DaniyalMlk/moneyness",
@@ -99,21 +111,9 @@ export const projects = [
   },
   {
     yr: "Python",
-    org: "shortfall",
-    href: "https://github.com/DaniyalMlk/shortfall",
-    note: "Portfolio risk engine: shrinkage covariance, value at risk, expected shortfall, risk contributions and drawdown statistics.",
-  },
-  {
-    yr: "TypeScript",
-    org: "recalc",
-    href: "https://github.com/DaniyalMlk/recalc",
-    note: "Spreadsheet formula engine: lexer, parser, dependency graph and incremental recalculation, so an edit only touches what depends on it.",
-  },
-  {
-    yr: "TypeScript",
-    org: "tallyd",
-    href: "https://github.com/DaniyalMlk/tallyd",
-    note: "Double-entry ledger and bank reconciliation with a live dashboard. A year of transactions reconciles in 0.2 s, down from 16.8 s.",
+    org: "holdout",
+    href: "https://github.com/DaniyalMlk/holdout",
+    note: "Backtest overfitting toolkit: deflated Sharpe ratios, probability of backtest overfitting, purged cross-validation and multiple-testing haircuts.",
   },
 ];
 
