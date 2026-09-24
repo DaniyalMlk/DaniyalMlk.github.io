@@ -57,10 +57,10 @@ function CopyLine({ text }: { text: string }) {
   );
 }
 
-function Timeline({ jobs }: { jobs: Job[] }) {
+function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | "project" }) {
   const [open, setOpen] = useState(0);
   return (
-    <ol className="tl">
+    <ol className={`tl${variant === "project" ? " tl--tags" : ""}`}>
       {jobs.map((j, i) => {
         const isOpen = open === i;
         return (
@@ -72,12 +72,19 @@ function Timeline({ jobs }: { jobs: Job[] }) {
               aria-expanded={isOpen}
               onClick={() => setOpen(isOpen ? -1 : i)}
             >
-              <span className="tl-yr">{j.yr}</span>
+              {j.yr && <span className="tl-yr">{j.yr}</span>}
               <span className="tl-title">
                 <span className="tl-org">{j.org}</span>
                 <span className="tl-role">{j.role}</span>
               </span>
-              <span className="tl-loc">{j.loc}</span>
+              {j.tag ? (
+                <span className="tl-tag">
+                  <span className="tl-tag-dot" style={{ background: j.tag.color }} />
+                  {j.tag.label}
+                </span>
+              ) : (
+                <span className="tl-loc">{j.loc}</span>
+              )}
               <svg className="tl-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="m6 9 6 6 6-6" />
               </svg>
@@ -227,7 +234,7 @@ export default function Page() {
 
           <section className={`view${view === 2 ? " on" : ""}`} role="tabpanel" aria-label="Projects">
             <ViewHead title="Projects" label="ЖОБАЛАР · OPEN SOURCE" />
-            <Timeline jobs={projects} />
+            <Timeline jobs={projects} variant="project" />
           </section>
 
           <section className={`view${view === 3 ? " on" : ""}`} role="tabpanel" aria-label="Skills">

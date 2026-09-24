@@ -14,8 +14,11 @@ export const credentials = [
   { k: "NYU 2028", v: "Computer Science and Economics" },
 ];
 
+export type Tag = { label: string; color: string };
+
 export type Job = {
   yr: string;
+  tag?: Tag;
   org: string;
   role: string;
   loc: string;
@@ -87,7 +90,8 @@ export const work: Job[] = [
 
 export const projects: Job[] = [
   {
-    yr: "MCP · Python",
+    yr: "",
+    tag: { label: "MCP server", color: "#e6a63f" },
     org: "abacus",
     role: "MCP server for option and portfolio analytics",
     loc: "",
@@ -100,7 +104,8 @@ export const projects: Job[] = [
     ],
   },
   {
-    yr: "TypeScript",
+    yr: "",
+    tag: { label: "TypeScript", color: "#3178c6" },
     org: "recalc",
     role: "Spreadsheet formula engine",
     loc: "",
@@ -113,7 +118,8 @@ export const projects: Job[] = [
     ],
   },
   {
-    yr: "TypeScript",
+    yr: "",
+    tag: { label: "TypeScript", color: "#3178c6" },
     org: "tallyd",
     role: "Double-entry ledger and bank reconciliation",
     loc: "",
@@ -126,7 +132,8 @@ export const projects: Job[] = [
     ],
   },
   {
-    yr: "Python",
+    yr: "",
+    tag: { label: "Python", color: "#4b8bbe" },
     org: "moneyness",
     role: "Options pricing, Greeks and implied volatility",
     loc: "",
@@ -139,7 +146,8 @@ export const projects: Job[] = [
     ],
   },
   {
-    yr: "Python",
+    yr: "",
+    tag: { label: "Python", color: "#4b8bbe" },
     org: "holdout",
     role: "Backtest overfitting toolkit",
     loc: "",
