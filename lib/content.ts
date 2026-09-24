@@ -161,11 +161,59 @@ export const projects: Job[] = [
   },
 ];
 
-export const skills = [
-  { yr: "LANGUAGES", org: "TypeScript, JavaScript, Python, C++, SQL, Bash" },
-  { yr: "FRAMEWORKS", org: "Next.js, React, React Native, Expo, Node, Tailwind" },
-  { yr: "DATA", org: "PostgreSQL, Supabase, Prisma, pandas, NumPy" },
-  { yr: "SHIPPING", org: "Git, Stripe, EAS Build, App Store Connect, Vercel" },
+export type Skill = { name: string; color?: string };
+export type SkillGroup = { label: string; kz: string; items: Skill[] };
+
+export const skills: SkillGroup[] = [
+  {
+    label: "Languages",
+    kz: "ТІЛДЕР",
+    items: [
+      { name: "TypeScript", color: "#3178c6" },
+      { name: "JavaScript", color: "#f1e05a" },
+      { name: "Python", color: "#4b8bbe" },
+      { name: "C++", color: "#f34b7d" },
+      { name: "SQL", color: "#e38c00" },
+      { name: "Bash", color: "#89e051" },
+    ],
+  },
+  {
+    label: "Frameworks",
+    kz: "ФРЕЙМВОРКТЕР",
+    items: [
+      { name: "Next.js" },
+      { name: "React" },
+      { name: "React Native" },
+      { name: "Expo" },
+      { name: "Node" },
+      { name: "Deno" },
+      { name: "Tailwind" },
+    ],
+  },
+  {
+    label: "Data",
+    kz: "ДЕРЕКТЕР",
+    items: [
+      { name: "PostgreSQL" },
+      { name: "Supabase" },
+      { name: "Prisma" },
+      { name: "Row-level security" },
+      { name: "pandas" },
+      { name: "NumPy" },
+    ],
+  },
+  {
+    label: "Shipping",
+    kz: "ШЫҒАРУ",
+    items: [
+      { name: "Git" },
+      { name: "Stripe" },
+      { name: "EAS Build" },
+      { name: "App Store Connect" },
+      { name: "Vercel" },
+      { name: "MCP" },
+    ],
+  },
 ];
 
 export const tabs = ["Home", "Experience", "Projects", "Skills", "Contact"] as const;

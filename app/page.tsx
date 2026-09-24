@@ -114,6 +114,33 @@ function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | 
   );
 }
 
+function Skills() {
+  let n = 0;
+  return (
+    <div className="skills">
+      {skills.map((g) => (
+        <section className="skill-group" key={g.label}>
+          <h3>
+            {g.label}
+            <span>{g.kz}</span>
+          </h3>
+          <ul>
+            {g.items.map((it) => {
+              n += 1;
+              return (
+                <li className="chip" key={it.name} style={{ "--i": n } as React.CSSProperties}>
+                  {it.color && <span className="chip-dot" style={{ background: it.color }} />}
+                  {it.name}
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
+    </div>
+  );
+}
+
 function ViewHead({ title, label }: { title: string; label: string }) {
   return (
     <div className="vhead">
@@ -239,7 +266,7 @@ export default function Page() {
 
           <section className={`view${view === 3 ? " on" : ""}`} role="tabpanel" aria-label="Skills">
             <ViewHead title="Skills" label="ДАҒДЫЛАР · DAILY TOOLS" />
-            <Rows items={skills} />
+            <Skills />
           </section>
 
           <section className={`view${view === 4 ? " on" : ""}`} role="tabpanel" aria-label="Contact">

@@ -313,3 +313,38 @@ a.item:hover h3 { color: var(--accent); }
   .tl--tags .tl-head { grid-template-columns: minmax(0, 1fr) 18px; }
   .tl-tag { grid-column: 1; justify-self: start; margin-top: 8px; }
 }
+
+/* ---------- skills ---------- */
+.skills { display: grid; gap: 30px; }
+.skill-group h3 {
+  display: flex; align-items: baseline; gap: 12px; margin: 0 0 14px;
+  font-size: 15px; font-weight: 500; letter-spacing: -0.01em; color: var(--fg);
+}
+.skill-group h3 span {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 10.5px; letter-spacing: .14em; color: var(--fg-3);
+}
+.skill-group h3::after { content: ""; flex: 1; height: 1px; background: var(--edge-2); }
+.skill-group ul { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 9px 15px; border: 1px solid var(--edge); border-radius: 10px;
+  background: var(--panel); font-size: 15px; color: var(--fg-2);
+  transition: border-color .28s var(--ease), color .28s var(--ease), transform .28s var(--ease), box-shadow .28s var(--ease);
+  /* each chip arrives a beat after the one before it */
+  opacity: 0; animation: chip-in .5s var(--ease) both;
+  animation-delay: calc(var(--i) * 26ms);
+}
+.chip-dot { width: 8px; height: 8px; border-radius: 50%; box-shadow: 0 0 10px currentColor; }
+@keyframes chip-in { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+@media (hover: hover) {
+  .chip:hover {
+    color: var(--fg); border-color: var(--accent); transform: translateY(-3px);
+    box-shadow: 0 10px 24px -14px var(--accent-glow);
+  }
+}
+@media (max-width: 900px) {
+  .skills { gap: 24px; }
+  .chip { padding: 8px 13px; font-size: 14.5px; }
+}
+@media (prefers-reduced-motion: reduce) { .chip { opacity: 1; animation: none; } }
