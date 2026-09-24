@@ -131,9 +131,9 @@ function Skills() {
                 <li
                   className="chip"
                   key={it.name}
-                  style={{ "--i": n, "--chip": it.color ?? "var(--fg-3)" } as React.CSSProperties}
+                  style={{ "--i": n, "--chip": it.color ?? "var(--accent)" } as React.CSSProperties}
                 >
-                  <span className="chip-dot" />
+                  {it.color && <span className="chip-dot" />}
                   {it.name}
                 </li>
               );

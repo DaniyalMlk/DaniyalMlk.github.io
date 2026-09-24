@@ -364,3 +364,6 @@ a.item:hover h3 { color: var(--accent); }
   .chip:hover .chip-dot { box-shadow: 0 0 12px var(--chip); }
 }
 .chip > * { position: relative; }
+
+/* colour belongs to the languages; everything else is amber on hover only */
+.chip:not(:has(.chip-dot)) { padding-left: 15px; }
