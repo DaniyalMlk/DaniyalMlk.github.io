@@ -280,3 +280,20 @@ a.item:hover h3 { color: var(--accent); }
   .tl-body li { font-size: 15px; padding-left: 22px; }
   .tl-link { margin-bottom: 12px; }
 }
+
+/* copyable clone command inside a project */
+.copyline {
+  display: inline-flex; align-items: center; gap: 14px; margin: 2px 0 14px;
+  padding: 9px 12px; border: 1px solid var(--edge); border-radius: 8px;
+  background: var(--panel); cursor: pointer; font-family: inherit;
+  transition: border-color .25s var(--ease), background-color .25s var(--ease), transform .18s var(--ease);
+}
+.copyline code { font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 13px; color: var(--fg-2); }
+.copyline-hint { font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 11px; letter-spacing: .08em; color: var(--fg-3); }
+.copyline.copied { border-color: var(--accent); }
+.copyline.copied .copyline-hint { color: var(--accent); }
+.copyline:active { transform: scale(.985); }
+@media (hover: hover) { .copyline:hover { border-color: var(--accent-line); } .copyline:hover .copyline-hint { color: var(--accent); } }
+
+/* a project row has no city, so the title column takes that space */
+.tl-item .tl-loc:empty { display: none; }

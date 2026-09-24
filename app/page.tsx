@@ -36,6 +36,27 @@ function Rows({ items }: { items: Row[] }) {
 }
 
 
+function CopyLine({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      className={`copyline${copied ? " copied" : ""}`}
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1600);
+        } catch {}
+      }}
+      aria-label={`Copy: ${text}`}
+    >
+      <code>{text}</code>
+      <span className="copyline-hint">{copied ? "copied" : "copy"}</span>
+    </button>
+  );
+}
+
 function Timeline({ jobs }: { jobs: Job[] }) {
   const [open, setOpen] = useState(0);
   return (
@@ -63,6 +84,7 @@ function Timeline({ jobs }: { jobs: Job[] }) {
             </button>
             <div className="tl-body">
               <div className="tl-body-inner">
+                {j.clone && <CopyLine text={j.clone} />}
                 <ul>
                   {j.points.map((pt) => (
                     <li key={pt}>{pt}</li>
@@ -205,7 +227,7 @@ export default function Page() {
 
           <section className={`view${view === 2 ? " on" : ""}`} role="tabpanel" aria-label="Projects">
             <ViewHead title="Projects" label="ЖОБАЛАР · OPEN SOURCE" />
-            <Rows items={projects} />
+            <Timeline jobs={projects} />
           </section>
 
           <section className={`view${view === 3 ? " on" : ""}`} role="tabpanel" aria-label="Skills">

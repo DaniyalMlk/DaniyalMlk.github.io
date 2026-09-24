@@ -20,6 +20,7 @@ export type Job = {
   role: string;
   loc: string;
   href?: string;
+  clone?: string;
   points: string[];
 };
 
@@ -84,36 +85,71 @@ export const work: Job[] = [
   },
 ];
 
-export const projects = [
+export const projects: Job[] = [
   {
     yr: "MCP · Python",
     org: "abacus",
+    role: "MCP server for option and portfolio analytics",
+    loc: "",
     href: "https://github.com/DaniyalMlk/abacus",
-    note: "MCP server exposing option and portfolio analytics to an AI assistant, with its own validated numerical core rather than a wrapper over someone else's API.",
+    clone: "git clone https://github.com/DaniyalMlk/abacus",
+    points: [
+      "Hands option and portfolio mathematics to a language model as tools, targeting MCP revision 2026-07-28, because models are unreliable at arithmetic and a tool boundary can move the numbers somewhere trustworthy.",
+      "Three pure-Python libraries sit behind it: moneyness for the option maths, shortfall for risk estimators, tenor for curves and bonds.",
+      "Nothing wraps a third-party pricing API. The numbers are computed by those libraries and tested where they live.",
+    ],
   },
   {
     yr: "TypeScript",
     org: "recalc",
+    role: "Spreadsheet formula engine",
+    loc: "",
     href: "https://github.com/DaniyalMlk/recalc",
-    note: "Spreadsheet formula engine: lexer, parser, dependency graph and incremental recalculation, so an edit only touches the cells that depend on it.",
+    clone: "git clone https://github.com/DaniyalMlk/recalc",
+    points: [
+      "Parses formula text into an AST, works out which cells each formula depends on, and recalculates only what an edit invalidated.",
+      "158 functions across financial, date, matrix and regression packs, plus named ranges, goal seek, sensitivity tables and scenarios.",
+      "No runtime dependencies, and a virtualised grid so a large sheet stays responsive.",
+    ],
   },
   {
     yr: "TypeScript",
     org: "tallyd",
+    role: "Double-entry ledger and bank reconciliation",
+    loc: "",
     href: "https://github.com/DaniyalMlk/tallyd",
-    note: "Double-entry ledger and bank reconciliation with a live dashboard. A year of transactions reconciles in 0.2 s, down from 16.8 s.",
+    clone: "git clone https://github.com/DaniyalMlk/tallyd",
+    points: [
+      "Matches a bank statement against the books when the amounts differ by a processor fee, the dates by settlement lag, and one deposit covers three invoices.",
+      "CSV and OFX ingestion with duplicate flagging, one-to-many and many-to-one matches, and a reconciliation that balances to the penny.",
+      "A year of a busy account, 715 ledger movements against 625 statement lines, went from 16.8 s to 0.2 s with identical accuracy.",
+    ],
   },
   {
     yr: "Python",
     org: "moneyness",
+    role: "Options pricing, Greeks and implied volatility",
+    loc: "",
     href: "https://github.com/DaniyalMlk/moneyness",
-    note: "Options pricing library: Black-Scholes-Merton, analytic Greeks and implied-volatility solving, checked against closed-form results.",
+    clone: "git clone https://github.com/DaniyalMlk/moneyness",
+    points: [
+      "Prices European options under generalised Black-Scholes-Merton, differentiates them analytically, and recovers implied volatility from a quote.",
+      "Written to be correct at the boundaries: zero time, zero volatility, deep wings, and quotes sitting exactly on the arbitrage bound.",
+      "Standard library only at runtime, with mpmath used in the test suite as an independent reference.",
+    ],
   },
   {
     yr: "Python",
     org: "holdout",
+    role: "Backtest overfitting toolkit",
+    loc: "",
     href: "https://github.com/DaniyalMlk/holdout",
-    note: "Backtest overfitting toolkit: deflated Sharpe ratios, probability of backtest overfitting, purged cross-validation and multiple-testing haircuts.",
+    clone: "git clone https://github.com/DaniyalMlk/holdout",
+    points: [
+      "Answers how much of a strategy search's best result survives once the search itself is taken into account.",
+      "Deflated and probabilistic Sharpe ratios, probability of backtest overfitting, purged cross-validation and multiple-testing haircuts.",
+      "Every statistic is checked against a published worked example, a closed form, or a simulation of its own sampling distribution.",
+    ],
   },
 ];
 
