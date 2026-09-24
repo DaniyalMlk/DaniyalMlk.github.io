@@ -437,3 +437,25 @@ a.item:hover h3 { color: var(--accent); }
   .skill-group h3 { margin: 0; font-size: 19px; }
   .skill-meta p { margin: 0; max-width: none; }
 }
+
+/* social buttons wear their own brand colours */
+.util a[data-brand="github"] { color: var(--gh); }
+.util a[data-brand="linkedin"] { color: var(--li); }
+@media (hover: hover) {
+  .util a[data-brand="github"]:hover { color: var(--gh); background: color-mix(in srgb, var(--gh) 12%, transparent); border-color: color-mix(in srgb, var(--gh) 45%, transparent); }
+  .util a[data-brand="linkedin"]:hover { color: var(--li); background: color-mix(in srgb, var(--li) 14%, transparent); border-color: color-mix(in srgb, var(--li) 55%, transparent); }
+}
+
+/* the eagle sits behind the whole view rather than in a corner */
+.eagle {
+  position: absolute;
+  left: 50%; top: 50%; right: auto; bottom: auto;
+  transform: translate(-50%, -48%);
+  width: min(72%, 900px);
+  opacity: .055;
+  z-index: 0;
+}
+.view > * { position: relative; z-index: 1; }
+@media (max-width: 900px) {
+  .eagle { width: 110%; opacity: .05; transform: translate(-50%, -50%); }
+}
