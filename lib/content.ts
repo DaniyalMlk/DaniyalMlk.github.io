@@ -39,7 +39,7 @@ export const work: Job[] = [
   {
     yr: "2026",
     org: "AidenCare",
-    role: "Lead Full-Stack Engineer",
+    role: "Full-Stack Engineering Lead",
     loc: "Shanghai",
     href: "https://aidencare.space",
     points: [
