@@ -56,6 +56,7 @@ export const work: Job[] = [
     points: [
       "HSSE platform for 150 staff built in four weeks: six SPFx web parts in React over nine SharePoint lists.",
       "Visio parser that turned 40+ process diagrams into Word guides, cutting each write-up from two hours to under a minute.",
+      "Added BPMN and PDF exports on the same process model, so 12 process owners could publish updates without going through IT.",
     ],
   },
   {
@@ -65,7 +66,8 @@ export const work: Job[] = [
     loc: "Astana",
     points: [
       "Integrated six IMU and load-cell sensors into a tensegrity robot and recalibrated chord tension between runs.",
-      "Built a 1,200-record soil database in Postgres and fitted van Genuchten curves in Python for the sensor design.",
+      "Built a Postgres database of 1,200 soil lab records for an IoT geotechnical sensing project.",
+      "Fitted van Genuchten curves in Python with pandas and NumPy; the results fed the sensor-system design.",
     ],
   },
   {
@@ -75,7 +77,8 @@ export const work: Job[] = [
     loc: "Astana",
     points: [
       "Rewrote 14 production SQL queries and took a nightly ETL job over 25 tables from three hours to under two.",
-      "Wrote 30+ validation queries that caught roughly 500 bad records a week before they reached reports.",
+      "Wrote 30+ validation queries that caught roughly 500 missing or duplicate records a week before they reached reports.",
+      "Turned four analysts' reporting requirements into six ETL output tables and checked the loaded data against their reports.",
     ],
   },
 ];
