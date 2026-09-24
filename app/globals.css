@@ -348,3 +348,19 @@ a.item:hover h3 { color: var(--accent); }
   .chip { padding: 8px 13px; font-size: 14.5px; }
 }
 @media (prefers-reduced-motion: reduce) { .chip { opacity: 1; animation: none; } }
+
+/* every chip carries its own colour, not just the languages */
+.skill-group h3 span { text-transform: none; letter-spacing: 0; font-size: 12.5px; font-family: var(--font-geist-sans), sans-serif; }
+.chip-dot { background: var(--chip); }
+.chip { position: relative; overflow: hidden; }
+/* a faint wash of the chip's own colour, which warms on hover */
+.chip::before {
+  content: ""; position: absolute; inset: 0; background: var(--chip); opacity: 0;
+  transition: opacity .28s var(--ease);
+}
+@media (hover: hover) {
+  .chip:hover { color: var(--fg); border-color: color-mix(in srgb, var(--chip) 65%, transparent); transform: translateY(-3px); box-shadow: 0 10px 24px -14px var(--chip); }
+  .chip:hover::before { opacity: .09; }
+  .chip:hover .chip-dot { box-shadow: 0 0 12px var(--chip); }
+}
+.chip > * { position: relative; }

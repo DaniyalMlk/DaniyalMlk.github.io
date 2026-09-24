@@ -162,12 +162,12 @@ export const projects: Job[] = [
 ];
 
 export type Skill = { name: string; color?: string };
-export type SkillGroup = { label: string; kz: string; items: Skill[] };
+export type SkillGroup = { label: string; note: string; items: Skill[] };
 
 export const skills: SkillGroup[] = [
   {
     label: "Languages",
-    kz: "ТІЛДЕР",
+    note: "what I write in",
     items: [
       { name: "TypeScript", color: "#3178c6" },
       { name: "JavaScript", color: "#f1e05a" },
@@ -178,40 +178,40 @@ export const skills: SkillGroup[] = [
     ],
   },
   {
-    label: "Frameworks",
-    kz: "ФРЕЙМВОРКТЕР",
+    label: "Building",
+    note: "web and mobile",
     items: [
-      { name: "Next.js" },
-      { name: "React" },
-      { name: "React Native" },
-      { name: "Expo" },
-      { name: "Node" },
-      { name: "Deno" },
-      { name: "Tailwind" },
+      { name: "Next.js", color: "#e8e8e8" },
+      { name: "React", color: "#61dafb" },
+      { name: "React Native", color: "#61dafb" },
+      { name: "Expo", color: "#c3c9d4" },
+      { name: "Node", color: "#5fa04e" },
+      { name: "Deno", color: "#70ffaf" },
+      { name: "Tailwind", color: "#38bdf8" },
     ],
   },
   {
     label: "Data",
-    kz: "ДЕРЕКТЕР",
+    note: "where it lives, and who may read it",
     items: [
-      { name: "PostgreSQL" },
-      { name: "Supabase" },
-      { name: "Prisma" },
-      { name: "Row-level security" },
-      { name: "pandas" },
-      { name: "NumPy" },
+      { name: "PostgreSQL", color: "#699eca" },
+      { name: "Supabase", color: "#3ecf8e" },
+      { name: "Prisma", color: "#9db1c7" },
+      { name: "Row-level security", color: "#e6a63f" },
+      { name: "pandas", color: "#c39bd3" },
+      { name: "NumPy", color: "#4dabcf" },
     ],
   },
   {
     label: "Shipping",
-    kz: "ШЫҒАРУ",
+    note: "how it reaches people",
     items: [
-      { name: "Git" },
-      { name: "Stripe" },
-      { name: "EAS Build" },
-      { name: "App Store Connect" },
-      { name: "Vercel" },
-      { name: "MCP" },
+      { name: "Git", color: "#f05032" },
+      { name: "Vercel", color: "#e8e8e8" },
+      { name: "Stripe", color: "#8f7bff" },
+      { name: "EAS Build", color: "#c3c9d4" },
+      { name: "App Store Connect", color: "#3b9dff" },
+      { name: "MCP", color: "#e6a63f" },
     ],
   },
 ];

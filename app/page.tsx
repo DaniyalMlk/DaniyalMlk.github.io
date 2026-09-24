@@ -122,14 +122,18 @@ function Skills() {
         <section className="skill-group" key={g.label}>
           <h3>
             {g.label}
-            <span>{g.kz}</span>
+            <span>{g.note}</span>
           </h3>
           <ul>
             {g.items.map((it) => {
               n += 1;
               return (
-                <li className="chip" key={it.name} style={{ "--i": n } as React.CSSProperties}>
-                  {it.color && <span className="chip-dot" style={{ background: it.color }} />}
+                <li
+                  className="chip"
+                  key={it.name}
+                  style={{ "--i": n, "--chip": it.color ?? "var(--fg-3)" } as React.CSSProperties}
+                >
+                  <span className="chip-dot" />
                   {it.name}
                 </li>
               );
