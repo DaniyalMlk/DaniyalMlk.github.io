@@ -270,19 +270,7 @@ export default function Page() {
             <Skills />
           </section>
 
-          <section className={`view${view === 4 ? " on" : ""}`} role="tabpanel" aria-label="Contact">
-            <ViewHead title="Contact" label="БАЙЛАНЫС" />
-            <p className="big contact-mail" style={{ fontSize: 38 }}>{profile.email}</p>
-            <p className="sub">
-              Email is the fastest way to reach me. Code on GitHub, work history on LinkedIn, both linked in the header.
-            </p>
-            <a className="cta" href={`mailto:${profile.email}`}>
-              Write to me
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h13M13 6l6 6-6 6" />
-              </svg>
-            </a>
-          </section>
+          
         </div>
       </div>
     </div>

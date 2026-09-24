@@ -216,4 +216,4 @@ export const skills: SkillGroup[] = [
   },
 ];
 
-export const tabs = ["Home", "Experience", "Projects", "Skills", "Contact"] as const;
+export const tabs = ["Home", "Experience", "Projects", "Skills"] as const;
