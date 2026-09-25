@@ -1016,3 +1016,68 @@ a.item:hover h3 { color: var(--accent); }
   to { clip-path: inset(0 0 0 0); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) { .sk-file.open .sk-line { animation: none; } }
+
+/* ================= phone fixes ================= */
+
+/* 1. the ornament fills its column instead of setting the page height,
+      so pages end where their content ends */
+.hoist { position: relative; }
+.hoist > div, .hoist svg { position: absolute; inset: 0; }
+
+@media (max-width: 900px) {
+  /* header: tabs spread evenly across the width */
+  .tabs { justify-content: space-between; gap: 0; margin: 0; padding: 0; }
+  .tabs button { font-size: 16.5px; }
+
+  /* 5. home: hero sits in the middle of the screen, not at the top */
+  .view.on:has(.hero) { min-height: calc(100dvh - 128px); display: flex; flex-direction: column; justify-content: center; }
+  .hero { padding: 8px 0 20px; }
+  .big { font-size: clamp(38px, 11vw, 52px); }
+  .stats { margin-top: 36px; display: grid; gap: 18px; }
+  .stat { margin: 0; }
+
+  /* 4. experience and projects: year and city share one line */
+  .tl-head {
+    grid-template-columns: minmax(0, 1fr) auto 18px;
+    grid-template-areas: "yr loc chev" "title title title";
+    row-gap: 6px; column-gap: 10px; align-items: center;
+  }
+  .tl-yr { grid-area: yr; }
+  .tl-loc { grid-area: loc; text-align: right; font-size: 13px; }
+  .tl-chev { grid-area: chev; grid-row: 1; margin: 0; }
+  .tl-title { grid-area: title; }
+  .tl-org { font-size: 18.5px; }
+  .tl-body ul { padding-right: 0; }
+  .tl-body li { font-size: 15px; line-height: 1.6; padding-left: 20px; }
+
+  /* projects have no year; the language chip takes that first line */
+  .tl--tags .tl-head { grid-template-areas: "title title chev" "tag tag tag"; }
+  .tl--tags .tl-tag { grid-area: tag; justify-self: start; margin-top: 4px; }
+  .tl--tags .tl-chev { grid-row: 1; }
+
+  /* 2. the clone command scrolls inside its own box instead of spilling out */
+  .copyline { display: flex; width: 100%; max-width: 100%; justify-content: space-between; overflow: hidden; }
+  .copyline code { overflow-x: auto; white-space: nowrap; scrollbar-width: none; font-size: 12.5px; }
+  .copyline code::-webkit-scrollbar { display: none; }
+  .copyline-hint { flex: none; }
+
+  /* 3. skills: one column in reading order */
+  .sk-grid { grid-template-columns: minmax(0, 1fr); }
+  .sk-col { display: contents; }
+  .sk-grid { display: flex; flex-direction: column; gap: 12px; }
+  .sk-file { order: var(--order); }
+  .sk-head { padding: 16px 18px; grid-template-columns: 40px minmax(0, 1fr) 18px; gap: 14px; }
+  .sk-icon { width: 40px; height: 40px; }
+  .sk-title { font-size: 19px; }
+  .sk-code { margin: 0 18px 18px; font-size: 13.5px; line-height: 1.85; }
+  .sk-line { padding-left: 36px; }
+  .sk-line::before { width: 22px; }
+  .sk-file.open::after { display: none; }
+
+  /* the eagle sits lower and quieter so it never crowds text on a small screen */
+  .eagle { top: auto; bottom: 4%; transform: translateX(-50%); width: 120%; }
+}
+@media (max-width: 900px) {
+  .sk-grid { align-items: stretch; }
+  .sk-file { width: 100%; }
+}

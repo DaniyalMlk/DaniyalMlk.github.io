@@ -149,11 +149,11 @@ const skillMeta: Record<string, { file: string; icon: React.ReactNode }> = {
   },
 };
 
-function SkillFile({ label, items, open, onToggle }: { label: string; items: { name: string }[]; open: boolean; onToggle: () => void }) {
+function SkillFile({ label, items, order, open, onToggle }: { label: string; items: { name: string }[]; order: number; open: boolean; onToggle: () => void }) {
   const meta = skillMeta[label];
   const varName = label.toLowerCase();
   return (
-    <section className={`sk-file${open ? " open" : ""}`}>
+    <section className={`sk-file${open ? " open" : ""}`} style={{ "--order": order } as React.CSSProperties}>
       <button type="button" className="sk-head" aria-expanded={open} onClick={onToggle}>
         <span className="sk-icon" aria-hidden="true">{meta.icon}</span>
         <span className="sk-titles">
@@ -191,6 +191,17 @@ function SkillFile({ label, items, open, onToggle }: { label: string; items: { n
 function Skills() {
   // like the reference: categories open and close; one per column starts open
   const [open, setOpen] = useState<Record<string, boolean>>({ Languages: true, Building: true });
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 900px)");
+    const apply = () => {
+      setPhone(mq.matches);
+      if (mq.matches) setOpen({ Languages: true });
+    };
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
   const cols = [
     [skills[0], skills[2]],
     [skills[1], skills[3]],
@@ -198,6 +209,7 @@ function Skills() {
   // one open file per column, so the view never outgrows the screen
   const toggle = (k: string) =>
     setOpen((o) => {
+      if (phone) return { [k]: !o[k] };
       const col = cols.find((c) => c.some((g) => g.label === k)) ?? [];
       const next = { ...o };
       col.forEach((g) => { if (g.label !== k) next[g.label] = false; });
@@ -209,7 +221,14 @@ function Skills() {
       {cols.map((col, ci) => (
         <div className="sk-col" key={ci}>
           {col.map((g) => (
-            <SkillFile key={g.label} label={g.label} items={g.items} open={!!open[g.label]} onToggle={() => toggle(g.label)} />
+            <SkillFile
+              key={g.label}
+              label={g.label}
+              items={g.items}
+              order={skills.findIndex((x) => x.label === g.label)}
+              open={!!open[g.label]}
+              onToggle={() => toggle(g.label)}
+            />
           ))}
         </div>
       ))}
