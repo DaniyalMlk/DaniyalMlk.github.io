@@ -472,3 +472,54 @@ a.item:hover h3 { color: var(--accent); }
     mask-image: linear-gradient(180deg, transparent 10%, rgba(0,0,0,.4) 40%, #000 75%);
   }
 }
+
+/* ---------- skills: ornament spine, focus on hover ---------- */
+.skills { position: relative; padding-left: 34px; }
+/* the spine, drawn downward when the view opens */
+.skills::before {
+  content: ""; position: absolute; left: 6px; top: 12px; bottom: 12px; width: 1px;
+  background: linear-gradient(var(--accent-line), var(--edge) 70%, transparent);
+  transform-origin: top; animation: spine-draw .75s var(--ease) both;
+}
+@keyframes spine-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+/* a diamond node per group, echoing the ornament */
+.skill-node {
+  position: absolute; left: -34px; top: 30px; width: 13px; height: 13px;
+  border: 1.4px solid var(--edge); background: var(--bg); transform: rotate(45deg);
+  transition: border-color .32s var(--ease), background-color .32s var(--ease),
+              box-shadow .32s var(--ease), transform .32s var(--ease);
+}
+.skill-group { position: relative; }
+
+/* hovering one group brings it forward and settles the others back */
+.skills:has(.skill-group:hover) .skill-group { opacity: .45; transition: opacity .35s var(--ease); }
+.skills:has(.skill-group:hover) .skill-group:hover { opacity: 1; }
+
+@media (hover: hover) {
+  .skill-group:hover .skill-node {
+    border-color: var(--accent); background: var(--accent);
+    box-shadow: 0 0 0 6px var(--accent-soft); transform: rotate(45deg) scale(1.12);
+  }
+  .skill-group:hover .skill-no { color: var(--fg); }
+}
+
+/* group dividers become a woven band rather than a plain rule */
+.skill-group + .skill-group { border-top: 0; position: relative; }
+.skill-group + .skill-group::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 12px;
+  background-image:
+    radial-gradient(circle at 6px 6px, var(--accent-line) 1px, transparent 1.6px),
+    linear-gradient(var(--edge-2), var(--edge-2));
+  background-size: 22px 12px, 100% 1px;
+  background-position: 0 0, 0 0;
+  background-repeat: repeat-x, no-repeat;
+  opacity: .5;
+}
+@media (max-width: 900px) {
+  .skills { padding-left: 26px; }
+  .skill-node { left: -26px; top: 24px; width: 11px; height: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skills::before { animation: none; }
+}

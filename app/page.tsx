@@ -119,6 +119,7 @@ function Skills() {
     <div className="skills">
       {skills.map((g, gi) => (
         <section className="skill-group" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
+          <span className="skill-node" aria-hidden="true" />
           <div className="skill-meta">
             <span className="skill-no">{String(gi + 1).padStart(2, "0")}</span>
             <h3>{g.label}</h3>
