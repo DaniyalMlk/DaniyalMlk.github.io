@@ -114,24 +114,103 @@ function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | 
   );
 }
 
-function Skills() {
+const skillMeta: Record<string, { file: string; icon: React.ReactNode }> = {
+  Languages: {
+    file: "languages.ts",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 4c-2 0-3 1-3 3v2c0 1.5-.7 2.5-2 3 1.3.5 2 1.5 2 3v2c0 2 1 3 3 3M16 4c2 0 3 1 3 3v2c0 1.5.7 2.5 2 3-1.3.5-2 1.5-2 3v2c0 2-1 3-3 3" />
+      </svg>
+    ),
+  },
+  Building: {
+    file: "building.ts",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 13 9 5 9-5" />
+      </svg>
+    ),
+  },
+  Data: {
+    file: "data.ts",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" /><path d="M4.5 5.5v6.5c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V5.5" /><path d="M4.5 12v6.5c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V12" />
+      </svg>
+    ),
+  },
+  Shipping: {
+    file: "shipping.ts",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 19c2-5 6-9 14-14-1 7-5 11-11 13" /><path d="M9 15l-3 3" /><path d="M13.5 8.5a1.5 1.5 0 1 0 0 .01" />
+      </svg>
+    ),
+  },
+};
+
+function SkillFile({ label, items, open, onToggle }: { label: string; items: { name: string }[]; open: boolean; onToggle: () => void }) {
+  const meta = skillMeta[label];
+  const varName = label.toLowerCase();
   return (
-    <div className="bento">
-      {skills.map((g, gi) => (
-        <section className="bento-card" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
-          <svg className="bento-orn" viewBox="-60 -50 120 80" aria-hidden="true">
-            <path d="M0 10 C 0 -30 46 -30 46 4 C 46 26 16 26 16 4 C 16 -8 32 -8 32 2" />
-            <path d="M0 10 C 0 -30 -46 -30 -46 4 C -46 26 -16 26 -16 4 C -16 -8 -32 -8 -32 2" />
-          </svg>
-          <h3 className="bento-title">{g.label}</h3>
-          <ul className="bento-words">
-            {g.items.map((it, i) => (
-              <li key={it.name} style={{ "--i": i } as React.CSSProperties}>
-                {it.name}
-              </li>
-            ))}
-          </ul>
-        </section>
+    <section className={`sk-file${open ? " open" : ""}`}>
+      <button type="button" className="sk-head" aria-expanded={open} onClick={onToggle}>
+        <span className="sk-icon" aria-hidden="true">{meta.icon}</span>
+        <span className="sk-titles">
+          <span className="sk-title">{label}</span>
+          <span className="sk-file-name">{meta.file}</span>
+        </span>
+        <svg className="sk-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      <div className="sk-body">
+        <div className="sk-body-inner">
+          <pre className="sk-code">
+            <code>
+              <span className="sk-line" style={{ "--l": 0 } as React.CSSProperties}>
+                <span className="c-kw">export const</span> <span className="c-id">{varName}</span> <span className="c-p">= [</span>
+              </span>
+              {items.map((it, i) => (
+                <span className="sk-line" key={it.name} style={{ "--l": i + 1 } as React.CSSProperties}>
+                  {"  "}<span className="c-str">"{it.name}"</span><span className="c-p">,</span>
+                </span>
+              ))}
+              <span className="sk-line" style={{ "--l": items.length + 1 } as React.CSSProperties}>
+                <span className="c-p">];</span>
+              </span>
+            </code>
+          </pre>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Skills() {
+  // like the reference: categories open and close; one per column starts open
+  const [open, setOpen] = useState<Record<string, boolean>>({ Languages: true, Building: true });
+  const cols = [
+    [skills[0], skills[2]],
+    [skills[1], skills[3]],
+  ];
+  // one open file per column, so the view never outgrows the screen
+  const toggle = (k: string) =>
+    setOpen((o) => {
+      const col = cols.find((c) => c.some((g) => g.label === k)) ?? [];
+      const next = { ...o };
+      col.forEach((g) => { if (g.label !== k) next[g.label] = false; });
+      next[k] = !o[k];
+      return next;
+    });
+  return (
+    <div className="sk-grid">
+      {cols.map((col, ci) => (
+        <div className="sk-col" key={ci}>
+          {col.map((g) => (
+            <SkillFile key={g.label} label={g.label} items={g.items} open={!!open[g.label]} onToggle={() => toggle(g.label)} />
+          ))}
+        </div>
       ))}
     </div>
   );
