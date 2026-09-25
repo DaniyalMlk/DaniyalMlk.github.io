@@ -115,22 +115,21 @@ function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | 
 }
 
 function Skills() {
-  let n = 0;
   return (
-    <div className="ptable">
+    <div className="bento">
       {skills.map((g, gi) => (
-        <section className="pt-row" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
-          <h3 className="pt-label">{g.label}</h3>
-          <ul className="pt-cells">
-            {g.items.map((it) => {
-              n += 1;
-              return (
-                <li className="pt-cell" key={it.name} style={{ "--i": n } as React.CSSProperties} title={it.name}>
-                  <span className="pt-sym">{it.sym}</span>
-                  <span className="pt-name">{it.name}</span>
-                </li>
-              );
-            })}
+        <section className="bento-card" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
+          <svg className="bento-orn" viewBox="-60 -50 120 80" aria-hidden="true">
+            <path d="M0 10 C 0 -30 46 -30 46 4 C 46 26 16 26 16 4 C 16 -8 32 -8 32 2" />
+            <path d="M0 10 C 0 -30 -46 -30 -46 4 C -46 26 -16 26 -16 4 C -16 -8 -32 -8 -32 2" />
+          </svg>
+          <h3 className="bento-title">{g.label}</h3>
+          <ul className="bento-words">
+            {g.items.map((it, i) => (
+              <li key={it.name} style={{ "--i": i } as React.CSSProperties}>
+                {it.name}
+              </li>
+            ))}
           </ul>
         </section>
       ))}
