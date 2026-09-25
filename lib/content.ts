@@ -161,7 +161,7 @@ export const projects: Job[] = [
   },
 ];
 
-export type Skill = { name: string; used: string };
+export type Skill = { name: string; sym: string; used: string };
 export type SkillGroup = { label: string; note: string; items: Skill[] };
 
 export const skills: SkillGroup[] = [
@@ -169,49 +169,49 @@ export const skills: SkillGroup[] = [
     label: "Languages",
     note: "",
     items: [
-      { name: "TypeScript", used: "Terran Denizen · recalc · tallyd" },
-      { name: "JavaScript", used: "AidenCare · NCOC web parts" },
-      { name: "Python", used: "abacus · moneyness · holdout · Nazarbayev University" },
-      { name: "SQL", used: "National Information Technologies · Terran Denizen" },
-      { name: "C++", used: "coursework, data structures and algorithms" },
-      { name: "Bash", used: "build and deploy scripts" },
+      { name: "TypeScript", sym: "Ts", used: "Terran Denizen · recalc · tallyd" },
+      { name: "JavaScript", sym: "Js", used: "AidenCare · NCOC web parts" },
+      { name: "Python", sym: "Py", used: "abacus · moneyness · holdout · Nazarbayev University" },
+      { name: "SQL", sym: "Sq", used: "National Information Technologies · Terran Denizen" },
+      { name: "C++", sym: "Cp", used: "coursework, data structures and algorithms" },
+      { name: "Bash", sym: "Sh", used: "build and deploy scripts" },
     ],
   },
   {
     label: "Building",
     note: "",
     items: [
-      { name: "Next.js", used: "Terran Denizen · this site" },
-      { name: "React", used: "Terran Denizen · AidenCare · NCOC" },
-      { name: "React Native", used: "Terran Denizen iOS app" },
-      { name: "Expo", used: "Terran Denizen iOS app" },
-      { name: "Node", used: "Terran Denizen API" },
-      { name: "Deno", used: "AidenCare edge functions" },
-      { name: "Tailwind", used: "Terran Denizen" },
+      { name: "Next.js", sym: "Nx", used: "Terran Denizen · this site" },
+      { name: "React", sym: "Re", used: "Terran Denizen · AidenCare · NCOC" },
+      { name: "React Native", sym: "Rn", used: "Terran Denizen iOS app" },
+      { name: "Expo", sym: "Ex", used: "Terran Denizen iOS app" },
+      { name: "Node", sym: "Nd", used: "Terran Denizen API" },
+      { name: "Deno", sym: "Dn", used: "AidenCare edge functions" },
+      { name: "Tailwind", sym: "Tw", used: "Terran Denizen" },
     ],
   },
   {
     label: "Data",
     note: "",
     items: [
-      { name: "PostgreSQL", used: "every platform I have shipped" },
-      { name: "Supabase", used: "AidenCare · Terran Denizen" },
-      { name: "Prisma", used: "Terran Denizen" },
-      { name: "Row-level security", used: "133 policies at Terran, 29 at AidenCare" },
-      { name: "pandas", used: "Nazarbayev University · holdout" },
-      { name: "NumPy", used: "shortfall · moneyness" },
+      { name: "PostgreSQL", sym: "Pg", used: "every platform I have shipped" },
+      { name: "Supabase", sym: "Sb", used: "AidenCare · Terran Denizen" },
+      { name: "Prisma", sym: "Pr", used: "Terran Denizen" },
+      { name: "Row-level security", sym: "Rl", used: "133 policies at Terran, 29 at AidenCare" },
+      { name: "pandas", sym: "Pd", used: "Nazarbayev University · holdout" },
+      { name: "NumPy", sym: "Np", used: "shortfall · moneyness" },
     ],
   },
   {
     label: "Shipping",
     note: "",
     items: [
-      { name: "Git", used: "every repository here" },
-      { name: "Vercel", used: "AidenCare, 100+ deployments" },
-      { name: "Stripe", used: "Terran Denizen billing" },
-      { name: "EAS Build", used: "Terran Denizen iOS builds" },
-      { name: "App Store Connect", used: "Terran Denizen releases" },
-      { name: "MCP", used: "abacus" },
+      { name: "Git", sym: "Gt", used: "every repository here" },
+      { name: "Vercel", sym: "Vc", used: "AidenCare, 100+ deployments" },
+      { name: "Stripe", sym: "St", used: "Terran Denizen billing" },
+      { name: "EAS Build", sym: "Eb", used: "Terran Denizen iOS builds" },
+      { name: "App Store Connect", sym: "As", used: "Terran Denizen releases" },
+      { name: "MCP", sym: "Mc", used: "abacus" },
     ],
   },
 ];

@@ -115,28 +115,23 @@ function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | 
 }
 
 function Skills() {
+  let n = 0;
   return (
-    <div className="spec">
+    <div className="ptable">
       {skills.map((g, gi) => (
-        <section
-          className={`spec-row${gi % 2 ? " rev" : ""}`}
-          key={g.label}
-          style={{ "--g": gi, "--dur": `${46 + gi * 7}s` } as React.CSSProperties}
-        >
-          <h3 className="spec-label">{g.label}</h3>
-          <div className="spec-marquee">
-            <div className="spec-track">
-              {[0, 1].map((copy) => (
-                <ul className="spec-words" key={copy} aria-hidden={copy === 1 ? true : undefined}>
-                  {g.items.map((it, i) => (
-                    <li key={it.name} style={{ "--i": i } as React.CSSProperties}>
-                      <span>{it.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          </div>
+        <section className="pt-row" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
+          <h3 className="pt-label">{g.label}</h3>
+          <ul className="pt-cells">
+            {g.items.map((it) => {
+              n += 1;
+              return (
+                <li className="pt-cell" key={it.name} style={{ "--i": n } as React.CSSProperties} title={it.name}>
+                  <span className="pt-sym">{it.sym}</span>
+                  <span className="pt-name">{it.name}</span>
+                </li>
+              );
+            })}
+          </ul>
         </section>
       ))}
     </div>
