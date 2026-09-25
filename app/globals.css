@@ -523,3 +523,14 @@ a.item:hover h3 { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .skills::before { animation: none; }
 }
+
+/* the group name is enough: no number, no explanatory line */
+.skill-group { grid-template-columns: 170px minmax(0, 1fr); gap: 36px; align-items: center; padding: 26px 0; }
+.skill-group h3 { margin: 0; font-size: 22px; white-space: nowrap; }
+.skill-group ul { padding-top: 0; }
+.skill-node { top: 50%; margin-top: -7px; }
+@media (max-width: 900px) {
+  .skill-group { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 12px; }
+  .skill-group h3 { font-size: 19px; }
+  .skill-node { top: 22px; margin-top: 0; }
+}
