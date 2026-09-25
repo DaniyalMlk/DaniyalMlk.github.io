@@ -161,57 +161,57 @@ export const projects: Job[] = [
   },
 ];
 
-export type Skill = { name: string; color?: string };
+export type Skill = { name: string; used: string };
 export type SkillGroup = { label: string; note: string; items: Skill[] };
 
 export const skills: SkillGroup[] = [
   {
     label: "Languages",
-    note: "what I write in",
+    note: "",
     items: [
-      { name: "TypeScript", color: "#3178c6" },
-      { name: "JavaScript", color: "#f1e05a" },
-      { name: "Python", color: "#4b8bbe" },
-      { name: "C++", color: "#f34b7d" },
-      { name: "SQL", color: "#e38c00" },
-      { name: "Bash", color: "#89e051" },
+      { name: "TypeScript", used: "Terran Denizen · recalc · tallyd" },
+      { name: "JavaScript", used: "AidenCare · NCOC web parts" },
+      { name: "Python", used: "abacus · moneyness · holdout · Nazarbayev University" },
+      { name: "SQL", used: "National Information Technologies · Terran Denizen" },
+      { name: "C++", used: "coursework, data structures and algorithms" },
+      { name: "Bash", used: "build and deploy scripts" },
     ],
   },
   {
     label: "Building",
-    note: "web and mobile",
+    note: "",
     items: [
-      { name: "Next.js" },
-      { name: "React" },
-      { name: "React Native" },
-      { name: "Expo" },
-      { name: "Node" },
-      { name: "Deno" },
-      { name: "Tailwind" },
+      { name: "Next.js", used: "Terran Denizen · this site" },
+      { name: "React", used: "Terran Denizen · AidenCare · NCOC" },
+      { name: "React Native", used: "Terran Denizen iOS app" },
+      { name: "Expo", used: "Terran Denizen iOS app" },
+      { name: "Node", used: "Terran Denizen API" },
+      { name: "Deno", used: "AidenCare edge functions" },
+      { name: "Tailwind", used: "Terran Denizen" },
     ],
   },
   {
     label: "Data",
-    note: "where it lives, and who may read it",
+    note: "",
     items: [
-      { name: "PostgreSQL" },
-      { name: "Supabase" },
-      { name: "Prisma" },
-      { name: "Row-level security" },
-      { name: "pandas" },
-      { name: "NumPy" },
+      { name: "PostgreSQL", used: "every platform I have shipped" },
+      { name: "Supabase", used: "AidenCare · Terran Denizen" },
+      { name: "Prisma", used: "Terran Denizen" },
+      { name: "Row-level security", used: "133 policies at Terran, 29 at AidenCare" },
+      { name: "pandas", used: "Nazarbayev University · holdout" },
+      { name: "NumPy", used: "shortfall · moneyness" },
     ],
   },
   {
     label: "Shipping",
-    note: "how it reaches people",
+    note: "",
     items: [
-      { name: "Git" },
-      { name: "Vercel" },
-      { name: "Stripe" },
-      { name: "EAS Build" },
-      { name: "App Store Connect" },
-      { name: "MCP" },
+      { name: "Git", used: "every repository here" },
+      { name: "Vercel", used: "AidenCare, 100+ deployments" },
+      { name: "Stripe", used: "Terran Denizen billing" },
+      { name: "EAS Build", used: "Terran Denizen iOS builds" },
+      { name: "App Store Connect", used: "Terran Denizen releases" },
+      { name: "MCP", used: "abacus" },
     ],
   },
 ];

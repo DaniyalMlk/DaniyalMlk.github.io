@@ -534,3 +534,47 @@ a.item:hover h3 { color: var(--accent); }
   .skill-group h3 { font-size: 19px; }
   .skill-node { top: 22px; margin-top: 0; }
 }
+
+/* ---------- skills, final shape ---------- */
+/* keep the spine and nodes inside the panel: the view clips overflow */
+.skills { padding-left: 30px; }
+.skills::before { left: 5px; }
+.skill-node { left: -30px; margin-left: 0; }
+
+.skill-meta { display: flex; align-items: baseline; gap: 10px; }
+.skill-count {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px; color: var(--fg-3);
+}
+.skill-group:hover .skill-count { color: var(--accent); }
+
+/* no dots at all: the row reads as one material */
+.chip-dot { display: none; }
+.chip { padding: 10px 16px; }
+
+/* hovering a chip says where that tool was actually used */
+.skill-body { min-width: 0; }
+.skill-hint {
+  margin: 10px 0 0; min-height: 17px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 11.5px; letter-spacing: .04em; color: var(--accent);
+  opacity: 0; transform: translateY(-2px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease);
+}
+.skill-group:hover .skill-hint { opacity: .85; transform: none; }
+@media (hover: hover) { .chip:hover { border-color: var(--accent); } }
+@media (max-width: 900px) {
+  .skills { padding-left: 24px; }
+  .skill-node { left: -24px; }
+  .skill-hint { font-size: 11px; }
+}
+
+/* a 45°-rotated square is wider than its box, so leave room for the corners */
+.skills { padding-left: 38px; }
+.skills::before { left: 12px; }
+.skill-node { left: -27px; }
+@media (max-width: 900px) {
+  .skills { padding-left: 30px; }
+  .skills::before { left: 9px; }
+  .skill-node { left: -24px; }
+}
