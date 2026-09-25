@@ -166,7 +166,7 @@ function SkillFile({ label, items, open, onToggle }: { label: string; items: { n
       </button>
       <div className="sk-body">
         <div className="sk-body-inner">
-          <pre className="sk-code">
+          <pre className="sk-code" style={{ "--lines": items.length + 1 } as React.CSSProperties}>
             <code>
               <span className="sk-line" style={{ "--l": 0 } as React.CSSProperties}>
                 <span className="c-kw">export const</span> <span className="c-id">{varName}</span> <span className="c-p">= [</span>
@@ -178,6 +178,7 @@ function SkillFile({ label, items, open, onToggle }: { label: string; items: { n
               ))}
               <span className="sk-line" style={{ "--l": items.length + 1 } as React.CSSProperties}>
                 <span className="c-p">];</span>
+                <span className="sk-caret" aria-hidden="true" />
               </span>
             </code>
           </pre>
