@@ -115,34 +115,18 @@ function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | 
 }
 
 function Skills() {
-  const [hint, setHint] = useState<{ group: number; text: string } | null>(null);
   return (
-    <div className="skills">
+    <div className="spec">
       {skills.map((g, gi) => (
-        <section className="skill-group" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
-          <span className="skill-node" aria-hidden="true" />
-          <div className="skill-meta">
-            <h3>{g.label}</h3>
-            <span className="skill-count">{g.items.length}</span>
-          </div>
-          <div className="skill-body">
-            <ul>
-              {g.items.map((it, i) => (
-                <li
-                  className="chip"
-                  key={it.name}
-                  style={{ "--i": i } as React.CSSProperties}
-                  onMouseEnter={() => setHint({ group: gi, text: it.used })}
-                  onMouseLeave={() => setHint(null)}
-                >
-                  <span className="chip-label">{it.name}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="skill-hint" aria-live="polite">
-              {hint && hint.group === gi ? hint.text : ""}
-            </p>
-          </div>
+        <section className="spec-row" key={g.label} style={{ "--g": gi } as React.CSSProperties}>
+          <h3 className="spec-label">{g.label}</h3>
+          <ul className="spec-words">
+            {g.items.map((it, i) => (
+              <li key={it.name} style={{ "--i": i } as React.CSSProperties}>
+                <span>{it.name}</span>
+              </li>
+            ))}
+          </ul>
         </section>
       ))}
     </div>
