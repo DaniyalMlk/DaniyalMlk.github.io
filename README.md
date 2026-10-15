@@ -1,6 +1,6 @@
 # daniyal-malik
 
-Personal site. Next.js 16, React 19, plain CSS, Geist. One page, five views, no scrolling on desktop.
+Personal site. Next.js 16, React 19, plain CSS, Geist Mono. One scrolling page laid out as a statement of account: every row has a figure in the right-hand column, and every open-source project carries its real command output as a receipt.
 
 ```bash
 npm install
@@ -34,17 +34,10 @@ All text lives in `lib/content.ts`: the hero line, the three credentials, and th
 
 ## How it works
 
-- `app/page.tsx` — the five views. Clicking a tab swaps the panel in place; left/right arrow keys also move between views.
-- Theme: the button in the header toggles dark/light and stores the choice in `localStorage`. A small script in
-  `app/layout.tsx` applies it before first paint, so there is no flash. With no stored choice, the system setting wins.
-- `components/Ornament.tsx` — the flag's hoist ornament, traced from the flag and tiled down the left edge.
-- `components/Eagle.tsx` — the steppe eagle, taken from a public-domain flag SVG. Both are state symbols of Kazakhstan
-  and recolor with the theme.
-- The New York clock in the hero updates every 30 seconds.
+- `app/page.tsx` — one page: hero with the account summary, then Work, Projects and Skills as ledger rows. The top bar is sticky and underlines the section in view.
+- Projects: each row has a "show receipt" toggle that reveals the install line and verbatim CLI output from that repository. Keep receipts verbatim; they are the point. A small client-side fetch to the GitHub API adds "last push" and stars per repo (unauthenticated, cached per session, degrades to a link if rate-limited).
+- Theme: the button in the header toggles dark/light and stores the choice in `localStorage`. A small script in `app/layout.tsx` applies it before first paint; with no stored choice the system setting wins.
 
 ## Responsive
 
-Desktop holds one screen with no page scrolling. Below 900px the layout switches: the nav stacks, the tabs scroll
-sideways, rows become single-column, the button goes full width, and the ornament narrows to 26px (18px under 380px).
-Safe-area insets are respected for iPhone notch and home indicator, `100dvh` is used so iOS Safari's toolbars don't
-clip the layout, and the viewport is set to `viewport-fit=cover`.
+Below 760px the three-column rows collapse to one column, the figure moves under the text, the nav scrolls sideways, and receipts scroll horizontally inside their box. Safe-area insets and `viewport-fit=cover` are kept from the previous version.

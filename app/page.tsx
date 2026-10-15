@@ -1,268 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Ornament from "@/components/Ornament";
-import Eagle from "@/components/Eagle";
-import { credentials, profile, projects, skills, tabs, work, type Job } from "@/lib/content";
+import { nav, profile, projects, skills, summary, work, type Project } from "@/lib/content";
 
-type Row = { yr: string; org: string; note?: string; loc?: string; href?: string };
-
-function Rows({ items }: { items: Row[] }) {
-  return (
-    <div>
-      {items.map((r) => {
-        const inner = (
-          <>
-            <span className="yr">{r.yr}</span>
-            <div>
-              <h3>{r.org}</h3>
-              {r.note && <p>{r.note}</p>}
-            </div>
-            <span className="loc">{r.loc ?? (r.href ? "github" : "")}</span>
-          </>
-        );
-        return r.href ? (
-          <a className="item" key={r.org} href={r.href} target="_blank" rel="noreferrer noopener">
-            {inner}
-          </a>
-        ) : (
-          <div className="item" key={r.org}>
-            {inner}
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-
-function CopyLine({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  return (
-    <button
-      type="button"
-      className={`copyline${copied ? " copied" : ""}`}
-      onClick={async () => {
-        try {
-          await navigator.clipboard.writeText(text);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1600);
-        } catch {}
-      }}
-      aria-label={`Copy: ${text}`}
-    >
-      <code>{text}</code>
-      <span className="copyline-hint">{copied ? "copied" : "copy"}</span>
-    </button>
-  );
-}
-
-function Timeline({ jobs, variant = "work" }: { jobs: Job[]; variant?: "work" | "project" }) {
-  const [open, setOpen] = useState(0);
-  return (
-    <ol className={`tl${variant === "project" ? " tl--tags" : ""}`}>
-      {jobs.map((j, i) => {
-        const isOpen = open === i;
-        return (
-          <li key={j.org} className={`tl-item${isOpen ? " open" : ""}`}>
-            <span className="tl-dot" aria-hidden="true" />
-            <button
-              type="button"
-              className="tl-head"
-              aria-expanded={isOpen}
-              onClick={() => setOpen(isOpen ? -1 : i)}
-            >
-              {j.yr && <span className="tl-yr">{j.yr}</span>}
-              <span className="tl-title">
-                <span className="tl-org">{j.org}</span>
-                <span className="tl-role">{j.role}</span>
-              </span>
-              {j.tag ? (
-                <span className="tl-tag">
-                  <span className="tl-tag-dot" style={{ background: j.tag.color }} />
-                  {j.tag.label}
-                </span>
-              ) : (
-                <span className="tl-loc">{j.loc}</span>
-              )}
-              <svg className="tl-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </button>
-            <div className="tl-body">
-              <div className="tl-body-inner">
-                {j.clone && <CopyLine text={j.clone} />}
-                <ul>
-                  {j.points.map((pt) => (
-                    <li key={pt}>{pt}</li>
-                  ))}
-                </ul>
-                {j.href && (
-                  <a className="tl-link" href={j.href} target="_blank" rel="noreferrer noopener">
-                    {j.href.replace("https://", "")}
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                      <path d="M7 17 17 7M8 7h9v9" />
-                    </svg>
-                  </a>
-                )}
-              </div>
-            </div>
-          </li>
-        );
-      })}
-    </ol>
-  );
-}
-
-const skillMeta: Record<string, { file: string; icon: React.ReactNode }> = {
-  Languages: {
-    file: "languages.ts",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 4c-2 0-3 1-3 3v2c0 1.5-.7 2.5-2 3 1.3.5 2 1.5 2 3v2c0 2 1 3 3 3M16 4c2 0 3 1 3 3v2c0 1.5.7 2.5 2 3-1.3.5-2 1.5-2 3v2c0 2-1 3-3 3" />
-      </svg>
-    ),
-  },
-  Building: {
-    file: "building.ts",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 13 9 5 9-5" />
-      </svg>
-    ),
-  },
-  Data: {
-    file: "data.ts",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" /><path d="M4.5 5.5v6.5c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V5.5" /><path d="M4.5 12v6.5c0 1.6 3.4 2.8 7.5 2.8s7.5-1.2 7.5-2.8V12" />
-      </svg>
-    ),
-  },
-  Shipping: {
-    file: "shipping.ts",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M5 19c2-5 6-9 14-14-1 7-5 11-11 13" /><path d="M9 15l-3 3" /><path d="M13.5 8.5a1.5 1.5 0 1 0 0 .01" />
-      </svg>
-    ),
-  },
-};
-
-function SkillFile({ label, items, order, open, onToggle }: { label: string; items: { name: string }[]; order: number; open: boolean; onToggle: () => void }) {
-  const meta = skillMeta[label];
-  const varName = label.toLowerCase();
-  return (
-    <section className={`sk-file${open ? " open" : ""}`} style={{ "--order": order } as React.CSSProperties}>
-      <button type="button" className="sk-head" aria-expanded={open} onClick={onToggle}>
-        <span className="sk-icon" aria-hidden="true">{meta.icon}</span>
-        <span className="sk-titles">
-          <span className="sk-title">{label}</span>
-          <span className="sk-file-name">{meta.file}</span>
-        </span>
-        <svg className="sk-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="m6 9 6 6 6-6" />
-        </svg>
-      </button>
-      <div className="sk-body">
-        <div className="sk-body-inner">
-          <pre className="sk-code" style={{ "--lines": items.length + 1 } as React.CSSProperties}>
-            <code>
-              <span className="sk-line" style={{ "--l": 0 } as React.CSSProperties}>
-                <span className="c-kw">export const</span> <span className="c-id">{varName}</span> <span className="c-p">= [</span>
-              </span>
-              {items.map((it, i) => (
-                <span className="sk-line" key={it.name} style={{ "--l": i + 1 } as React.CSSProperties}>
-                  {"  "}<span className="c-str">"{it.name}"</span><span className="c-p">,</span>
-                </span>
-              ))}
-              <span className="sk-line" style={{ "--l": items.length + 1 } as React.CSSProperties}>
-                <span className="c-p">];</span>
-                <span className="sk-caret" aria-hidden="true" />
-              </span>
-            </code>
-          </pre>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Skills() {
-  // like the reference: categories open and close; one per column starts open
-  const [open, setOpen] = useState<Record<string, boolean>>({ Languages: true, Building: true });
-  const [phone, setPhone] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 900px)");
-    const apply = () => {
-      setPhone(mq.matches);
-      if (mq.matches) setOpen({ Languages: true });
-    };
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, []);
-  const cols = [
-    [skills[0], skills[2]],
-    [skills[1], skills[3]],
-  ];
-  // one open file per column, so the view never outgrows the screen
-  const toggle = (k: string) =>
-    setOpen((o) => {
-      if (phone) return { [k]: !o[k] };
-      const col = cols.find((c) => c.some((g) => g.label === k)) ?? [];
-      const next = { ...o };
-      col.forEach((g) => { if (g.label !== k) next[g.label] = false; });
-      next[k] = !o[k];
-      return next;
-    });
-  return (
-    <div className="sk-grid">
-      {cols.map((col, ci) => (
-        <div className="sk-col" key={ci}>
-          {col.map((g) => (
-            <SkillFile
-              key={g.label}
-              label={g.label}
-              items={g.items}
-              order={skills.findIndex((x) => x.label === g.label)}
-              open={!!open[g.label]}
-              onToggle={() => toggle(g.label)}
-            />
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function ViewHead({ title, label }: { title: string; label: string }) {
-  return (
-    <div className="vhead">
-      <h2>{title}</h2>
-      <span>{label}</span>
-    </div>
-  );
-}
-
-export default function Page() {
-  const [view, setView] = useState(0);
+function useTheme() {
   const [dark, setDark] = useState(true);
   useEffect(() => {
     setDark(document.documentElement.dataset.theme !== "light");
   }, []);
-
-  // Left and right arrows move between views, like tabs in an app.
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") setView((v) => (v + 1) % tabs.length);
-      if (e.key === "ArrowLeft") setView((v) => (v - 1 + tabs.length) % tabs.length);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const toggleTheme = () => {
+  const toggle = () => {
     const next = dark ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     try {
@@ -270,103 +16,263 @@ export default function Page() {
     } catch {}
     setDark(!dark);
   };
+  return { dark, toggle };
+}
+
+function useActiveSection(ids: readonly string[]) {
+  const [active, setActive] = useState<string>("");
+  useEffect(() => {
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    if (!("IntersectionObserver" in window) || els.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [ids]);
+  return active;
+}
+
+type Stats = { pushed: string; stars: number } | null | "loading";
+
+function useRepoStats(name: string): Stats {
+  const [stats, setStats] = useState<Stats>("loading");
+  useEffect(() => {
+    let cancelled = false;
+    const key = `gh:${name}`;
+    try {
+      const cached = sessionStorage.getItem(key);
+      if (cached) {
+        setStats(JSON.parse(cached));
+        return;
+      }
+    } catch {}
+    fetch(`https://api.github.com/repos/${profile.githubUser}/${name}`, { headers: { Accept: "application/vnd.github+json" } })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => {
+        if (cancelled) return;
+        const s = j ? { pushed: j.pushed_at as string, stars: j.stargazers_count as number } : null;
+        setStats(s);
+        try {
+          if (s) sessionStorage.setItem(key, JSON.stringify(s));
+        } catch {}
+      })
+      .catch(() => !cancelled && setStats(null));
+    return () => {
+      cancelled = true;
+    };
+  }, [name]);
+  return stats;
+}
+
+function since(iso: string) {
+  const d = (Date.now() - new Date(iso).getTime()) / 86400000;
+  if (d < 1) return "today";
+  if (d < 2) return "yesterday";
+  const unit = (n: number, w: string) => `${n} ${w}${n === 1 ? "" : "s"} ago`;
+  if (d < 30) return unit(Math.floor(d), "day");
+  if (d < 365) return unit(Math.floor(d / 30), "month");
+  return unit(Math.floor(d / 365), "year");
+}
+
+function CopyLine({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      className="copy"
+      aria-label={`Copy: ${text}`}
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1400);
+        } catch {}
+      }}
+    >
+      <code>{text}</code>
+      <span className="copy-hint">{copied ? "copied" : "copy"}</span>
+    </button>
+  );
+}
+
+function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle: () => void }) {
+  const stats = useRepoStats(p.name);
+  return (
+    <div className={`row row-project${open ? " open" : ""}`}>
+      <div className="cell-k">{p.lang}</div>
+      <div className="cell-body">
+        <div className="row-head">
+          <h3>
+            <a href={p.href} target="_blank" rel="noreferrer noopener">
+              {p.name}
+            </a>
+            <span className="tagline"> · {p.tagline}</span>
+          </h3>
+          <button type="button" className="toggle" aria-expanded={open} onClick={onToggle}>
+            {open ? "hide receipt" : "show receipt"}
+          </button>
+        </div>
+        <p>{p.blurb}</p>
+        <div className="meta">
+          <span>{p.tests}</span>
+          {stats === "loading" && <span className="dim">· fetching from GitHub…</span>}
+          {stats && stats !== "loading" && (
+            <span>
+              · last push {since(stats.pushed)}
+              {stats.stars > 0 ? ` · ${stats.stars} ★` : ""}
+            </span>
+          )}
+          {stats === null && <span className="dim">· github.com/{profile.githubUser}/{p.name}</span>}
+        </div>
+        {open && (
+          <div className="receipt">
+            <CopyLine text={p.install} />
+            <pre tabIndex={0}>
+              <code>{p.receipt}</code>
+            </pre>
+            <div className="receipt-note">Verbatim output, captured 15 Oct 2026. Every number here is produced by the code, not written into this page.</div>
+          </div>
+        )}
+      </div>
+      <div className="cell-fig">
+        <b>{p.figure.n}</b>
+        {p.figure.unit && <span>{p.figure.unit}</span>}
+      </div>
+    </div>
+  );
+}
+
+export default function Page() {
+  const { dark, toggle } = useTheme();
+  const active = useActiveSection(nav.map((n) => n.id));
+  const [open, setOpen] = useState<string | null>(projects[0]?.name ?? null);
 
   return (
-    <div className="app">
-      <Ornament />
-
-      <div className="main">
-        <nav className="nav">
-          <div className="nav-top">
-            <button
-              type="button"
-              className={`brand${view === 0 ? " on" : ""}`}
-              onClick={() => setView(0)}
-              aria-label="Home"
-              aria-current={view === 0 ? "page" : undefined}
-            >
-              {profile.short}
-            </button>
-            <div className="util">
-              <a href={profile.github} aria-label="GitHub" data-brand="github" target="_blank" rel="noreferrer noopener">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z" />
-                </svg>
-              </a>
-              <a href={profile.linkedin} aria-label="LinkedIn" data-brand="linkedin" target="_blank" rel="noreferrer noopener">
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
-                </svg>
-              </a>
-              <span className="sep" />
-              <button type="button" aria-label="Switch light or dark theme" aria-pressed={!dark} onClick={toggleTheme}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">
-                  <circle cx="12" cy="12" r="8" />
-                  <path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className="tabs" role="tablist" aria-label="Sections">
-            {tabs.slice(1).map((t, i) => (
-              <button
-                key={t}
-                role="tab"
-                aria-selected={view === i + 1}
-                className={view === i + 1 ? "on" : ""}
-                onClick={() => setView(i + 1)}
-              >
-                {t}
-              </button>
-            ))}
-          </div>
+    <div className="page">
+      <header className="top">
+        <a className="brand" href="#top">
+          Statement of account · No. 0001
+        </a>
+        <nav aria-label="Sections">
+          {nav.map((n) => (
+            <a key={n.id} href={`#${n.id}`} className={active === n.id ? "on" : ""}>
+              {n.label}
+            </a>
+          ))}
+          <a href={profile.github} target="_blank" rel="noreferrer noopener">
+            GitHub ↗
+          </a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer noopener">
+            LinkedIn ↗
+          </a>
+          <button type="button" className="theme" aria-label="Switch light or dark theme" aria-pressed={!dark} onClick={toggle}>
+            {dark ? "light" : "dark"}
+          </button>
         </nav>
+      </header>
 
-        <div className="stage">
-          <Eagle />
+      <main id="top">
+        <section className="hero">
+          <div className="hero-l">
+            <h1>{profile.name}</h1>
+            <p className="lede">{profile.line}</p>
+            <div className="ctas">
+              <a className="btn primary" href={`mailto:${profile.email}`}>
+                {profile.email} →
+              </a>
+              <a className="btn" href={profile.github} target="_blank" rel="noreferrer noopener">
+                github.com/{profile.githubUser}
+              </a>
+            </div>
+          </div>
+          <div className="hero-r">
+            <div className="th">Account summary</div>
+            <dl className="summary">
+              {summary.map((s) => (
+                <div key={s.k}>
+                  <dt>{s.k}</dt>
+                  <dd>{s.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
 
-          <section className={`view${view === 0 ? " on" : ""}`} role="tabpanel" aria-label="Home">
-            <div className="hero">
-              <div>
-                <h1 className="big">{profile.name}</h1>
-                <p className="role">{profile.role}</p>
-                <p className="sub">{profile.line}</p>
-                <a className="cta" href={`mailto:${profile.email}`}>
-                  {profile.email}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M5 12h13M13 6l6 6-6 6" />
-                  </svg>
-                </a>
+        <section id="work" className="ledger">
+          <div className="th th-grid">
+            <span>Date</span>
+            <span>Work</span>
+            <span className="r">Figure</span>
+          </div>
+          {work.map((j) => (
+            <div className="row" key={j.org}>
+              <div className="cell-k">
+                {j.yr}
+                <br />
+                {j.loc}
               </div>
-              <div className="stats">
-                {credentials.map((c) => (
-                  <div className="stat" key={c.k}>
-                    <b>{c.k}</b>
-                    <span>{c.v}</span>
-                  </div>
-                ))}
+              <div className="cell-body">
+                <h3>
+                  {j.href ? (
+                    <a href={j.href} target="_blank" rel="noreferrer noopener">
+                      {j.org}
+                    </a>
+                  ) : (
+                    j.org
+                  )}
+                  <span className="tagline"> · {j.role}</span>
+                </h3>
+                <ul>
+                  {j.points.map((pt) => (
+                    <li key={pt}>{pt}</li>
+                  ))}
+                </ul>
+                {j.stack && <div className="meta">{j.stack}</div>}
+              </div>
+              <div className="cell-fig">
+                <b>{j.figure.n}</b>
+                {j.figure.unit && <span>{j.figure.unit}</span>}
               </div>
             </div>
-          </section>
+          ))}
+        </section>
 
-          <section className={`view${view === 1 ? " on" : ""}`} role="tabpanel" aria-label="Experience">
-            <ViewHead title="Experience" label="ЖҰМЫС · WORK" />
-            <Timeline jobs={work} />
-          </section>
+        <section id="projects" className="ledger">
+          <div className="th th-grid">
+            <span>Lang</span>
+            <span>Open source · eight libraries, 8,000+ tests, each with its output attached</span>
+            <span className="r">Figure</span>
+          </div>
+          {projects.map((p) => (
+            <ProjectRow key={p.name} p={p} open={open === p.name} onToggle={() => setOpen(open === p.name ? null : p.name)} />
+          ))}
+        </section>
 
-          <section className={`view${view === 2 ? " on" : ""}`} role="tabpanel" aria-label="Projects">
-            <ViewHead title="Projects" label="ЖОБАЛАР · OPEN SOURCE" />
-            <Timeline jobs={projects} variant="project" />
-          </section>
+        <section id="skills" className="skills">
+          {skills.map((g) => (
+            <div key={g.label} className="skill-col">
+              <div className="th">{g.label}</div>
+              <ul>
+                {g.items.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
 
-          <section className={`view${view === 3 ? " on" : ""}`} role="tabpanel" aria-label="Skills">
-            <ViewHead title="Skills" label="ДАҒДЫЛАР · DAILY TOOLS" />
-            <Skills />
-          </section>
-
-          
-        </div>
-      </div>
+        <footer className="foot">
+          <span>Balance carried forward. {profile.location}.</span>
+          <span>
+            Closing balance: <b>all accounts reconciled</b>
+          </span>
+        </footer>
+      </main>
     </div>
   );
 }
