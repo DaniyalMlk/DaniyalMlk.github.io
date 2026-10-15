@@ -5,7 +5,7 @@ export const profile = {
   name: "Daniyal Malik",
   short: "Daniyal",
   role: "Full-stack engineer",
-  line: "I build the parts of a product where a wrong number is a bug: ledgers, billing, pricing, authorization.",
+  line: "Full-stack engineer. Ledgers, billing, pricing, authorization: the parts of a product where a wrong number is a bug.",
   email: "dm6008@nyu.edu",
   github: "https://github.com/DaniyalMlk",
   githubUser: "DaniyalMlk",
@@ -23,10 +23,9 @@ export const summary = [
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
-    "I am a computer science student at New York University, with a minor in economics, graduating in 2028. I started at NYU Shanghai and am spending 2026–27 at the New York campus. I grew up in Astana, Kazakhstan.",
-    "My work so far has been full-stack: a career platform for MBA students, where I was the founding engineer and own the iOS release; a bilingual patient portal for a dental clinic in Shanghai, which I led with one other engineer; and before that, data and research roles at an oil operator, a university robotics lab, and Kazakhstan's e-government IT provider. The common thread is systems where money or records change hands, and the authorization, billing and reconciliation that keep them correct.",
-    "Outside of those jobs I write open-source finance libraries in Python and TypeScript: a double-entry ledger, a spreadsheet engine, options pricing, fixed-income curves, portfolio risk, execution analysis and backtest statistics, with an MCP server that exposes them to language models. Each ships with the output that proves it, further down this page.",
-    "In 2022 I co-founded a robotics club in Astana and still mentor it. Our FIRST team won the Connect Award at the FIRST Asia Pacific Open as one of two Kazakh entries, and the club has since grown to thirty members with ten wins at national olympiads.",
+    "Computer science student at New York University (minor in economics, class of 2028), from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27.",
+    "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of eight open-source finance libraries, each published with the output that proves it.",
+    "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
   ],
 };
 
@@ -51,11 +50,11 @@ export const work: Job[] = [
     loc: "New York",
     href: "https://terrandenizen.com",
     points: [
-      "Founding engineer on a career platform for MBA students at the M7 schools: four Next.js apps, a Node API and an Expo iOS app on one Postgres.",
-      "I closed a cross-subdomain session-hijacking path by replacing URL-fragment login tokens with single-use exchange codes, and fixed login CSRF, open redirects and OTP brute-force.",
-      "I built the four-tier role system as 133 row-level security policies on 19 tables, enforced in the database for web and iOS alike.",
-      "I shipped Stripe subscription billing with refund-policy enforcement and webhook refund sync.",
-      "I ported the iOS app's pricing, eligibility and application-state logic into 23 framework-free modules with 655 tests, and I own the release: EAS builds, code signing, TestFlight.",
+      "Founding engineer on a six-service career platform for MBA students at the M7 schools: four Next.js apps, a Node API and an Expo iOS app on one Postgres.",
+      "Closed a cross-subdomain session-hijacking path by replacing URL-fragment login tokens with single-use exchange codes; fixed login CSRF, open redirects and OTP brute-force.",
+      "Built the four-tier role system as 133 row-level security policies on 19 tables, enforced in the database for web and iOS alike.",
+      "Shipped Stripe subscription billing with refund-policy enforcement and webhook refund sync.",
+      "Ported the iOS app's pricing, eligibility and application-state logic into 23 framework-free modules with 655 tests; own the release pipeline: EAS builds, code signing, TestFlight.",
     ],
     figure: { n: "133", unit: "RLS policies" },
     stack: "Next.js · Node · TypeScript · Postgres · Supabase · Stripe · Expo",
@@ -67,7 +66,7 @@ export const work: Job[] = [
     loc: "Shanghai",
     href: "https://aidencare.space",
     points: [
-      "Bilingual (Chinese and English) patient portal and staff dashboard for a dental clinic. I led the build with one other engineer: set the architecture, split the work, reviewed their code.",
+      "Led the build of a bilingual (Chinese and English) patient portal and staff dashboard with one other engineer: set the architecture, split the work, reviewed their code.",
       "Appointment lifecycle from request to payment, with a database constraint that makes double-booking impossible.",
       "29 row-level security policies across 11 tables, six roles with an approval workflow, and a trigger that blocks privilege escalation.",
       "Role-scoped LLM assistant (Qwen via Groq) as a Deno edge function, so the model key never reaches the browser and a patient cannot read clinic-wide data.",
