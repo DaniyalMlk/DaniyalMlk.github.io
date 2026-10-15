@@ -23,9 +23,10 @@ export const summary = [
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
-    "I grew up in Astana, Kazakhstan, started university at NYU Shanghai, and am spending 2026–27 at NYU in New York. Three cities, three keyboard layouts, one Postgres.",
-    "Before any of the work above, I co-founded a robotics club at home and still mentor it. We built a FIRST robot with omni drive and vision-based cone detection that won the Connect Award at the FIRST Asia Pacific Open, one of two Kazakh teams there, and the club has grown to 30+ members with 10+ wins at national olympiads. That is where I learned that a system is only finished when someone who is not you can run it.",
-    "Outside of code I [YOUR INTERESTS HERE]. I speak [LANGUAGES HERE].",
+    "I am a computer science student at New York University, with a minor in economics, graduating in 2028. I started at NYU Shanghai and am spending 2026–27 at the New York campus. I grew up in Astana, Kazakhstan.",
+    "My work so far has been full-stack: a career platform for MBA students, where I was the founding engineer and own the iOS release; a bilingual patient portal for a dental clinic in Shanghai, which I led with one other engineer; and before that, data and research roles at an oil operator, a university robotics lab, and Kazakhstan's e-government IT provider. The common thread is systems where money or records change hands, and the authorization, billing and reconciliation that keep them correct.",
+    "Outside of those jobs I write open-source finance libraries in Python and TypeScript: a double-entry ledger, a spreadsheet engine, options pricing, fixed-income curves, portfolio risk, execution analysis and backtest statistics, with an MCP server that exposes them to language models. Each ships with the output that proves it, further down this page.",
+    "In 2022 I co-founded a robotics club in Astana and still mentor it. Our FIRST team won the Connect Award at the FIRST Asia Pacific Open as one of two Kazakh entries, and the club has since grown to thirty members with ten wins at national olympiads.",
   ],
 };
 

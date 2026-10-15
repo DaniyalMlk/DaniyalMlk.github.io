@@ -219,7 +219,7 @@ h1 {
 }
 .about-grid {
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr) 128px;
+  grid-template-columns: var(--col-k) minmax(0, 1fr) var(--col-fig);
   column-gap: var(--gap);
   padding-top: 8px;
 }
@@ -227,7 +227,18 @@ h1 {
   color: var(--ink-3);
   font-size: 13px;
   line-height: 1.7;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+}
+.about-path .arrow {
+  display: none;
+}
+.about-path span + span::before {
+  content: "↓";
+  display: block;
+  color: var(--rule);
+  line-height: 1;
+  margin: 2px 0;
 }
 @media (max-width: 760px) {
   .about-path {
