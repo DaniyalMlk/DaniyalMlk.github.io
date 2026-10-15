@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Ecosystem from "@/components/Ecosystem";
 import { nav, profile, projects, skills, summary, work, type Project } from "@/lib/content";
 
 function useTheme() {
@@ -164,6 +165,9 @@ export default function Page() {
               {n.label}
             </a>
           ))}
+          <a href="Daniyal_Malik_CV.pdf" download="Daniyal_Malik_CV.pdf">
+            CV ↓
+          </a>
           <a href={profile.github} target="_blank" rel="noreferrer noopener">
             GitHub ↗
           </a>
@@ -251,6 +255,7 @@ export default function Page() {
           {projects.map((p) => (
             <ProjectRow key={p.name} p={p} open={open === p.name} onToggle={() => setOpen(open === p.name ? null : p.name)} />
           ))}
+          <Ecosystem />
         </section>
 
         <section id="skills" className="skills">

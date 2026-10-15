@@ -467,3 +467,101 @@ h1 {
     scroll-behavior: auto;
   }
 }
+
+/* Ecosystem diagram */
+.eco {
+  margin: 32px 0 0;
+  padding-top: 24px;
+}
+.eco svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  font-family: var(--font);
+}
+.eco-box {
+  fill: var(--code-bg);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.eco-box-top {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+.eco-name {
+  fill: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+.eco-sub,
+.eco-label {
+  fill: var(--ink-3);
+  font-size: 11px;
+}
+.eco-line {
+  stroke: var(--rule-strong);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+.eco-arrow {
+  fill: var(--rule-strong);
+  opacity: 0.6;
+}
+.eco figcaption {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+  max-width: 76ch;
+}
+
+/* 404 */
+.nf {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+.nf h1 {
+  font-size: 40px;
+}
+
+/* Print */
+@media print {
+  :root {
+    --bg: #fff;
+    --ink: #000;
+    --ink-2: #222;
+    --ink-3: #555;
+    --rule: #bbb;
+    --rule-strong: #000;
+    --accent: #000;
+    --code-bg: #f3f3f3;
+  }
+  .top {
+    position: static;
+  }
+  .top nav,
+  .toggle,
+  .copy-hint,
+  .theme {
+    display: none;
+  }
+  .page {
+    max-width: none;
+    padding: 0;
+  }
+  .receipt pre {
+    white-space: pre-wrap;
+    font-size: 10px;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 10px;
+    color: #555;
+  }
+  .row,
+  .eco {
+    break-inside: avoid;
+  }
+}

@@ -7,11 +7,11 @@ const description =
   "Daniyal Malik, full-stack engineer in New York. Ledgers, billing, pricing, authorization: the parts of a product where a wrong number is a bug. Eight open-source libraries with their output attached.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://daniyalmlk.github.io"),
   title: "Daniyal Malik, full-stack engineer",
   description,
   openGraph: { title: "Daniyal Malik", description, type: "website" },
-  twitter: { card: "summary", title: "Daniyal Malik", description },
+  twitter: { card: "summary_large_image", title: "Daniyal Malik", description },
 };
 
 export const viewport: Viewport = {
@@ -33,7 +33,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Daniyal Malik",
+              jobTitle: "Software engineer",
+              email: "mailto:dm6008@nyu.edu",
+              url: "https://daniyalmlk.github.io",
+              sameAs: ["https://github.com/DaniyalMlk", "https://linkedin.com/in/daniyal-mlk"],
+              alumniOf: { "@type": "CollegeOrUniversity", name: "New York University" },
+              address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
+            }),
+          }}
+        />
+      </body>
     </html>
   );
 }
