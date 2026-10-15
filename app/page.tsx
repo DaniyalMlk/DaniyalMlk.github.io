@@ -109,7 +109,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
     <div className={`row row-project${open ? " open" : ""}`}>
       <div className="cell-k">{p.lang}</div>
       <div className="cell-body">
-        <h3>
+        <h3 className="h3-big">
           <a href={p.href} target="_blank" rel="noreferrer noopener">
             {p.name}
           </a>
@@ -153,6 +153,16 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
         <b>{p.figure.n}</b>
         {p.figure.unit && <span>{p.figure.unit}</span>}
       </div>
+    </div>
+  );
+}
+
+function SectionHead({ n, title, note }: { n: string; title: string; note?: string }) {
+  return (
+    <div className="sh">
+      <div className="sh-n">{n}</div>
+      <h2 className="sh-title">{title}</h2>
+      {note && <div className="sh-note">{note}</div>}
     </div>
   );
 }
@@ -214,7 +224,7 @@ export default function Page() {
         </section>
 
         <section id="about" className="about">
-          <div className="th">About</div>
+          <SectionHead n="01" title="About" />
           <div className="about-grid">
             <div className="about-path" aria-label="Path">
               {about.path.map((c, i) => (
@@ -233,9 +243,10 @@ export default function Page() {
         </section>
 
         <section id="work" className="ledger">
+          <SectionHead n="02" title="Work" note="Five roles, 2023 to now. The figure on the right is the one number each one comes down to." />
           <div className="th th-grid">
             <span>Date</span>
-            <span>Work</span>
+            <span>Role</span>
             <span className="r">Figure</span>
           </div>
           {work.map((j) => (
@@ -246,7 +257,7 @@ export default function Page() {
                 {j.loc}
               </div>
               <div className="cell-body">
-                <h3>
+                <h3 className="h3-big">
                   {j.href ? (
                     <a href={j.href} target="_blank" rel="noreferrer noopener">
                       {j.org}
@@ -272,9 +283,10 @@ export default function Page() {
         </section>
 
         <section id="projects" className="ledger">
+          <SectionHead n="03" title="Open source" note="Eight libraries. Under each name is the program's own output from 15 October 2026, not a description of it." />
           <div className="th th-grid">
             <span>Lang</span>
-            <span>Open source · output attached to each</span>
+            <span>Library</span>
             <span className="r">Figure</span>
           </div>
           {projects.map((p) => (
@@ -283,7 +295,9 @@ export default function Page() {
           <Ecosystem />
         </section>
 
-        <section id="skills" className="skills">
+        <section id="skills" className="skills-wrap">
+          <SectionHead n="04" title="Skills" />
+          <div className="skills">
           {skills.map((g) => (
             <div key={g.label} className="skill-col">
               <div className="th">{g.label}</div>
@@ -294,6 +308,7 @@ export default function Page() {
               </ul>
             </div>
           ))}
+          </div>
         </section>
 
         <footer className="foot">

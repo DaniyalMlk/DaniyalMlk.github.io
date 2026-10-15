@@ -127,7 +127,9 @@ dl {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap);
   row-gap: 32px;
-  padding: 72px 0 64px;
+  padding: 112px 0 96px;
+  min-height: 60vh;
+  align-content: center;
 }
 .hero-l {
   grid-column: 1 / span 7;
@@ -140,13 +142,13 @@ dl {
   align-self: end;
 }
 h1 {
-  font-size: 64px;
-  line-height: 1;
+  font-size: 88px;
+  line-height: 0.95;
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 .lede {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--ink-2);
   max-width: 42ch;
 }
@@ -207,6 +209,90 @@ h1 {
 .summary div:last-child dt,
 .summary div:last-child dd {
   border-bottom: 1px solid var(--rule-strong);
+}
+
+/* Section heads */
+.sh {
+  display: grid;
+  grid-template-columns: var(--col-k) minmax(0, 1fr) var(--col-fig);
+  column-gap: var(--gap);
+  align-items: baseline;
+  padding: 0 0 20px;
+  border-top: 2px solid var(--rule-strong);
+  padding-top: 18px;
+  margin-bottom: 8px;
+}
+.sh-n {
+  font-size: 12px;
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+}
+.sh-title {
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.sh-note {
+  grid-column: 2;
+  margin-top: 10px;
+  color: var(--ink-3);
+  font-size: 13px;
+  max-width: 60ch;
+}
+.h3-big {
+  font-size: 20px !important;
+  letter-spacing: -0.01em;
+}
+.h3-big .tagline {
+  font-size: 14px;
+}
+.ledger,
+.about,
+.skills-wrap {
+  padding-top: 120px !important;
+}
+.about .th {
+  display: none;
+}
+.about-grid {
+  padding-top: 0 !important;
+}
+.skills-wrap .skills {
+  padding-top: 8px;
+}
+.row {
+  padding: 26px 0 !important;
+}
+.row-project {
+  padding: 34px 0 !important;
+}
+.foot {
+  margin-top: 120px !important;
+}
+@media (max-width: 760px) {
+  h1 {
+    font-size: 48px;
+  }
+  .hero {
+    padding: 56px 0 48px;
+    min-height: 0;
+  }
+  .sh {
+    grid-template-columns: 1fr;
+    row-gap: 6px;
+  }
+  .sh-title {
+    font-size: 30px;
+  }
+  .sh-note {
+    grid-column: 1;
+  }
+  .ledger,
+  .about,
+  .skills-wrap {
+    padding-top: 72px !important;
+  }
 }
 
 /* About */
@@ -342,7 +428,10 @@ h1 {
   font-variant-numeric: tabular-nums;
 }
 .cell-fig b {
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   white-space: nowrap;
 }
 .cell-fig span {
@@ -585,6 +674,9 @@ h1 {
     align-items: baseline;
     gap: 8px;
     text-align: left;
+  }
+  .cell-fig b {
+    font-size: 18px;
   }
   .skills {
     grid-template-columns: repeat(2, minmax(0, 1fr));
