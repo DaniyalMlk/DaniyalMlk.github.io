@@ -117,7 +117,9 @@ export type Project = {
   name: string;
   lang: "TypeScript" | "Python";
   tagline: string;
-  blurb: string;
+  line: string; // one sentence, shown under the name
+  blurb: string; // the longer note, shown with the full output
+  headline: string; // a verbatim excerpt of the receipt, always visible
   href: string;
   install: string;
   figure: Figure;
@@ -130,6 +132,14 @@ export const projects: Project[] = [
     name: "tallyd",
     lang: "TypeScript",
     tagline: "Double-entry ledger and bank reconciliation",
+    line: "A ledger that reconciles a bank statement to the books and balances to the penny.",
+    headline: `$ tallyd reconcile --ledger books/books.json --statement books/statement.csv --account 1110
+Reconciling 1110 against 267 statement lines
+  176 matched, 71 to review, 61 + 20 unmatched
+  …
+Adjusted bank balance                            343461.04
+Adjusted ledger balance                          343461.04
+Reconciled                                            0.00`,
     blurb:
       "Matches a bank statement against the books when the amounts differ by a processor fee, the dates by settlement lag, and one deposit covers three invoices. Multi-currency with exact rational rates, group consolidation, and a reconciliation that balances to the penny.",
     href: "https://github.com/DaniyalMlk/tallyd",
@@ -182,6 +192,12 @@ $ tallyd bench
     name: "recalc",
     lang: "TypeScript",
     tagline: "Spreadsheet formula engine",
+    line: "A spreadsheet engine that recalculates only what an edit invalidated.",
+    headline: `$ npm run bench
+shape                            cells  build ms  edit ms  recalculated
+isolated edit in 2000 cells      2,001      32.5    0.012             0
+isolated edit in 20000 cells    20,001     468.2    0.014             0
+isolated edit in 100000 cells  100,001    2246.3    0.009             0`,
     blurb:
       "Parses formula text into an AST, works out which cells each formula depends on, and recalculates only what an edit invalidated. 158 functions across financial, date, matrix and regression packs, named ranges, goal seek, scenarios, and a virtualised grid. No runtime dependencies.",
     href: "https://github.com/DaniyalMlk/recalc",
@@ -218,6 +234,16 @@ $ npx vitest run
     name: "moneyness",
     lang: "Python",
     tagline: "Options pricing, Greeks and implied volatility",
+    line: "Options pricing that is correct at the boundaries, not only in the textbook middle.",
+    headline: `$ moneyness iv --spot 100 --strike 105 --time 0.5 --rate 0.05 --price 4.58
+  implied volatility  0.1999401556
+              method  newton
+          iterations  4
+      price residual  -8.882e-15
+
+$ moneyness iv --spot 100 --strike 105 --time 0 --rate 0.05 --price 0
+error: time must be positive, got 0.0: an expired option has no implied
+volatility, since every volatility reproduces its price`,
     blurb:
       "Prices European options under generalised Black-Scholes-Merton, differentiates them analytically, and recovers implied volatility from a quote. Written to be correct at the boundaries: zero time, zero volatility, deep wings, quotes on the arbitrage bound. Also SABR, Heston, American lattices, barriers, Asians, quantos and variance swaps. Standard library only; mpmath as the reference in the tests.",
     href: "https://github.com/DaniyalMlk/moneyness",
@@ -258,6 +284,18 @@ volatility, since every volatility reproduces its price`,
     name: "abacus",
     lang: "Python",
     tagline: "MCP server for option, portfolio, execution and backtest analytics",
+    line: "An MCP server that hands the five libraries to a language model as tools.",
+    headline: `→ tools/call implied_volatility {"spot":100,"strike":105,"time":0.5,"rate":0.05,"price":4.58,"type":"call"}
+← {
+  "impliedVol": 0.19994015556567887,
+  …
+  "diagnostics": {
+    "method": "newton",
+    "iterations": 4,
+    "residual": -8.881784197001252e-15,
+
+$ abacus conform
+19 passed, 0 failed, 10 skipped, 29 checks`,
     blurb:
       "Language models are unreliable at arithmetic, so the useful thing a tool boundary can do is move the numbers somewhere trustworthy. abacus exposes moneyness, shortfall, tenor, slippage and holdout as 39 tools over the Model Context Protocol, with a conformance suite for the transport. Nothing wraps a third-party pricing API.",
     href: "https://github.com/DaniyalMlk/abacus",
@@ -302,6 +340,16 @@ ok    errors/allocation-policy
     name: "tenor",
     lang: "Python",
     tagline: "Fixed-income curve toolkit",
+    line: "A fixed-income toolkit where every convention is a named argument, never a default.",
+    headline: `$ tenor curve examples/quotes.txt --reference 2021-01-05 --basis ACT_365F
+worst_repricing_error: 5.551115123e-17
+reprices: True
+
+$ tenor price … --maturity 2031-01-05 --coupon 0.05 --bond-basis THIRTY_360_US --quote 101.25
+equivalent_yield: 0.02148273467
+modified_duration: 8.154811187
+dv01: 0.1029753302
+z_spread: 0.02658980017`,
     blurb:
       "Bootstraps a curve from quotes and measures things on it: bond pricing and risk, asset swaps, floating-rate notes, index-linked bonds, embedded options, caplet stripping, credit curves, multi-curve, swaptions, Hull-White and G2++. Every day-count and convention is a named argument, never a default, and each is checked against the published rules.",
     href: "https://github.com/DaniyalMlk/tenor",
@@ -341,6 +389,13 @@ i_spread: 0.0264083526`,
     name: "shortfall",
     lang: "Python",
     tagline: "Portfolio risk engine",
+    line: "A risk engine that names its method in the output and says when the data is thin.",
+    headline: `$ shortfall risk returns.csv --weights 0.6,0.3,0.1 --confidence 0.99 --distribution student-t
+measure                    assumed  historical
+value at risk (student-t)   1.843%      1.687%
+expected shortfall          2.439%      1.984%
+
+The historical tail rests on 5.0 observations of 500.`,
     blurb:
       "Value at risk and expected shortfall by six methods, each named in the result because the number does not identify it. Euler risk contributions that sum exactly, GARCH forecasts, generalised Pareto tails, copulas fitted separately from the marginals, and a scorer that ranks two forecast series. Pure Python, no dependencies, and it says so when it is working from too little data.",
     href: "https://github.com/DaniyalMlk/shortfall",
@@ -362,6 +417,13 @@ The historical tail rests on 5.0 observations of 500.`,
     name: "slippage",
     lang: "Python",
     tagline: "Optimal execution and transaction cost analysis",
+    line: "Transaction cost analysis that says where the cost came from, and schedules the rest.",
+    headline: `$ slippage tca --orders sample/orders.csv --fills sample/fills.csv --bars sample/bars.csv
+60 orders, paper notional 205,208,433, shortfall -63,865 (-3.11 bps)
+
+             orders        delay      trading  opportunity   commission         fees      total
+all              60         2.78        -5.89        -0.21         0.21         0.00      -3.11
+(basis points of paper notional)`,
     blurb:
       "After the fact: what an order cost and where the cost came from, split into delay, trading, opportunity, commission and fees. Before the fact: how to spread the remaining quantity over the horizon given an impact model and a risk tolerance. Baskets, transient impact kernels, adaptive schedules, limit-order placement, VWAP tracking and venue routing.",
     href: "https://github.com/DaniyalMlk/slippage",
@@ -388,6 +450,12 @@ outliers at a modified z-score of 3.5:
     name: "holdout",
     lang: "Python",
     tagline: "Backtest overfitting toolkit",
+    line: "How much of a strategy search's best result survives the search itself.",
+    headline: `$ holdout pbo sample/sweep.csv
+30 strategies, 16 blocks, 12,870 splits
+probability of backtest overfitting: 0.975
+probability of out-of-sample loss:   0.638
+degradation: oos = 0.0316 - 1.202 * is   (r^2 0.77)`,
     blurb:
       "How much of a strategy search's best result survives once the search itself is taken into account. Probabilistic and deflated Sharpe ratios, probability of backtest overfitting, purged cross-validation and multiple-testing haircuts. Every statistic is checked against a published worked example, a closed form, or a simulation of its own sampling distribution.",
     href: "https://github.com/DaniyalMlk/holdout",

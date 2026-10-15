@@ -231,8 +231,9 @@ export function HoldoutChart() {
   );
 }
 
+// tallyd's bars said "100, 100, 100, 100", which the figure column already says; kept
+// as a component, not shown.
 export const chartFor: Record<string, () => React.JSX.Element> = {
   recalc: RecalcChart,
-  tallyd: TallydChart,
   holdout: HoldoutChart,
 };

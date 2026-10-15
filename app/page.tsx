@@ -104,36 +104,43 @@ function CopyLine({ text }: { text: string }) {
 
 function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle: () => void }) {
   const stats = useRepoStats(p.name);
+  const Chart = chartFor[p.name];
   return (
     <div className={`row row-project${open ? " open" : ""}`}>
       <div className="cell-k">{p.lang}</div>
       <div className="cell-body">
-        <div className="row-head">
-          <h3>
-            <a href={p.href} target="_blank" rel="noreferrer noopener">
-              {p.name}
-            </a>
-            <span className="tagline"> · {p.tagline}</span>
-          </h3>
-          <button type="button" className="toggle" aria-expanded={open} onClick={onToggle}>
-            {open ? "hide receipt" : "show receipt"}
-          </button>
-        </div>
-        <p>{p.blurb}</p>
+        <h3>
+          <a href={p.href} target="_blank" rel="noreferrer noopener">
+            {p.name}
+          </a>
+          <span className="tagline"> · {p.tagline}</span>
+        </h3>
+        <p className="line">{p.line}</p>
+        <pre className="headline" tabIndex={0}>
+          <code>{p.headline}</code>
+        </pre>
+        {Chart && (
+          <div className="chart-wrap">
+            <Chart />
+          </div>
+        )}
         <div className="meta">
           <span>{p.tests}</span>
-          {stats === "loading" && <span className="dim">· fetching from GitHub…</span>}
+          {stats === "loading" && <span className="dim"> · fetching from GitHub…</span>}
           {stats && stats !== "loading" && (
             <span>
-              · last push {since(stats.pushed)}
+              {" "}· last push {since(stats.pushed)}
               {stats.stars > 0 ? ` · ${stats.stars} ★` : ""}
             </span>
           )}
-          {stats === null && <span className="dim">· github.com/{profile.githubUser}/{p.name}</span>}
+          <span> · </span>
+          <button type="button" className="toggle" aria-expanded={open} onClick={onToggle}>
+            {open ? "less" : "full output and notes"}
+          </button>
         </div>
-        {chartFor[p.name] && <div className="chart-wrap">{chartFor[p.name]()}</div>}
         {open && (
           <div className="receipt">
+            <p>{p.blurb}</p>
             <CopyLine text={p.install} />
             <pre tabIndex={0}>
               <code>{p.receipt}</code>
@@ -153,7 +160,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
 export default function Page() {
   const { dark, toggle } = useTheme();
   const active = useActiveSection(nav.map((n) => n.id));
-  const [open, setOpen] = useState<string | null>(projects[0]?.name ?? null);
+  const [open, setOpen] = useState<string | null>(null);
 
   return (
     <div className="page">
