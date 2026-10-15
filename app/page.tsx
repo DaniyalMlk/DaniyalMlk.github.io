@@ -245,7 +245,7 @@ export default function Page() {
         <section id="projects" className="ledger">
           <div className="th th-grid">
             <span>Lang</span>
-            <span>Open source · eight libraries, 8,000+ tests, each with its output attached</span>
+            <span>Open source · eight libraries, 16,000+ tests, each with its output attached</span>
             <span className="r">Figure</span>
           </div>
           {projects.map((p) => (

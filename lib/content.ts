@@ -18,7 +18,7 @@ export const summary = [
   { k: "Countries", v: "3" },
   { k: "Apps and services in production", v: "6" },
   { k: "Open-source libraries", v: "8" },
-  { k: "Tests passing across them", v: "8,000+" },
+  { k: "Tests collected across them", v: "16,000+" },
   { k: "NYU, Computer Science and Economics", v: "2028" },
 ];
 
@@ -216,7 +216,7 @@ $ npx vitest run
     href: "https://github.com/DaniyalMlk/moneyness",
     install: "pip install git+https://github.com/DaniyalMlk/moneyness",
     figure: { n: "−8.9e−15", unit: "price residual after 4 Newton steps" },
-    tests: "800 tests",
+    tests: "5,997 tests",
     receipt: `$ moneyness greeks --spot 100 --strike 105 --time 0.5 --rate 0.05 --vol 0.2
       price        4.5816801675
       delta        0.4611602257
@@ -256,7 +256,7 @@ volatility, since every volatility reproduces its price`,
     href: "https://github.com/DaniyalMlk/abacus",
     install: "pip install git+https://github.com/DaniyalMlk/abacus",
     figure: { n: "39", unit: "tools · 19/19 conformance" },
-    tests: "719 tests + 29 conformance checks",
+    tests: "854 tests + 29 conformance checks",
     receipt: `→ {"method":"tools/call","params":{"name":"implied_volatility",
      "arguments":{"spot":100,"strike":105,"time":0.5,"rate":0.05,"price":4.58,"type":"call"}}}
 ← {
@@ -300,7 +300,7 @@ ok    errors/allocation-policy
     href: "https://github.com/DaniyalMlk/tenor",
     install: "pip install git+https://github.com/DaniyalMlk/tenor",
     figure: { n: "5.6e−17", unit: "worst repricing error" },
-    tests: "1,101 tests",
+    tests: "1,841 tests",
     receipt: `$ tenor curve examples/quotes.txt --reference 2021-01-05 --basis ACT_365F
 reference: 2021-01-05
 interpolation: log-linear on discount factors
@@ -339,7 +339,7 @@ i_spread: 0.0264083526`,
     href: "https://github.com/DaniyalMlk/shortfall",
     install: "pip install git+https://github.com/DaniyalMlk/shortfall",
     figure: { n: "6", unit: "tail-risk methods, each named in its output" },
-    tests: "1,199 tests",
+    tests: "2,048 tests",
     receipt: `$ shortfall risk returns.csv --weights 0.6,0.3,0.1 --confidence 0.99 --distribution student-t
 3 assets over 500 periods, 99.0% confidence
 
@@ -360,7 +360,7 @@ The historical tail rests on 5.0 observations of 500.`,
     href: "https://github.com/DaniyalMlk/slippage",
     install: "pip install git+https://github.com/DaniyalMlk/slippage",
     figure: { n: "5", unit: "cost components per order" },
-    tests: "707 tests",
+    tests: "971 tests",
     receipt: `$ slippage tca --orders sample/orders.csv --fills sample/fills.csv --bars sample/bars.csv
 60 orders, paper notional 205,208,433, shortfall -63,865 (-3.11 bps)
 
@@ -386,7 +386,7 @@ outliers at a modified z-score of 3.5:
     href: "https://github.com/DaniyalMlk/holdout",
     install: "pip install git+https://github.com/DaniyalMlk/holdout",
     figure: { n: "12,870", unit: "splits in one PBO run" },
-    tests: "416 tests",
+    tests: "559 tests",
     receipt: `$ holdout sample-data --out sample
 wrote sample/sweep.csv: 30 strategies
 wrote sample/trending.csv: 30 strategies
