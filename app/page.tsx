@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Ecosystem from "@/components/Ecosystem";
+import { chartFor } from "@/components/Charts";
 import { about, nav, profile, projects, skills, summary, work, type Project } from "@/lib/content";
 
 function useTheme() {
@@ -130,6 +131,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
           )}
           {stats === null && <span className="dim">· github.com/{profile.githubUser}/{p.name}</span>}
         </div>
+        {chartFor[p.name] && <div className="chart-wrap">{chartFor[p.name]()}</div>}
         {open && (
           <div className="receipt">
             <CopyLine text={p.install} />

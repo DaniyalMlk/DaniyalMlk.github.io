@@ -36,6 +36,7 @@ All text lives in `lib/content.ts`: the hero line, the three credentials, and th
 
 - `app/page.tsx` — one page: hero with the account summary, then Work, Projects and Skills as ledger rows. The top bar is sticky and underlines the section in view.
 - Projects: each row has a "show receipt" toggle that reveals the install line and verbatim CLI output from that repository. Keep receipts verbatim; they are the point. A small client-side fetch to the GitHub API adds "last push" and stars per repo (unauthenticated, cached per session, degrades to a link if rate-limited).
+- `components/Charts.tsx` — three inline-SVG charts (recalc edit cost, tallyd precision/recall, holdout PBO scatter) drawn from the same runs as the receipts; `lib/pbo-points.json` holds the 400 sampled CSCV partitions for the holdout one. Regenerate the numbers from the repositories rather than editing them by hand.
 - `components/Ecosystem.tsx` — the inline SVG diagram under Projects (five libraries → abacus → a model over MCP); colours follow the theme.
 - `app/opengraph-image.tsx` — the link-preview image, rendered at build. `app/not-found.tsx` — the 404 page. There is a print stylesheet at the end of `globals.css`.
 - Theme: the button in the header toggles dark/light and stores the choice in `localStorage`. A small script in `app/layout.tsx` applies it before first paint; with no stored choice the system setting wins.
