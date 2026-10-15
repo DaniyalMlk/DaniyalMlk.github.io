@@ -165,9 +165,6 @@ export default function Page() {
               {n.label}
             </a>
           ))}
-          <a href="Daniyal_Malik_CV.pdf" download="Daniyal_Malik_CV.pdf">
-            CV ↓
-          </a>
           <a href={profile.github} target="_blank" rel="noreferrer noopener">
             GitHub ↗
           </a>
