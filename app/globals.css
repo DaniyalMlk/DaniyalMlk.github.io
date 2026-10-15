@@ -209,6 +209,48 @@ h1 {
   border-bottom: 1px solid var(--rule-strong);
 }
 
+/* About */
+.about {
+  padding-top: 56px;
+}
+.about .th {
+  border-top: 1px solid var(--rule-strong);
+  padding-top: 10px;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) 128px;
+  column-gap: var(--gap);
+  padding-top: 8px;
+}
+.about-path {
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .about-path {
+    white-space: normal;
+  }
+}
+.about-path .arrow {
+  color: var(--rule);
+}
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--ink-2);
+  max-width: 68ch;
+}
+@media (max-width: 760px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+  }
+}
+
 /* Ledger sections */
 .ledger {
   padding-top: 56px;

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Ecosystem from "@/components/Ecosystem";
-import { nav, profile, projects, skills, summary, work, type Project } from "@/lib/content";
+import { about, nav, profile, projects, skills, summary, work, type Project } from "@/lib/content";
 
 function useTheme() {
   const [dark, setDark] = useState(true);
@@ -195,7 +195,7 @@ export default function Page() {
             </div>
           </div>
           <div className="hero-r">
-            <div className="th">Account summary</div>
+            <div className="th">At a glance</div>
             <dl className="summary">
               {summary.map((s) => (
                 <div key={s.k}>
@@ -204,6 +204,25 @@ export default function Page() {
                 </div>
               ))}
             </dl>
+          </div>
+        </section>
+
+        <section id="about" className="about">
+          <div className="th">About</div>
+          <div className="about-grid">
+            <div className="about-path" aria-label="Path">
+              {about.path.map((c, i) => (
+                <span key={c}>
+                  {i > 0 && <span className="arrow"> → </span>}
+                  {c}
+                </span>
+              ))}
+            </div>
+            <div className="about-text">
+              {about.paragraphs.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -249,7 +268,7 @@ export default function Page() {
         <section id="projects" className="ledger">
           <div className="th th-grid">
             <span>Lang</span>
-            <span>Open source · eight libraries, 16,000+ tests, each with its output attached</span>
+            <span>Open source · output attached to each</span>
             <span className="r">Figure</span>
           </div>
           {projects.map((p) => (

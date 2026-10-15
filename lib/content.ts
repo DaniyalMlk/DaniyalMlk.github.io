@@ -14,13 +14,20 @@ export const profile = {
 };
 
 export const summary = [
-  { k: "Internships, 2023 to now", v: "5" },
-  { k: "Countries", v: "3" },
-  { k: "Apps and services in production", v: "6" },
-  { k: "Open-source libraries", v: "8" },
-  { k: "Tests collected across them", v: "16,000+" },
-  { k: "NYU, Computer Science and Economics", v: "2028" },
+  { k: "NYU, CS and Economics", v: "2028" },
+  { k: "Based in", v: "New York" },
+  { k: "Looking for", v: "SWE internships, 2027" },
 ];
+
+// Short, in the first person. Facts only; add to it as you like.
+export const about = {
+  path: ["Astana", "Shanghai", "New York"],
+  paragraphs: [
+    "I grew up in Astana, Kazakhstan, started university at NYU Shanghai, and am spending 2026–27 at NYU in New York. Three cities, three keyboard layouts, one Postgres.",
+    "Before any of the work above, I co-founded a robotics club at home and still mentor it. We built a FIRST robot with omni drive and vision-based cone detection that won the Connect Award at the FIRST Asia Pacific Open, one of two Kazakh teams there, and the club has grown to 30+ members with 10+ wins at national olympiads. That is where I learned that a system is only finished when someone who is not you can run it.",
+    "Outside of code I [YOUR INTERESTS HERE]. I speak [LANGUAGES HERE].",
+  ],
+};
 
 export type Figure = { n: string; unit?: string };
 
@@ -413,6 +420,7 @@ export const skills: SkillGroup[] = [
 ];
 
 export const nav = [
+  { id: "about", label: "About" },
   { id: "work", label: "Work" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
