@@ -263,7 +263,7 @@ export default function Page() {
         </section>
 
         <section id="work" className="ledger">
-          <SectionHead n="02" title="Work" note="Six roles, 2023 to now. The figure on the right is the one number each one comes down to." />
+          <SectionHead n="02" title="Work" />
           <div className="th th-grid">
             <span>Date</span>
             <span>Role</span>
@@ -303,7 +303,7 @@ export default function Page() {
         </section>
 
         <section id="projects" className="ledger">
-          <SectionHead n="03" title="Open source" note="Eight libraries. Under each name is the program's own output from 15 October 2026, not a description of it." />
+          <SectionHead n="03" title="Open source" note="Under each name is the program's own output, captured 15 October 2026." />
           <div className="th th-grid">
             <span>Lang</span>
             <span>Library</span>
