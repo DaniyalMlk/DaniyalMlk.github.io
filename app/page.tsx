@@ -257,7 +257,7 @@ export default function Page() {
         </section>
 
         <section id="work" className="ledger">
-          <SectionHead n="02" title="Work" note="Five roles, 2023 to now. The figure on the right is the one number each one comes down to." />
+          <SectionHead n="02" title="Work" note="Six roles, 2023 to now. The figure on the right is the one number each one comes down to." />
           <div className="th th-grid">
             <span>Date</span>
             <span>Role</span>

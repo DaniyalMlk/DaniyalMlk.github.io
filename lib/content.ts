@@ -88,6 +88,19 @@ export const work: Job[] = [
     stack: "React · TypeScript · SharePoint Framework",
   },
   {
+    yr: "Feb – May 2026",
+    org: "SolveSim",
+    role: "Co-founder",
+    loc: "France (remote)",
+    points: [
+      "Co-built and launched a timed, McKinsey-style case-interview simulator used by 250+ candidates, 8% of them on paid plans.",
+      "Stored attempts as append-only records in PostgreSQL and derived scores from them, so scoring rules change without migrations.",
+      "Three-tier Stripe subscriptions with plan limits in one config, enforced by middleware; a new tier is a config entry, not a code change.",
+    ],
+    figure: { n: "250+", unit: "candidates, 8% paid" },
+    stack: "Next.js · Postgres · Stripe",
+  },
+  {
     yr: "2024",
     org: "Nazarbayev University",
     role: "Research Engineering Intern",
