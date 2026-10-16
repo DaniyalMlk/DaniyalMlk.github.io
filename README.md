@@ -39,7 +39,7 @@ All text lives in `lib/content.ts`: the hero line, the three credentials, and th
 - `components/Charts.tsx` — three inline-SVG charts (recalc edit cost, tallyd precision/recall, holdout PBO scatter) drawn from the same runs as the receipts; `lib/pbo-points.json` holds the 400 sampled CSCV partitions for the holdout one. Regenerate the numbers from the repositories rather than editing them by hand.
 - `components/Ecosystem.tsx` — the inline SVG diagram under Projects (five libraries → abacus → a model over MCP); colours follow the theme.
 - `app/opengraph-image.tsx` — the link-preview image, rendered at build. `app/not-found.tsx` — the 404 page. There is a print stylesheet at the end of `globals.css`.
-- Theme: the button in the header toggles dark/light and stores the choice in `localStorage`. A small script in `app/layout.tsx` applies it before first paint; with no stored choice the system setting wins.
+- Theme: the button in the header toggles dark/light and stores the choice in `localStorage`. A small script in `app/layout.tsx` applies it before first paint; with no stored choice the site is dark.
 
 ## Responsive
 
