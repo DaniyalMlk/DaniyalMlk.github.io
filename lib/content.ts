@@ -23,7 +23,7 @@ export const summary = [
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
-    "Computer science student at New York University (minor in economics, class of 2028), from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Outside engineering: poker, which rewards the same habits as the holdout library below.",
+    "Computer science student at New York University (minor in economics, class of 2028), from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
     "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of eight open-source finance libraries, each published with the output that proves it.",
     "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
   ],
