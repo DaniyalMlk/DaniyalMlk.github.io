@@ -24,17 +24,30 @@ function useTheme() {
 function useActiveSection(ids: readonly string[]) {
   const [active, setActive] = useState<string>("");
   useEffect(() => {
-    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
-    if (!("IntersectionObserver" in window) || els.length === 0) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        if (visible[0]) setActive(visible[0].target.id);
-      },
-      { rootMargin: "-20% 0px -70% 0px" },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    let raf = 0;
+    const pick = () => {
+      raf = 0;
+      const line = 96; // just under the sticky header
+      let current = "";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+      if (atBottom) current = ids[ids.length - 1];
+      setActive(current);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(pick);
+    };
+    pick();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("hashchange", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("hashchange", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [ids]);
   return active;
 }
@@ -110,8 +123,9 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
       <div className="cell-k">{p.lang}</div>
       <div className="cell-body">
         <h3 className="h3-big">
-          <a href={p.href} target="_blank" rel="noreferrer noopener">
+          <a className="ext" href={p.href} target="_blank" rel="noreferrer noopener">
             {p.name}
+            <span className="ext-mark" aria-hidden="true">↗</span>
           </a>
           <span className="tagline"> · {p.tagline}</span>
         </h3>
@@ -259,8 +273,9 @@ export default function Page() {
               <div className="cell-body">
                 <h3 className="h3-big">
                   {j.href ? (
-                    <a href={j.href} target="_blank" rel="noreferrer noopener">
+                    <a className="ext" href={j.href} target="_blank" rel="noreferrer noopener">
                       {j.org}
+                      <span className="ext-mark" aria-hidden="true">↗</span>
                     </a>
                   ) : (
                     j.org

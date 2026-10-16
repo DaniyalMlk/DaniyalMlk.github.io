@@ -11,6 +11,7 @@
   --accent: #b3261e;
   --code-bg: #e9e6dc;
   --font: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
   --col-k: 128px;
   --col-fig: 200px;
   --gap: 24px;
@@ -380,14 +381,7 @@ h1 {
   font-size: 14px;
   font-weight: 600;
 }
-.cell-body h3 a {
-  text-decoration: underline;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 4px;
-}
-.cell-body h3 a:hover {
-  text-decoration-color: var(--accent);
-}
+
 .tagline {
   font-weight: 400;
   color: var(--ink-2);
@@ -509,6 +503,53 @@ h1 {
 .receipt-note {
   font-size: 11px;
   color: var(--ink-3);
+}
+
+/* Body copy in the sans; structure stays mono */
+.lede,
+.about-text,
+.cell-body ul,
+.cell-body .line,
+.receipt > p,
+.sh-note,
+.eco figcaption,
+.chart-note,
+.receipt-note {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.lede {
+  font-size: 21px;
+}
+.sh-note,
+.eco figcaption,
+.chart-note,
+.receipt-note {
+  font-size: 13px;
+}
+.cell-body li::before {
+  font-family: var(--font);
+}
+
+/* Linked names */
+.cell-body h3 a.ext {
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--rule);
+  padding-bottom: 1px;
+}
+.cell-body h3 a.ext:hover {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+.ext-mark {
+  font-size: 0.65em;
+  margin-left: 0.35em;
+  color: var(--ink-3);
+  vertical-align: 0.25em;
+}
+.cell-body h3 a.ext:hover .ext-mark {
+  color: var(--accent);
 }
 
 /* Headline receipt: always visible, verbatim excerpt */
