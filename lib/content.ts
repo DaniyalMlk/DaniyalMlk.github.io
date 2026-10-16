@@ -25,7 +25,7 @@ export const about = {
   paragraphs: [
     "Computer science student at New York University (minor in economics, class of 2028), from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27.",
     "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of eight open-source finance libraries, each published with the output that proves it.",
-    "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
+    "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open. Plays poker.",
   ],
 };
 
