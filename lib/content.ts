@@ -54,7 +54,7 @@ export const work: Job[] = [
       "Shipped member applications, trek booking and job applications, plus Stripe subscription billing for memberships and treks with refund-policy enforcement and webhook refund sync.",
       "Built the 4-tier role system as 133 row-level security policies on 19 tables, enforced in the database for web and iOS.",
       "Closed a cross-subdomain session-hijacking path by replacing URL-fragment login tokens with single-use exchange codes, and fixed login CSRF, open redirects and OTP brute-force.",
-      "Ported the iOS app\u2019s pricing, eligibility and application-state logic into 23 framework-free modules with 655 tests, and own EAS builds, code signing and the TestFlight / App Store release.",
+      "Ported the iOS app\u2019s pricing, eligibility and application-state logic into 23 framework-free modules with 655 tests, and own the release pipeline: EAS builds, code signing, TestFlight.",
     ],
     figure: { n: "133", unit: "RLS policies" },
     stack: "Next.js · Node · TypeScript · Postgres · Supabase · Stripe · Expo",
