@@ -13,40 +13,47 @@ export const profile = {
   location: "New York, NY",
   // Canonical address of the site. Change this once if you move to a custom domain.
   url: "https://daniyalmlk.github.io",
+  // The CV as a PDF, served from public/. Keep the file name stable: recruiters
+  // save links. Regenerate the file whenever the CV changes so the two agree.
+  resume: "/Daniyal_Malik_CV.pdf",
   // Optional portrait, shown beside "At a glance". Drop a square JPEG (about
   // 800×800, under 150 KB) at public/portrait.jpg and set this to "/portrait.jpg".
   // Leave it undefined and nothing is rendered.
   portrait: undefined as string | undefined,
 };
 
+// "At a glance": the five facts a screener checks before reading anything else.
+// Work authorization is the one most often missing from student sites, and the
+// one most often used to filter.
 export const summary = [
-  { k: "NYU, CS and Economics", v: "2028" },
+  { k: "NYU, CS and Economics", v: "May 2028" },
+  { k: "Work authorization", v: "CPT/OPT, no sponsorship needed" },
   { k: "Based in", v: "New York" },
   { k: "Speaks", v: "Kazakh, Russian, English, Chinese, Turkish" },
-  { k: "Looking for", v: "SWE internships, 2027" },
+  { k: "Looking for", v: "SWE internships, summer 2027" },
 ];
 
-// Short, in the first person. Facts only; add to it as you like.
+// Short, in the third person. Facts only; add to it as you like.
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
-    "Computer science student at New York University (minor in economics, class of 2028), from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
+    "Computer science student at New York University (minor in economics, class of 2028) on a full-tuition scholarship, from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27, where he programs the VEX U robotics team's robot in C++. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
     "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of eight open-source finance libraries, each published with the output that proves it.",
-    "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
   ],
 };
 
 export type Figure = { n: string; unit?: string };
 
 export type Job = {
+  // Month-precise, as on the CV. Months are what let a reader see that the
+  // overlapping roles were remote and part of a year, not six full-time jobs.
   yr: string;
   org: string;
+  // One line on what the organisation is, for a reader who has never heard of it.
+  what?: string;
   role: string;
   loc: string;
-  // How the role fit around the degree ("alongside coursework", "4 weeks, on site").
-  // Shown under the date. This is what stops six roles in four years reading as
-  // six full-time jobs. Fill in months in `yr` where you have them; months beat
-  // years for anything that overlaps.
+  // "remote" or "on site", as on the CV. Shown under the location.
   basis?: string;
   href?: string;
   points: string[];
@@ -54,18 +61,14 @@ export type Job = {
   stack?: string;
 };
 
-// One sentence under the Work heading. Confirm it is true before publishing,
-// or delete it; the per-row `basis` lines carry the same point.
-export const workNote =
-  "Dates are inclusive. Roles that overlap a term ran alongside a full course load; the on-site ones ran over summers.";
-
 export const work: Job[] = [
   {
-    yr: "2025 – now",
+    yr: "Nov 2025 – now",
     org: "Terran Denizen",
+    what: "Career platform for MBA students at the M7 business schools",
     role: "Full-Stack Engineering Intern",
     loc: "New York",
-    basis: "alongside coursework",
+    basis: "remote",
     href: "https://terrandenizen.com",
     points: [
       "Founding engineer and largest contributor on a 6-service platform: 4 Next.js apps, a Node API and an iOS app on PostgreSQL.",
@@ -78,11 +81,12 @@ export const work: Job[] = [
     stack: "Next.js · Node · TypeScript · Postgres · Supabase · Stripe · Expo",
   },
   {
-    yr: "2026 – now",
+    yr: "Jun 2026 – now",
     org: "AidenCare",
+    what: "Bilingual patient portal and staff dashboard for a dental clinic",
     role: "Full-Stack Engineering Lead",
     loc: "Shanghai",
-    basis: "alongside coursework",
+    basis: "remote",
     href: "https://aidencare.space",
     points: [
       "Led the build with one other engineer: set the architecture, split the work and reviewed their code.",
@@ -94,11 +98,12 @@ export const work: Job[] = [
     stack: "Next.js · Supabase · Deno · Postgres",
   },
   {
-    yr: "2026",
+    yr: "Jul – Aug 2026",
     org: "North Caspian Operating Company",
+    what: "Operator of the Kashagan oil field · Strategy & Business Directorate",
     role: "Full-Stack Engineering Intern",
     loc: "Atyrau",
-    basis: "4 weeks, on site",
+    basis: "on site",
     points: [
       "Built an HSSE platform for 150+ staff in 4 weeks: 6 SPFx web parts (React/TypeScript) on 9 SharePoint lists and a data service.",
       "Wrote a Visio parser that turned 40+ process diagrams into Word guides, cutting each write-up from 2+ hours to under a minute.",
@@ -110,9 +115,10 @@ export const work: Job[] = [
   {
     yr: "Feb – May 2026",
     org: "SolveSim",
+    what: "Timed, McKinsey-style case-interview simulator",
     role: "Co-founder",
-    loc: "France (remote)",
-    basis: "alongside coursework",
+    loc: "France",
+    basis: "remote",
     points: [
       "Co-built and launched a timed McKinsey-style case-interview simulator used by 250+ candidates, 8% on paid plans.",
       "Stored attempts as append-only records in PostgreSQL and derived scores from them, so scoring rules change without migrations.",
@@ -122,10 +128,12 @@ export const work: Job[] = [
     stack: "Next.js · Postgres · Stripe",
   },
   {
-    yr: "2024",
+    yr: "Jun – Aug 2024",
     org: "Nazarbayev University",
+    what: "ISSAI Robotics & Geotechnical Engineering",
     role: "Research Engineering Intern",
     loc: "Astana",
+    basis: "on site",
     points: [
       "Built a PostgreSQL database of 1,200+ soil lab records for an IoT geotechnical sensing project.",
       "Fit van Genuchten curves in Python (pandas, NumPy), and the results were used in the sensor-system design.",
@@ -134,10 +142,12 @@ export const work: Job[] = [
     stack: "Python · pandas · NumPy · Postgres",
   },
   {
-    yr: "2023",
+    yr: "Jun – Sep 2023",
     org: "National Information Technologies",
+    what: "Kazakhstan's e-government IT operator",
     role: "Data Engineering Intern",
     loc: "Astana",
+    basis: "on site",
     points: [
       "Cut a nightly ETL job over 25 tables from 3 hours to under 2 by rewriting 14 production SQL queries with joins and indexes.",
       "Wrote 30+ validation queries that caught ~500 missing or duplicate records a week before they reached reports.",
@@ -509,6 +519,23 @@ most often selected in-sample:
   ma30_120              16.4%
   ma30_180              14.4%
   ma5_60                13.6%`,
+  },
+];
+
+// Leadership, as a ledger row like the roles above. Same figure discipline:
+// one number the row comes down to.
+export const leadership: Job[] = [
+  {
+    yr: "Sep 2022 – now",
+    org: "Robotics Club",
+    what: "Student club in Astana; its FIRST team competes internationally",
+    role: "Co-founder & Mentor",
+    loc: "Astana",
+    points: [
+      "Built a FIRST robot with omni drive and vision-based cone detection that won the Connect Award as 1 of 2 Kazakh teams at the FIRST Asia Pacific Open.",
+      "Raised $4,000+, grew the club to 30+ members, and led teams to 10+ wins at national robotics olympiads.",
+    ],
+    figure: { n: "1 of 2", unit: "Kazakh teams at the FIRST Asia Pacific Open; Connect Award" },
   },
 ];
 

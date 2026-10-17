@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Ecosystem from "@/components/Ecosystem";
 import { chartFor } from "@/components/Charts";
-import { about, nav, profile, projects, skills, summary, work, workNote, type Project } from "@/lib/content";
+import { about, leadership, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
 import repoStats from "@/lib/repo-stats.json";
 
 function useTheme() {
@@ -144,6 +144,42 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
   );
 }
 
+function JobRow({ j }: { j: Job }) {
+  return (
+    <div className="row">
+      <div className="cell-k">
+        <span className="k-yr">{j.yr}</span>
+        <span className="k-loc">{j.loc}</span>
+        {j.basis && <span className="k-basis">{j.basis}</span>}
+      </div>
+      <div className="cell-body">
+        <h3 className="h3-big">
+          {j.href ? (
+            <a className="ext" href={j.href} target="_blank" rel="noreferrer noopener">
+              {j.org}
+              <span className="ext-mark" aria-hidden="true">↗</span>
+            </a>
+          ) : (
+            j.org
+          )}
+          <span className="tagline"> · {j.role}</span>
+        </h3>
+        {j.what && <p className="what">{j.what}</p>}
+        <ul>
+          {j.points.map((pt) => (
+            <li key={pt}>{pt}</li>
+          ))}
+        </ul>
+        {j.stack && <div className="meta">{j.stack}</div>}
+      </div>
+      <div className="cell-fig">
+        <b>{j.figure.n}</b>
+        {j.figure.unit && <span>{j.figure.unit}</span>}
+      </div>
+    </div>
+  );
+}
+
 function SectionHead({ n, title, note }: { n: string; title: string; note?: string }) {
   return (
     <div className="sh">
@@ -201,6 +237,9 @@ export default function Page() {
               <a className="btn" href={profile.github} target="_blank" rel="noreferrer noopener">
                 github.com/{profile.githubUser}
               </a>
+              <a className="btn" href={profile.resume} target="_blank" rel="noreferrer noopener" type="application/pdf">
+                Résumé (PDF) ↗
+              </a>
             </div>
           </div>
           <div className="hero-r">
@@ -239,43 +278,14 @@ export default function Page() {
         </section>
 
         <section id="work" className="ledger">
-          <SectionHead n="02" title="Work" note={workNote} />
+          <SectionHead n="02" title="Work" />
           <div className="th th-grid">
             <span>Date</span>
             <span>Role</span>
             <span className="r">Figure</span>
           </div>
           {work.map((j) => (
-            <div className="row" key={j.org}>
-              <div className="cell-k">
-                <span className="k-yr">{j.yr}</span>
-                <span className="k-loc">{j.loc}</span>
-                {j.basis && <span className="k-basis">{j.basis}</span>}
-              </div>
-              <div className="cell-body">
-                <h3 className="h3-big">
-                  {j.href ? (
-                    <a className="ext" href={j.href} target="_blank" rel="noreferrer noopener">
-                      {j.org}
-                      <span className="ext-mark" aria-hidden="true">↗</span>
-                    </a>
-                  ) : (
-                    j.org
-                  )}
-                  <span className="tagline"> · {j.role}</span>
-                </h3>
-                <ul>
-                  {j.points.map((pt) => (
-                    <li key={pt}>{pt}</li>
-                  ))}
-                </ul>
-                {j.stack && <div className="meta">{j.stack}</div>}
-              </div>
-              <div className="cell-fig">
-                <b>{j.figure.n}</b>
-                {j.figure.unit && <span>{j.figure.unit}</span>}
-              </div>
-            </div>
+            <JobRow key={j.org} j={j} />
           ))}
         </section>
 
@@ -292,8 +302,20 @@ export default function Page() {
           <Ecosystem />
         </section>
 
+        <section id="leadership" className="ledger">
+          <SectionHead n="04" title="Leadership" />
+          <div className="th th-grid">
+            <span>Date</span>
+            <span>Role</span>
+            <span className="r">Figure</span>
+          </div>
+          {leadership.map((j) => (
+            <JobRow key={j.org} j={j} />
+          ))}
+        </section>
+
         <section id="skills" className="skills-wrap">
-          <SectionHead n="04" title="Skills" />
+          <SectionHead n="05" title="Skills" />
           <div className="skills">
           {skills.map((g) => (
             <div key={g.label} className="skill-col">
@@ -309,7 +331,12 @@ export default function Page() {
         </section>
 
         <footer className="foot">
-          <span>Balance carried forward. {profile.location}.</span>
+          <span>
+            Balance carried forward. {profile.location}. <a href={`mailto:${profile.email}`}>{profile.email}</a> ·{" "}
+            <a href={profile.resume} target="_blank" rel="noreferrer noopener">
+              Résumé (PDF)
+            </a>
+          </span>
           <span>
             Closing balance: <b>all accounts reconciled</b>
           </span>

@@ -414,6 +414,13 @@ h1 {
   font-weight: 400;
   color: var(--ink-2);
 }
+/* One line on what the organisation is, under its name */
+.cell-body .what {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-3);
+}
 .cell-body p {
   margin-top: 6px;
   color: var(--ink-2);
@@ -695,6 +702,14 @@ h1 {
 .foot b {
   color: var(--ink);
   font-weight: 600;
+}
+.foot a {
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.foot a:hover {
+  color: var(--accent);
 }
 
 /* Phones */
