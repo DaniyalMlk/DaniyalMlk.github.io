@@ -492,6 +492,14 @@ h1 {
 .toggle:hover {
   color: var(--accent);
 }
+.meta-link {
+  color: var(--ink-3);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.meta-link:hover {
+  color: var(--accent);
+}
 .receipt {
   margin-top: 14px;
   display: flex;

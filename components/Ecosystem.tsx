@@ -61,7 +61,7 @@ export default function Ecosystem() {
         </defs>
       </svg>
       <figcaption>
-        Six of the eight repositories form one system: abacus hands the five libraries to a language model as tools, so the numbers are computed by tested code rather than by the model. tallyd and recalc stand alone.
+        Six of the nine repositories form one system: abacus hands the five libraries to a language model as tools, so the numbers are computed by tested code rather than by the model. tallyd, recalc and capstack stand alone.
       </figcaption>
     </figure>
   );

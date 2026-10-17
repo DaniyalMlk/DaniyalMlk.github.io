@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Ecosystem from "@/components/Ecosystem";
 import { chartFor } from "@/components/Charts";
-import { about, leadership, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
+import { about, capturedDefault, leadership, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
 import repoStats from "@/lib/repo-stats.json";
 
 function useTheme() {
@@ -119,6 +119,14 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
               {" · "}
             </span>
           )}
+          {p.docs && (
+            <span>
+              <a className="meta-link" href={p.docs} target="_blank" rel="noreferrer noopener">
+                docs ↗
+              </a>
+              {" · "}
+            </span>
+          )}
           <button type="button" className="toggle" aria-expanded={open} onClick={onToggle}>
             {open ? "less" : "full output and notes"}
           </button>
@@ -131,7 +139,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
               <code>{p.receipt}</code>
             </pre>
             <div className="receipt-note">
-              Verbatim output, captured 15 Oct 2026. Every number here is produced by the code, not written into this page. Test suite: {p.tests}.
+              Verbatim output, captured {p.captured ?? capturedDefault}. Every number here is produced by the code, not written into this page. Test suite: {p.tests}.
             </div>
           </div>
         )}
@@ -290,7 +298,7 @@ export default function Page() {
         </section>
 
         <section id="projects" className="ledger">
-          <SectionHead n="03" title="Open source" note="Under each name is the program's own output, captured 15 October 2026." />
+          <SectionHead n="03" title="Open source" note="Under each name is the program's own output, captured 15–16 October 2026." />
           <div className="th th-grid">
             <span>Lang</span>
             <span>Library</span>

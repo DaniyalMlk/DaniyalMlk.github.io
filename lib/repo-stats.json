@@ -6,5 +6,6 @@
   "tenor": { "pushed": "2026-10-16T02:51:52Z", "stars": 0 },
   "shortfall": { "pushed": "2026-10-17T02:55:26Z", "stars": 0 },
   "slippage": { "pushed": "2026-10-16T02:51:55Z", "stars": 0 },
-  "holdout": { "pushed": "2026-10-16T02:51:57Z", "stars": 0 }
+  "holdout": { "pushed": "2026-10-16T02:51:57Z", "stars": 0 },
+  "capstack": { "pushed": "2026-10-16T02:48:32Z", "stars": 0 }
 }

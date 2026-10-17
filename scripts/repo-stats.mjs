@@ -1,7 +1,7 @@
 // Refreshes lib/repo-stats.json from the GitHub API at build time.
 //
 // Why at build and not in the browser: an unauthenticated browser call is
-// limited to 60 requests an hour per IP address. Eight repositories is eight
+// limited to 60 requests an hour per IP address. Nine repositories is nine
 // calls per visit, so a handful of visitors behind one office NAT exhaust it
 // and every later visitor sees a placeholder where the numbers should be.
 // In GitHub Actions the workflow passes GITHUB_TOKEN, which raises the limit to
@@ -19,7 +19,7 @@ import { dirname, join } from "node:path";
 const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, "..", "lib", "repo-stats.json");
 const user = "DaniyalMlk";
-const repos = ["tallyd", "recalc", "moneyness", "abacus", "tenor", "shortfall", "slippage", "holdout"];
+const repos = ["tallyd", "recalc", "moneyness", "abacus", "tenor", "shortfall", "slippage", "holdout", "capstack"];
 
 const headers = { Accept: "application/vnd.github+json", "User-Agent": "daniyalmlk.github.io build" };
 if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;

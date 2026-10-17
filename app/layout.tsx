@@ -4,7 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 const description =
-  "Daniyal Malik, full-stack engineer and NYU computer science student in New York, looking for software engineering internships for summer 2027. Ledgers, billing, pricing, authorization: the parts of a product where a wrong number is a bug. Eight open-source libraries with their output attached.";
+  "Daniyal Malik, full-stack engineer and NYU computer science student in New York, looking for software engineering internships for summer 2027. Ledgers, billing, pricing, authorization: the parts of a product where a wrong number is a bug. Nine open-source finance libraries with their output attached.";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://daniyalmlk.github.io";
 
 export const metadata: Metadata = {
