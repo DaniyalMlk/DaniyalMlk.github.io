@@ -13,31 +13,29 @@ export const profile = {
   location: "New York, NY",
   // Canonical address of the site. Change this once if you move to a custom domain.
   url: "https://daniyalmlk.github.io",
-  // The CV as a PDF, served from public/. Keep the file name stable: recruiters
-  // save links. Regenerate the file whenever the CV changes so the two agree.
-  resume: "/Daniyal_Malik_CV.pdf",
   // Optional portrait, shown beside "At a glance". Drop a square JPEG (about
   // 800×800, under 150 KB) at public/portrait.jpg and set this to "/portrait.jpg".
   // Leave it undefined and nothing is rendered.
   portrait: undefined as string | undefined,
 };
 
-// "At a glance": the five facts a screener checks before reading anything else.
+// "At a glance": the four facts a screener checks before reading anything else.
 // Work authorization is the one most often missing from student sites, and the
-// one most often used to filter.
+// one most often used to filter. Nothing here is repeated in About.
 export const summary = [
   { k: "NYU, CS and Economics", v: "May 2028" },
   { k: "Work authorization", v: "CPT/OPT, no sponsorship needed" },
   { k: "Based in", v: "New York" },
-  { k: "Speaks", v: "Kazakh, Russian, English, Chinese, Turkish" },
   { k: "Looking for", v: "SWE internships, summer 2027" },
 ];
 
-// Short, in the third person. Facts only; add to it as you like.
+// Short, in the third person. Facts only; add to it as you like. The degree,
+// city and search live in At a glance above, so this is the rest: where he is
+// from, how he got here, what he does off the clock.
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
-    "Computer science student at New York University (minor in economics, class of 2028) on a full-tuition scholarship, from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27, where he programs the VEX U robotics team's robot in C++. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
+    "From Astana, Kazakhstan. Two years at NYU Shanghai, then the New York campus for 2026–27, on a full-tuition scholarship; programs the VEX U robotics team's robot in C++. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
     "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of nine open-source finance libraries, each published with the output that proves it.",
   ],
 };
@@ -94,7 +92,7 @@ export const work: Job[] = [
       "Designed the appointment lifecycle, from request to payment, with a database constraint that makes double-booking impossible.",
       "29 row-level security policies across 11 tables, six roles with an approval workflow, and a trigger that blocks privilege escalation.",
     ],
-    figure: { n: "0", unit: "double bookings possible" },
+    figure: { n: "1", unit: "database constraint; a double booking cannot be written" },
     stack: "Next.js · Supabase · Deno · Postgres",
   },
   {

@@ -245,9 +245,6 @@ export default function Page() {
               <a className="btn" href={profile.github} target="_blank" rel="noreferrer noopener">
                 github.com/{profile.githubUser}
               </a>
-              <a className="btn" href={profile.resume} target="_blank" rel="noreferrer noopener" type="application/pdf">
-                Résumé (PDF) ↗
-              </a>
             </div>
           </div>
           <div className="hero-r">
@@ -340,10 +337,7 @@ export default function Page() {
 
         <footer className="foot">
           <span>
-            Balance carried forward. {profile.location}. <a href={`mailto:${profile.email}`}>{profile.email}</a> ·{" "}
-            <a href={profile.resume} target="_blank" rel="noreferrer noopener">
-              Résumé (PDF)
-            </a>
+            Balance carried forward. {profile.location}. <a href={`mailto:${profile.email}`}>{profile.email}</a>
           </span>
           <span>
             Closing balance: <b>all accounts reconciled</b>
