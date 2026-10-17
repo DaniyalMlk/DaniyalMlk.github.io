@@ -32,7 +32,7 @@ export default function Image() {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, borderTop: "3px solid #141412", paddingTop: 16 }}>
-          <span>8 open-source libraries · 16,000+ tests · output attached</span>
+          <span>9 open-source finance libraries · output attached, not described</span>
           <span style={{ fontWeight: 600 }}>all accounts reconciled</span>
         </div>
       </div>

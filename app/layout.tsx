@@ -4,13 +4,29 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 const description =
-  "Daniyal Malik, full-stack engineer in New York. Ledgers, billing, pricing, authorization: the parts of a product where a wrong number is a bug. Eight open-source libraries with their output attached.";
+  "Daniyal Malik, full-stack engineer and NYU computer science student in New York, looking for software engineering internships for summer 2027. Ledgers, billing, pricing, authorization: the parts of a product where a wrong number is a bug. Nine open-source finance libraries with their output attached.";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://daniyalmlk.github.io";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://daniyalmlk.github.io"),
+  metadataBase: new URL(siteUrl),
   title: "Daniyal Malik, full-stack engineer",
   description,
-  openGraph: { title: "Daniyal Malik", description, type: "website" },
+  // One canonical address, so a custom domain and the github.io one do not
+  // compete in search, and `profile` so link previews treat this as a person.
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
+  authors: [{ name: "Daniyal Malik", url: siteUrl }],
+  creator: "Daniyal Malik",
+  openGraph: {
+    title: "Daniyal Malik",
+    description,
+    type: "profile",
+    firstName: "Daniyal",
+    lastName: "Malik",
+    url: "/",
+    siteName: "Daniyal Malik",
+    locale: "en_US",
+  },
   twitter: { card: "summary_large_image", title: "Daniyal Malik", description },
 };
 
@@ -42,11 +58,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Daniyal Malik",
-              jobTitle: "Software engineer",
+              jobTitle: "Full-stack engineer",
               email: "mailto:dm6008@nyu.edu",
-              url: "https://daniyalmlk.github.io",
+              url: siteUrl,
               sameAs: ["https://github.com/DaniyalMlk", "https://linkedin.com/in/daniyal-mlk"],
               alumniOf: { "@type": "CollegeOrUniversity", name: "New York University" },
+              knowsLanguage: ["kk", "ru", "en", "zh", "tr"],
               address: { "@type": "PostalAddress", addressLocality: "New York", addressRegion: "NY", addressCountry: "US" },
             }),
           }}

@@ -52,7 +52,7 @@ export default function Ecosystem() {
         <line x1={64} y1={116} x2={W - 64} y2={116} className="eco-line" />
         <line x1={W / 2} y1={100} x2={W / 2} y2={116} className="eco-line" />
         <text x={W / 2} y={222} textAnchor="middle" className="eco-label">
-          pure Python, no runtime dependencies, 12,270 collected tests between them
+          pure Python, no runtime dependencies; every figure above is the program's own output
         </text>
         <defs>
           <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -61,7 +61,7 @@ export default function Ecosystem() {
         </defs>
       </svg>
       <figcaption>
-        Six of the eight repositories form one system: abacus hands the five libraries to a language model as tools, so the numbers are computed by tested code rather than by the model. tallyd and recalc stand alone.
+        Six of the nine repositories form one system: abacus hands the five libraries to a language model as tools, so the numbers are computed by tested code rather than by the model. tallyd, recalc and capstack stand alone.
       </figcaption>
     </figure>
   );

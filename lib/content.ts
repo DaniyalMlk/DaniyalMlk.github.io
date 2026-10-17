@@ -11,31 +11,50 @@ export const profile = {
   githubUser: "DaniyalMlk",
   linkedin: "https://linkedin.com/in/daniyal-mlk",
   location: "New York, NY",
+  // Canonical address of the site. Change this once if you move to a custom domain.
+  url: "https://daniyalmlk.github.io",
+  // The CV as a PDF, served from public/. Keep the file name stable: recruiters
+  // save links. Regenerate the file whenever the CV changes so the two agree.
+  resume: "/Daniyal_Malik_CV.pdf",
+  // Optional portrait, shown beside "At a glance". Drop a square JPEG (about
+  // 800×800, under 150 KB) at public/portrait.jpg and set this to "/portrait.jpg".
+  // Leave it undefined and nothing is rendered.
+  portrait: undefined as string | undefined,
 };
 
+// "At a glance": the five facts a screener checks before reading anything else.
+// Work authorization is the one most often missing from student sites, and the
+// one most often used to filter.
 export const summary = [
-  { k: "NYU, CS and Economics", v: "2028" },
+  { k: "NYU, CS and Economics", v: "May 2028" },
+  { k: "Work authorization", v: "CPT/OPT, no sponsorship needed" },
   { k: "Based in", v: "New York" },
-  { k: "Looking for", v: "SWE internships, 2027" },
+  { k: "Speaks", v: "Kazakh, Russian, English, Chinese, Turkish" },
+  { k: "Looking for", v: "SWE internships, summer 2027" },
 ];
 
-// Short, in the first person. Facts only; add to it as you like.
+// Short, in the third person. Facts only; add to it as you like.
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
-    "Computer science student at New York University (minor in economics, class of 2028), from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
-    "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of eight open-source finance libraries, each published with the output that proves it.",
-    "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
+    "Computer science student at New York University (minor in economics, class of 2028) on a full-tuition scholarship, from Astana, Kazakhstan. Started at NYU Shanghai; at the New York campus for 2026–27, where he programs the VEX U robotics team's robot in C++. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
+    "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of nine open-source finance libraries, each published with the output that proves it.",
   ],
 };
 
 export type Figure = { n: string; unit?: string };
 
 export type Job = {
+  // Month-precise, as on the CV. Months are what let a reader see that the
+  // overlapping roles were remote and part of a year, not six full-time jobs.
   yr: string;
   org: string;
+  // One line on what the organisation is, for a reader who has never heard of it.
+  what?: string;
   role: string;
   loc: string;
+  // "remote" or "on site", as on the CV. Shown under the location.
+  basis?: string;
   href?: string;
   points: string[];
   figure: Figure;
@@ -44,10 +63,12 @@ export type Job = {
 
 export const work: Job[] = [
   {
-    yr: "2025 – now",
+    yr: "Nov 2025 – now",
     org: "Terran Denizen",
+    what: "Career platform for MBA students at the M7 business schools",
     role: "Full-Stack Engineering Intern",
-    loc: "New York",
+    loc: "United States",
+    basis: "remote",
     href: "https://terrandenizen.com",
     points: [
       "Founding engineer and largest contributor on a 6-service platform: 4 Next.js apps, a Node API and an iOS app on PostgreSQL.",
@@ -60,10 +81,12 @@ export const work: Job[] = [
     stack: "Next.js · Node · TypeScript · Postgres · Supabase · Stripe · Expo",
   },
   {
-    yr: "2026 – now",
+    yr: "Jun 2026 – now",
     org: "AidenCare",
+    what: "Bilingual patient portal and staff dashboard for a dental clinic",
     role: "Full-Stack Engineering Lead",
-    loc: "Shanghai",
+    loc: "China",
+    basis: "remote",
     href: "https://aidencare.space",
     points: [
       "Led the build with one other engineer: set the architecture, split the work and reviewed their code.",
@@ -75,10 +98,12 @@ export const work: Job[] = [
     stack: "Next.js · Supabase · Deno · Postgres",
   },
   {
-    yr: "2026",
+    yr: "Jul – Aug 2026",
     org: "North Caspian Operating Company",
+    what: "Operator of the Kashagan oil field · Strategy & Business Directorate",
     role: "Full-Stack Engineering Intern",
-    loc: "Atyrau",
+    loc: "Kazakhstan",
+    basis: "on site",
     points: [
       "Built an HSSE platform for 150+ staff in 4 weeks: 6 SPFx web parts (React/TypeScript) on 9 SharePoint lists and a data service.",
       "Wrote a Visio parser that turned 40+ process diagrams into Word guides, cutting each write-up from 2+ hours to under a minute.",
@@ -90,8 +115,10 @@ export const work: Job[] = [
   {
     yr: "Feb – May 2026",
     org: "SolveSim",
+    what: "Timed, McKinsey-style case-interview simulator",
     role: "Co-founder",
-    loc: "France (remote)",
+    loc: "France",
+    basis: "remote",
     points: [
       "Co-built and launched a timed McKinsey-style case-interview simulator used by 250+ candidates, 8% on paid plans.",
       "Stored attempts as append-only records in PostgreSQL and derived scores from them, so scoring rules change without migrations.",
@@ -101,12 +128,13 @@ export const work: Job[] = [
     stack: "Next.js · Postgres · Stripe",
   },
   {
-    yr: "2024",
+    yr: "Jun – Aug 2024",
     org: "Nazarbayev University",
+    what: "ISSAI Robotics & Geotechnical Engineering",
     role: "Research Engineering Intern",
-    loc: "Astana",
+    loc: "Kazakhstan",
+    basis: "on site",
     points: [
-      "Integrated 6 IMU and load-cell sensors into a tensegrity robot and recalibrated chord tension between test runs to improve stability.",
       "Built a PostgreSQL database of 1,200+ soil lab records for an IoT geotechnical sensing project.",
       "Fit van Genuchten curves in Python (pandas, NumPy), and the results were used in the sensor-system design.",
     ],
@@ -114,14 +142,15 @@ export const work: Job[] = [
     stack: "Python · pandas · NumPy · Postgres",
   },
   {
-    yr: "2023",
+    yr: "Jun – Sep 2023",
     org: "National Information Technologies",
+    what: "Kazakhstan's e-government IT operator",
     role: "Data Engineering Intern",
-    loc: "Astana",
+    loc: "Kazakhstan",
+    basis: "on site",
     points: [
       "Cut a nightly ETL job over 25 tables from 3 hours to under 2 by rewriting 14 production SQL queries with joins and indexes.",
       "Wrote 30+ validation queries that caught ~500 missing or duplicate records a week before they reached reports.",
-      "Turned 4 analysts\u2019 reporting requirements into 6 ETL output tables and verified loaded data against their reports.",
     ],
     figure: { n: "3 h → 2 h", unit: "nightly ETL" },
     stack: "SQL · ETL",
@@ -140,7 +169,11 @@ export type Project = {
   figure: Figure;
   tests: string;
   receipt: string;
+  docs?: string; // a hosted documentation site, if the library has one
+  captured?: string; // when the receipt was captured, if not the default below
 };
+
+export const capturedDefault = "15 Oct 2026";
 
 export const projects: Project[] = [
   {
@@ -314,6 +347,7 @@ $ abacus conform
     blurb:
       "Language models are unreliable at arithmetic, so the useful thing a tool boundary can do is move the numbers somewhere trustworthy. abacus exposes moneyness, shortfall, tenor, slippage and holdout as 39 tools over the Model Context Protocol, with a conformance suite for the transport. Nothing wraps a third-party pricing API.",
     href: "https://github.com/DaniyalMlk/abacus",
+    docs: "https://daniyalmlk.github.io/abacus/",
     install: "pip install git+https://github.com/DaniyalMlk/abacus",
     figure: { n: "39", unit: "tools · 19/19 conformance" },
     tests: "854 tests + 29 conformance checks",
@@ -490,6 +524,106 @@ most often selected in-sample:
   ma30_120              16.4%
   ma30_180              14.4%
   ma5_60                13.6%`,
+  },
+  {
+    name: "capstack",
+    lang: "Python",
+    tagline: "Leveraged buyout engine",
+    line: "A leveraged buyout engine that reports where the case stops working, not only what it returns.",
+    headline: `$ capstack report examples/meridian.json
+  …
+  Where the case stops working
+  ----------------------------
+    Question                                       Answer
+    --------------------------------------------  -------
+    Exit multiple returning capital and no more     7.50x
+    Exit multiple returning twice capital          10.42x
+    Margin shift tripping the first covenant      -0.35pp
+    Opening leverage tripping the first covenant    7.94x`,
+    blurb:
+      "Sources and uses that balance, an operating case through to unlevered free cash flow, a debt schedule with a cash sweep by seniority and a revolver that runs both ways, maintenance covenants with headroom, and returns by security through a preferred waterfall. Sensitivity tables rebuild the whole engine at every cell, and break-evens are solved along any assumption. Exact money arithmetic throughout; no runtime dependencies.",
+    href: "https://github.com/DaniyalMlk/capstack",
+    install: "pip install git+https://github.com/DaniyalMlk/capstack",
+    figure: { n: "7.50x", unit: "exit multiple at which the sponsor only gets its capital back" },
+    tests: "1,515 tests",
+    captured: "16 Oct 2026",
+    receipt: `$ capstack deal examples/meridian.json
+Project Meridian   (close 2026-06-30)
+=====================================
+
+  Sources
+    Term Loan B                 1,150.00   issued at 99.50
+    …
+    Sponsor equity                994.14   the plug
+                                --------
+    Total                       2,974.14
+
+  Uses
+    Purchase of equity          2,415.00
+    …
+                                --------
+    Total                       2,974.14
+
+  Entry metrics
+    Total leverage                       7.71x
+    Equity contribution                 36.8%
+
+$ capstack exit examples/meridian.json
+    Exit leverage                      4.54x
+
+  Equity
+                              invested     proceeds         MoIC          IRR
+    Sponsor preferred           845.02     1,241.87        1.47x         8.0%
+    Sponsor common              149.12       927.34        6.22x        44.1%
+    Management rollover          85.00       203.56        2.39x        19.1%
+    -------------------------------------------------------------------------
+    Total                     1,079.14     2,372.77        2.20x        17.1%
+
+$ capstack sensitivity examples/meridian.json --rows exit-multiple:9,10,11,12,13 --columns entry-multiple:10.5,11,11.5,12,12.5
+  IRR
+    entry multiple across, exit multiple down
+    base case 17.1%, marked *
+
+                10.50x    11.00x   11.50x*    12.00x    12.50x
+    9.00x       14.3%     11.3%      8.6%      6.4%      4.3%
+    10.00x      19.1%     15.9%     13.2%     10.8%      8.7%
+    11.00x*     23.2%     19.9%     17.1%     14.6%     12.4%
+    12.00x      26.8%     23.4%     20.5%     17.9%     15.7%
+    13.00x      30.0%     26.6%     23.6%     21.0%     18.7%
+
+    * the assumption the file describes
+
+$ capstack report examples/meridian.json
+  …
+  Where the case stops working
+  ----------------------------
+
+  The sponsor gets its capital back at 7.50x, which is 4.00x below the
+  11.50x paid going in.
+
+    Question                                       Answer
+    --------------------------------------------  -------
+    Exit multiple returning capital and no more     7.50x
+    Exit multiple returning twice capital          10.42x
+    Margin shift tripping the first covenant      -0.35pp
+    Opening leverage tripping the first covenant    7.94x`,
+  },
+];
+
+// Leadership, as a ledger row like the roles above. Same figure discipline:
+// one number the row comes down to.
+export const leadership: Job[] = [
+  {
+    yr: "Sep 2022 – now",
+    org: "Robotics Club",
+    what: "Student club in Astana; its FIRST team competes internationally",
+    role: "Co-founder & Mentor",
+    loc: "Kazakhstan",
+    points: [
+      "Built a FIRST robot with omni drive and vision-based cone detection that won the Connect Award as 1 of 2 Kazakh teams at the FIRST Asia Pacific Open.",
+      "Raised $4,000+, grew the club to 30+ members, and led teams to 10+ wins at national robotics olympiads.",
+    ],
+    figure: { n: "1 of 2", unit: "Kazakh teams at the FIRST Asia Pacific Open; Connect Award" },
   },
 ];
 
