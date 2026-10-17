@@ -45,7 +45,7 @@ export type Job = {
 export const work: Job[] = [
   {
     yr: "2025 – now",
-    org: "Terran Enterprise · Terran Denizen",
+    org: "Terran Denizen",
     role: "Full-Stack Engineering Intern",
     loc: "New York",
     href: "https://terrandenizen.com",
