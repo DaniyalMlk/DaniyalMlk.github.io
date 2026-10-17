@@ -72,9 +72,9 @@ dl {
 }
 
 .page {
-  max-width: 1120px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 32px 96px;
+  padding: 0 40px 96px;
 }
 
 /* Top bar */
