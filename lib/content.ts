@@ -50,7 +50,7 @@ export const work: Job[] = [
     loc: "New York",
     href: "https://terrandenizen.com",
     points: [
-      "Founding engineer on a six-service career platform for MBA students at the M7 schools: four Next.js apps, a Node API and an Expo iOS app on one Postgres.",
+      "Founding engineer on a six-service career platform for MBA students at the M7 schools: four Next.js apps, a Node API and an Expo iOS app on one Postgres. Author of 632 of 1,080 commits (58%) and 641 of 985 tracked files across the five web and API repositories, first of three contributors in each, December 2025 to now.",
       "Closed a cross-subdomain session-hijacking path by replacing URL-fragment login tokens with single-use exchange codes; fixed login CSRF, open redirects and OTP brute-force.",
       "Built the four-tier role system as 133 row-level security policies on 19 tables, enforced in the database for web and iOS alike.",
       "Shipped Stripe subscription billing with refund-policy enforcement and webhook refund sync.",
