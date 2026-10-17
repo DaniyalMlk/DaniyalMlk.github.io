@@ -191,6 +191,17 @@ h1 {
   color: var(--accent);
 }
 
+/* Optional portrait above "At a glance"; rendered only when profile.portrait is set */
+.portrait {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  margin-bottom: 24px;
+  background: var(--code-bg);
+}
+
 .th {
   font-size: 12px;
   letter-spacing: 0.12em;
@@ -200,7 +211,7 @@ h1 {
 }
 .summary {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr);
 }
 .summary div {
   display: contents;
@@ -386,6 +397,10 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+.k-basis {
+  font-size: 13px;
+  margin-top: 4px;
 }
 .cell-body {
   min-width: 0;
@@ -760,13 +775,23 @@ h1 {
   }
   .cell-k {
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
     font-size: 13px;
   }
-  .k-loc::before {
+  .k-loc::before,
+  .k-basis::before {
     content: "·";
     margin-right: 10px;
     color: var(--rule);
+  }
+  .k-basis {
+    margin-top: 0;
+  }
+  .portrait {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 16px;
   }
   .cell-fig {
     order: -1;

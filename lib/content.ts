@@ -11,11 +11,18 @@ export const profile = {
   githubUser: "DaniyalMlk",
   linkedin: "https://linkedin.com/in/daniyal-mlk",
   location: "New York, NY",
+  // Canonical address of the site. Change this once if you move to a custom domain.
+  url: "https://daniyalmlk.github.io",
+  // Optional portrait, shown beside "At a glance". Drop a square JPEG (about
+  // 800×800, under 150 KB) at public/portrait.jpg and set this to "/portrait.jpg".
+  // Leave it undefined and nothing is rendered.
+  portrait: undefined as string | undefined,
 };
 
 export const summary = [
   { k: "NYU, CS and Economics", v: "2028" },
   { k: "Based in", v: "New York" },
+  { k: "Speaks", v: "Kazakh, Russian, English, Chinese, Turkish" },
   { k: "Looking for", v: "SWE internships, 2027" },
 ];
 
@@ -36,11 +43,21 @@ export type Job = {
   org: string;
   role: string;
   loc: string;
+  // How the role fit around the degree ("alongside coursework", "4 weeks, on site").
+  // Shown under the date. This is what stops six roles in four years reading as
+  // six full-time jobs. Fill in months in `yr` where you have them; months beat
+  // years for anything that overlaps.
+  basis?: string;
   href?: string;
   points: string[];
   figure: Figure;
   stack?: string;
 };
+
+// One sentence under the Work heading. Confirm it is true before publishing,
+// or delete it; the per-row `basis` lines carry the same point.
+export const workNote =
+  "Dates are inclusive. Roles that overlap a term ran alongside a full course load; the on-site ones ran over summers.";
 
 export const work: Job[] = [
   {
@@ -48,6 +65,7 @@ export const work: Job[] = [
     org: "Terran Denizen",
     role: "Full-Stack Engineering Intern",
     loc: "New York",
+    basis: "alongside coursework",
     href: "https://terrandenizen.com",
     points: [
       "Founding engineer and largest contributor on a 6-service platform: 4 Next.js apps, a Node API and an iOS app on PostgreSQL.",
@@ -64,6 +82,7 @@ export const work: Job[] = [
     org: "AidenCare",
     role: "Full-Stack Engineering Lead",
     loc: "Shanghai",
+    basis: "alongside coursework",
     href: "https://aidencare.space",
     points: [
       "Led the build with one other engineer: set the architecture, split the work and reviewed their code.",
@@ -79,6 +98,7 @@ export const work: Job[] = [
     org: "North Caspian Operating Company",
     role: "Full-Stack Engineering Intern",
     loc: "Atyrau",
+    basis: "4 weeks, on site",
     points: [
       "Built an HSSE platform for 150+ staff in 4 weeks: 6 SPFx web parts (React/TypeScript) on 9 SharePoint lists and a data service.",
       "Wrote a Visio parser that turned 40+ process diagrams into Word guides, cutting each write-up from 2+ hours to under a minute.",
@@ -92,6 +112,7 @@ export const work: Job[] = [
     org: "SolveSim",
     role: "Co-founder",
     loc: "France (remote)",
+    basis: "alongside coursework",
     points: [
       "Co-built and launched a timed McKinsey-style case-interview simulator used by 250+ candidates, 8% on paid plans.",
       "Stored attempts as append-only records in PostgreSQL and derived scores from them, so scoring rules change without migrations.",
@@ -106,7 +127,6 @@ export const work: Job[] = [
     role: "Research Engineering Intern",
     loc: "Astana",
     points: [
-      "Integrated 6 IMU and load-cell sensors into a tensegrity robot and recalibrated chord tension between test runs to improve stability.",
       "Built a PostgreSQL database of 1,200+ soil lab records for an IoT geotechnical sensing project.",
       "Fit van Genuchten curves in Python (pandas, NumPy), and the results were used in the sensor-system design.",
     ],
@@ -121,7 +141,6 @@ export const work: Job[] = [
     points: [
       "Cut a nightly ETL job over 25 tables from 3 hours to under 2 by rewriting 14 production SQL queries with joins and indexes.",
       "Wrote 30+ validation queries that caught ~500 missing or duplicate records a week before they reached reports.",
-      "Turned 4 analysts\u2019 reporting requirements into 6 ETL output tables and verified loaded data against their reports.",
     ],
     figure: { n: "3 h → 2 h", unit: "nightly ETL" },
     stack: "SQL · ETL",

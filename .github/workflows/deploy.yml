@@ -34,6 +34,13 @@ jobs:
           else
             echo "NEXT_PUBLIC_BASE_PATH=/$REPO" >> $GITHUB_ENV
           fi
+      # Refresh "last push" and stars per repository with an authenticated call,
+      # so nothing is fetched from the reader's browser. Best-effort: on failure
+      # the committed lib/repo-stats.json is used as is.
+      - name: Refresh repository stats
+        run: node scripts/repo-stats.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: npm run build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
