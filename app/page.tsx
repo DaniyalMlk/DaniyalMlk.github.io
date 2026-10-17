@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Ecosystem from "@/components/Ecosystem";
 import { chartFor } from "@/components/Charts";
-import { about, capturedDefault, leadership, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
+import { about, capturedDefault, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
 import repoStats from "@/lib/repo-stats.json";
 
 function useTheme() {
@@ -307,20 +307,8 @@ export default function Page() {
           <Ecosystem />
         </section>
 
-        <section id="leadership" className="ledger">
-          <SectionHead n="04" title="Leadership" />
-          <div className="th th-grid">
-            <span>Date</span>
-            <span>Role</span>
-            <span className="r">Figure</span>
-          </div>
-          {leadership.map((j) => (
-            <JobRow key={j.org} j={j} />
-          ))}
-        </section>
-
         <section id="skills" className="skills-wrap">
-          <SectionHead n="05" title="Skills" />
+          <SectionHead n="04" title="Skills" />
           <div className="skills">
           {skills.map((g) => (
             <div key={g.label} className="skill-col">

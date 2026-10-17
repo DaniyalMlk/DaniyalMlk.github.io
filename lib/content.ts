@@ -30,13 +30,13 @@ export const summary = [
 ];
 
 // Short, in the third person. Facts only; add to it as you like. The degree,
-// city and search live in At a glance above, so this is the rest: where he is
-// from, how he got here, what he does off the clock.
+// city and search live in At a glance above, so this is the rest.
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
     "From Astana, Kazakhstan. Two years at NYU Shanghai, then the New York campus for 2026–27, on a full-tuition scholarship; programs the VEX U robotics team's robot in C++. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
     "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of nine open-source finance libraries, each published with the output that proves it.",
+    "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
   ],
 };
 
@@ -605,23 +605,6 @@ $ capstack report examples/meridian.json
     Exit multiple returning twice capital          10.42x
     Margin shift tripping the first covenant      -0.35pp
     Opening leverage tripping the first covenant    7.94x`,
-  },
-];
-
-// Leadership, as a ledger row like the roles above. Same figure discipline:
-// one number the row comes down to.
-export const leadership: Job[] = [
-  {
-    yr: "Sep 2022 – now",
-    org: "Robotics Club",
-    what: "Student club in Astana; its FIRST team competes internationally",
-    role: "Co-founder & Mentor",
-    loc: "Kazakhstan",
-    points: [
-      "Built a FIRST robot with omni drive and vision-based cone detection that won the Connect Award as 1 of 2 Kazakh teams at the FIRST Asia Pacific Open.",
-      "Raised $4,000+, grew the club to 30+ members, and led teams to 10+ wins at national robotics olympiads.",
-    ],
-    figure: { n: "1 of 2", unit: "Kazakh teams at the FIRST Asia Pacific Open; Connect Award" },
   },
 ];
 
