@@ -67,6 +67,19 @@ function day(iso: string) {
   return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
+// Scroll to a section without putting "#section" in the address bar, so a
+// reload or a shared link to the site lands at the top. Links keep their href
+// for middle-click, copy-link and no-JS readers.
+function goTo(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  e.preventDefault();
+  if (id === "top") window.scrollTo({ top: 0 });
+  else el.scrollIntoView({ block: "start" });
+  history.replaceState(null, "", window.location.pathname + window.location.search);
+}
+
 function CopyLine({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   return (
@@ -120,24 +133,25 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
           </>
         )}
         <div className="meta">
-          <span>captured {p.captured} · </span>
-          {s && (
-            <span>
-              last push {day(s.pushed)}
-              {s.stars > 0 ? ` · ${s.stars} ★` : ""}
-              {" · "}
-            </span>
-          )}
-          {p.docs && (
-            <span>
-              <a className="meta-link" href={p.docs} target="_blank" rel="noreferrer noopener">
-                docs ↗
-              </a>
-              {" · "}
-            </span>
-          )}
+          <span className="meta-text">
+            captured {p.captured}
+            {s && (
+              <>
+                {" · "}last push {day(s.pushed)}
+                {s.stars > 0 ? ` · ${s.stars} ★` : ""}
+              </>
+            )}
+            {p.docs && (
+              <>
+                {" · "}
+                <a className="meta-link" href={p.docs} target="_blank" rel="noreferrer noopener">
+                  docs ↗
+                </a>
+              </>
+            )}
+          </span>
           <button type="button" className="toggle" aria-expanded={open} onClick={onToggle}>
-            {open ? "less" : compact ? "show output" : "full output and notes"}
+            {open ? "less ↑" : compact ? "show output ↓" : "full output and notes ↓"}
           </button>
         </div>
         {open && (
@@ -150,6 +164,16 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
             <div className="receipt-note">
               Verbatim output. Every number here is produced by the code, not written into this page. Test suite: {p.tests}.
             </div>
+            <button
+              type="button"
+              className="toggle"
+              onClick={(e) => {
+                onToggle();
+                (e.currentTarget.closest(".row") as HTMLElement | null)?.scrollIntoView({ block: "start" });
+              }}
+            >
+              less ↑
+            </button>
           </div>
         )}
       </div>
@@ -215,12 +239,12 @@ export default function Page() {
   return (
     <div className="page">
       <header className="top">
-        <a className="brand" href="#top">
+        <a className="brand" href="#top" onClick={(e) => goTo(e, "top")}>
           Daniyal Malik · Statement of account · No. 0001
         </a>
         <nav aria-label="Sections">
           {nav.map((n) => (
-            <a key={n.id} href={`#${n.id}`} className={active === n.id ? "on" : ""}>
+            <a key={n.id} href={`#${n.id}`} className={active === n.id ? "on" : ""} onClick={(e) => goTo(e, n.id)}>
               {n.label}
             </a>
           ))}
