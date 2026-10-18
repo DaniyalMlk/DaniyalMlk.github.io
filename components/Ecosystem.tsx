@@ -18,7 +18,7 @@ export default function Ecosystem() {
   const abX = W / 2 - 110;
   return (
     <figure className="eco">
-      <div className="eco-scroll">
+      <div className="eco-scroll" tabIndex={0} aria-label="Diagram, scrolls sideways on small screens">
       <svg viewBox={`0 0 ${W} 230`} role="img" aria-label="Five Python libraries feeding the abacus MCP server, which a language model calls as tools">
         {/* model */}
         <text x={W / 2} y={18} textAnchor="middle" className="eco-label">
