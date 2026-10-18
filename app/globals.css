@@ -140,8 +140,8 @@ dl {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gap);
   row-gap: 32px;
-  padding: 112px 0 96px;
-  min-height: 60vh;
+  padding: 96px 0 56px;
+  min-height: 0;
   align-content: center;
 }
 .hero-l {
@@ -242,7 +242,7 @@ h1 {
   column-gap: var(--gap);
   align-items: baseline;
   padding: 0 0 20px;
-  border-top: 2px solid var(--rule-strong);
+  border-top: 1px solid var(--rule-strong);
   padding-top: 18px;
   margin-bottom: 8px;
 }
@@ -274,7 +274,7 @@ h1 {
 .ledger,
 .about,
 .skills-wrap {
-  padding-top: 120px !important;
+  padding-top: 80px !important;
 }
 .about .th {
   display: none;
@@ -295,7 +295,7 @@ h1 {
   padding: 18px 0 !important;
 }
 .foot {
-  margin-top: 120px !important;
+  margin-top: 80px !important;
 }
 @media (max-width: 760px) {
   h1 {
@@ -318,7 +318,7 @@ h1 {
   .ledger,
   .about,
   .skills-wrap {
-    padding-top: 72px !important;
+    padding-top: 56px !important;
   }
 }
 
@@ -394,7 +394,7 @@ h1 {
   align-items: start;
 }
 .ledger .row:last-child {
-  border-bottom: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule);
 }
 .cell-k {
   color: var(--ink-3);
@@ -711,7 +711,7 @@ h1 {
   gap: 24px;
 }
 .skill-col .th {
-  border-top: 1px solid var(--rule-strong);
+  border-top: 1px solid var(--rule);
   padding-top: 10px;
 }
 .skill-col ul {
@@ -868,7 +868,7 @@ h1 {
   .ledger,
   .about,
   .skills-wrap {
-    padding-top: 64px !important;
+    padding-top: 48px !important;
   }
   .about-grid {
     grid-template-columns: 1fr;
