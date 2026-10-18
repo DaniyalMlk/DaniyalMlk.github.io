@@ -353,7 +353,14 @@ export default function Page() {
 
         <footer className="foot">
           <span>
-            Balance carried forward. {profile.location}. <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            Balance carried forward. {profile.location}. <a href={`mailto:${profile.email}`}>{profile.email}</a> ·{" "}
+            <a href={profile.github} target="_blank" rel="me noreferrer noopener">
+              GitHub
+            </a>{" "}
+            ·{" "}
+            <a href={profile.linkedin} target="_blank" rel="me noreferrer noopener">
+              LinkedIn
+            </a>
           </span>
           <span>
             Closing balance: <b>all accounts reconciled</b>
