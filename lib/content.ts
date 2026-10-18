@@ -24,7 +24,7 @@ export const profile = {
 // one most often used to filter. Nothing here is repeated in About.
 export const summary = [
   { k: "NYU, CS and Economics", v: "May 2028" },
-  { k: "Work authorization", v: "CPT/OPT, no sponsorship needed" },
+  { k: "Work authorization", v: "CPT/OPT; no sponsorship needed for internships" },
   { k: "Based in", v: "New York" },
   { k: "Looking for", v: "SWE internships, summer 2027" },
 ];
@@ -92,7 +92,7 @@ export const work: Job[] = [
       "Designed the appointment lifecycle, from request to payment, with a database constraint that makes double-booking impossible.",
       "29 row-level security policies across 11 tables, six roles with an approval workflow, and a trigger that blocks privilege escalation.",
     ],
-    figure: { n: "1", unit: "database constraint; a double booking cannot be written" },
+    figure: { n: "29", unit: "RLS policies on 11 tables, six roles" },
     stack: "Next.js · Supabase · Deno · Postgres",
   },
   {
