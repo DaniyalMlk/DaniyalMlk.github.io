@@ -150,7 +150,7 @@ export const work: Job[] = [
       "Cut a nightly ETL job over 25 tables from 3 hours to under 2 by rewriting 14 production SQL queries with joins and indexes.",
       "Wrote 30+ validation queries that caught ~500 missing or duplicate records a week before they reached reports.",
     ],
-    figure: { n: "3 h → 2 h", unit: "nightly ETL" },
+    figure: { n: "~500/week", unit: "bad records caught before they reached reports" },
     stack: "SQL · ETL",
   },
 ];
@@ -168,14 +168,15 @@ export type Project = {
   tests: string;
   receipt: string;
   docs?: string; // a hosted documentation site, if the library has one
-  captured?: string; // when the receipt was captured, if not the default below
+  captured: string; // when this library's receipt was captured; per library, so re-capturing one does not imply the rest
+  featured?: boolean; // shown with its output open on the page; the rest collapse to a row until opened
 };
-
-export const capturedDefault = "15 Oct 2026";
 
 export const projects: Project[] = [
   {
     name: "tallyd",
+    featured: true,
+    captured: "15 Oct 2026",
     lang: "TypeScript",
     tagline: "Double-entry ledger and bank reconciliation",
     line: "A ledger that reconciles a bank statement to the books and balances to the penny.",
@@ -236,6 +237,8 @@ $ tallyd bench
   },
   {
     name: "recalc",
+    featured: true,
+    captured: "15 Oct 2026",
     lang: "TypeScript",
     tagline: "Spreadsheet formula engine",
     line: "A spreadsheet engine that recalculates only what an edit invalidated.",
@@ -278,6 +281,7 @@ $ npx vitest run
   },
   {
     name: "moneyness",
+    captured: "15 Oct 2026",
     lang: "Python",
     tagline: "Options pricing, Greeks and implied volatility",
     line: "Options pricing that is correct at the boundaries, not only in the textbook middle.",
@@ -328,6 +332,8 @@ volatility, since every volatility reproduces its price`,
   },
   {
     name: "abacus",
+    featured: true,
+    captured: "15 Oct 2026",
     lang: "Python",
     tagline: "MCP server for option, portfolio, execution and backtest analytics",
     line: "An MCP server that hands the five libraries to a language model as tools.",
@@ -385,6 +391,7 @@ ok    errors/allocation-policy
   },
   {
     name: "tenor",
+    captured: "15 Oct 2026",
     lang: "Python",
     tagline: "Fixed-income curve toolkit",
     line: "A fixed-income toolkit where every convention is a named argument, never a default.",
@@ -434,6 +441,7 @@ i_spread: 0.0264083526`,
   },
   {
     name: "shortfall",
+    captured: "15 Oct 2026",
     lang: "Python",
     tagline: "Portfolio risk engine",
     line: "A risk engine that names its method in the output and says when the data is thin.",
@@ -462,6 +470,7 @@ The historical tail rests on 5.0 observations of 500.`,
   },
   {
     name: "slippage",
+    captured: "15 Oct 2026",
     lang: "Python",
     tagline: "Optimal execution and transaction cost analysis",
     line: "Transaction cost analysis that says where the cost came from, and schedules the rest.",
@@ -495,6 +504,7 @@ outliers at a modified z-score of 3.5:
   },
   {
     name: "holdout",
+    captured: "15 Oct 2026",
     lang: "Python",
     tagline: "Backtest overfitting toolkit",
     line: "How much of a strategy search's best result survives the search itself.",
@@ -525,6 +535,7 @@ most often selected in-sample:
   },
   {
     name: "capstack",
+    featured: true,
     lang: "Python",
     tagline: "Leveraged buyout engine",
     line: "A leveraged buyout engine that reports where the case stops working, not only what it returns.",
@@ -611,7 +622,7 @@ $ capstack report examples/meridian.json
 export type SkillGroup = { label: string; items: string[] };
 
 export const skills: SkillGroup[] = [
-  { label: "Languages", items: ["TypeScript", "JavaScript", "Python", "SQL", "C++", "Bash"] },
+  { label: "Languages", items: ["TypeScript", "JavaScript", "Python", "SQL", "C++"] },
   { label: "Building", items: ["Next.js", "React", "React Native", "Expo", "Node", "Deno", "Tailwind"] },
   { label: "Data", items: ["PostgreSQL", "Supabase", "Prisma", "Row-level security", "pandas", "NumPy"] },
   { label: "Shipping", items: ["Git", "Vercel", "Stripe", "EAS Build", "App Store Connect", "MCP"] },

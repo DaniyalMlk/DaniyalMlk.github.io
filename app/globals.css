@@ -10,6 +10,7 @@
   --rule-strong: #141412;
   --accent: #b3261e;
   --code-bg: #e9e6dc;
+  --scroll-shadow: rgba(20, 20, 18, 0.22);
   --font: var(--font-geist-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --sans: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
   --col-k: 128px;
@@ -26,6 +27,7 @@
   --rule-strong: #ecebe4;
   --accent: #e2a23a;
   --code-bg: #171715;
+  --scroll-shadow: rgba(236, 235, 228, 0.16);
 }
 
 * {
@@ -289,6 +291,9 @@ h1 {
 .row-project {
   padding: 34px 0 !important;
 }
+.row-compact {
+  padding: 18px 0 !important;
+}
 .foot {
   margin-top: 120px !important;
 }
@@ -537,6 +542,12 @@ h1 {
   max-width: 100%;
   padding: 14px 16px;
   background: var(--code-bg);
+  background:
+    linear-gradient(to right, var(--code-bg) 40%, rgba(0, 0, 0, 0)) left / 48px 100% no-repeat local,
+    linear-gradient(to left, var(--code-bg) 40%, rgba(0, 0, 0, 0)) right / 48px 100% no-repeat local,
+    linear-gradient(to right, var(--scroll-shadow), rgba(0, 0, 0, 0)) left / 18px 100% no-repeat scroll,
+    linear-gradient(to left, var(--scroll-shadow), rgba(0, 0, 0, 0)) right / 18px 100% no-repeat scroll,
+    var(--code-bg);
   border: 1px solid var(--rule);
   border-left: 3px solid var(--accent);
   overflow-x: auto;
@@ -605,6 +616,12 @@ h1 {
   margin: 10px 0 0;
   padding: 12px 14px;
   background: var(--code-bg);
+  background:
+    linear-gradient(to right, var(--code-bg) 40%, rgba(0, 0, 0, 0)) left / 48px 100% no-repeat local,
+    linear-gradient(to left, var(--code-bg) 40%, rgba(0, 0, 0, 0)) right / 48px 100% no-repeat local,
+    linear-gradient(to right, var(--scroll-shadow), rgba(0, 0, 0, 0)) left / 18px 100% no-repeat scroll,
+    linear-gradient(to left, var(--scroll-shadow), rgba(0, 0, 0, 0)) right / 18px 100% no-repeat scroll,
+    var(--code-bg);
   border: 1px solid var(--rule);
   border-left: 3px solid var(--accent);
   overflow-x: auto;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Ecosystem from "@/components/Ecosystem";
 import { chartFor } from "@/components/Charts";
-import { about, capturedDefault, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
+import { about, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
 import repoStats from "@/lib/repo-stats.json";
 
 function useTheme() {
@@ -88,11 +88,15 @@ function CopyLine({ text }: { text: string }) {
   );
 }
 
+// Featured rows show their output on the page. The rest are one row each until
+// opened, so the page reads in the time a screener gives it.
 function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle: () => void }) {
   const s = stats[p.name];
   const Chart = chartFor[p.name];
+  const compact = !p.featured;
+  const showOutput = !compact || open;
   return (
-    <div className={`row row-project${open ? " open" : ""}`}>
+    <div className={`row row-project${compact ? " row-compact" : ""}${open ? " open" : ""}`}>
       <div className="cell-k">{p.lang}</div>
       <div className="cell-body">
         <h3 className="h3-big">
@@ -102,16 +106,21 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
           </a>
           <span className="tagline"> · {p.tagline}</span>
         </h3>
-        <p className="line">{p.line}</p>
-        <pre className="headline" tabIndex={0}>
-          <code>{p.headline}</code>
-        </pre>
-        {Chart && (
-          <div className="chart-wrap">
-            <Chart />
-          </div>
+        {showOutput && (
+          <>
+            <p className="line">{p.line}</p>
+            <pre className="headline" tabIndex={0}>
+              <code>{p.headline}</code>
+            </pre>
+            {Chart && (
+              <div className="chart-wrap">
+                <Chart />
+              </div>
+            )}
+          </>
         )}
         <div className="meta">
+          <span>captured {p.captured} · </span>
           {s && (
             <span>
               last push {day(s.pushed)}
@@ -128,7 +137,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
             </span>
           )}
           <button type="button" className="toggle" aria-expanded={open} onClick={onToggle}>
-            {open ? "less" : "full output and notes"}
+            {open ? "less" : compact ? "show output" : "full output and notes"}
           </button>
         </div>
         {open && (
@@ -139,7 +148,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
               <code>{p.receipt}</code>
             </pre>
             <div className="receipt-note">
-              Verbatim output, captured {p.captured ?? capturedDefault}. Every number here is produced by the code, not written into this page. Test suite: {p.tests}.
+              Verbatim output. Every number here is produced by the code, not written into this page. Test suite: {p.tests}.
             </div>
           </div>
         )}
@@ -207,7 +216,7 @@ export default function Page() {
     <div className="page">
       <header className="top">
         <a className="brand" href="#top">
-          Statement of account · No. 0001
+          Daniyal Malik · Statement of account · No. 0001
         </a>
         <nav aria-label="Sections">
           {nav.map((n) => (
@@ -295,13 +304,13 @@ export default function Page() {
         </section>
 
         <section id="projects" className="ledger">
-          <SectionHead n="03" title="Open source" note="Under each name is the program's own output, captured 15–16 October 2026." />
+          <SectionHead n="03" title="Open source" note="Nine libraries. Under each name is the program's own output, dated when it was captured. The five that abacus wraps are collapsed; open any for its output." />
           <div className="th th-grid">
             <span>Lang</span>
             <span>Library</span>
             <span className="r">Figure</span>
           </div>
-          {projects.map((p) => (
+          {[...projects.filter((p) => p.featured), ...projects.filter((p) => !p.featured)].map((p) => (
             <ProjectRow key={p.name} p={p} open={open === p.name} onToggle={() => setOpen(open === p.name ? null : p.name)} />
           ))}
           <Ecosystem />
