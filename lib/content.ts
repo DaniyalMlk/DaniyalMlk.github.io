@@ -16,7 +16,7 @@ export const profile = {
   // Optional portrait, shown beside "At a glance". Drop a square JPEG (about
   // 800×800, under 150 KB) at public/portrait.jpg and set this to "/portrait.jpg".
   // Leave it undefined and nothing is rendered.
-  portrait: undefined as string | undefined,
+  portrait: "/portrait.jpg" as string | undefined,
 };
 
 // "At a glance": the four facts a screener checks before reading anything else.
@@ -65,7 +65,7 @@ export const work: Job[] = [
     org: "Terran Denizen",
     what: "Career platform for MBA students at the M7 business schools",
     role: "Full-Stack Engineering Intern",
-    loc: "United States",
+    loc: "New York",
     basis: "remote",
     href: "https://terrandenizen.com",
     points: [
