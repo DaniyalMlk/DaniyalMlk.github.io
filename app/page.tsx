@@ -53,7 +53,7 @@ function useActiveSection(ids: readonly string[]) {
   return active;
 }
 
-// Per-repository "last push" and stars come from lib/repo-stats.json, which
+// Per-repository "last push" comes from lib/repo-stats.json, which
 // scripts/repo-stats.mjs refreshes at build time with an authenticated call.
 // Nothing is fetched in the browser: a reader behind a rate-limited office
 // network sees the same numbers as everyone else, and the date is a fixed
@@ -135,12 +135,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
         <div className="meta">
           <span className="meta-text">
             captured {p.captured}
-            {s && (
-              <>
-                {" · "}last push {day(s.pushed)}
-                {s.stars > 0 ? ` · ${s.stars} ★` : ""}
-              </>
-            )}
+            {s && <>{" · "}last push {day(s.pushed)}</>}
             {p.docs && (
               <>
                 {" · "}
