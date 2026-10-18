@@ -79,7 +79,7 @@ export const work: Job[] = [
     stack: "Next.js · Node · TypeScript · Postgres · Supabase · Stripe · Expo",
   },
   {
-    yr: "Jun 2026 – now",
+    yr: "Jun – Oct 2026",
     org: "AidenCare",
     what: "Bilingual patient portal and staff dashboard for a dental clinic",
     role: "Full-Stack Engineering Lead",
