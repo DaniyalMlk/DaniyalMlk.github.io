@@ -939,6 +939,21 @@ h1 {
   display: block;
   font-family: var(--font);
 }
+/* On phones the diagram keeps a readable width and scrolls sideways, with the
+   same edge shadow as the output boxes. */
+@media (max-width: 760px) {
+  .eco-scroll {
+    overflow-x: auto;
+    background:
+      linear-gradient(to right, var(--bg) 40%, rgba(0, 0, 0, 0)) left / 48px 100% no-repeat local,
+      linear-gradient(to left, var(--bg) 40%, rgba(0, 0, 0, 0)) right / 48px 100% no-repeat local,
+      linear-gradient(to right, var(--scroll-shadow), rgba(0, 0, 0, 0)) left / 18px 100% no-repeat scroll,
+      linear-gradient(to left, var(--scroll-shadow), rgba(0, 0, 0, 0)) right / 18px 100% no-repeat scroll;
+  }
+  .eco svg {
+    min-width: 640px;
+  }
+}
 .eco-box {
   fill: var(--code-bg);
   stroke: var(--rule);

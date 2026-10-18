@@ -18,6 +18,7 @@ export default function Ecosystem() {
   const abX = W / 2 - 110;
   return (
     <figure className="eco">
+      <div className="eco-scroll">
       <svg viewBox={`0 0 ${W} 230`} role="img" aria-label="Five Python libraries feeding the abacus MCP server, which a language model calls as tools">
         {/* model */}
         <text x={W / 2} y={18} textAnchor="middle" className="eco-label">
@@ -60,6 +61,7 @@ export default function Ecosystem() {
           </marker>
         </defs>
       </svg>
+      </div>
       <figcaption>
         Six of the nine repositories form one system: abacus hands the five libraries to a language model as tools, so the numbers are computed by tested code rather than by the model. tallyd, recalc and capstack stand alone.
       </figcaption>
