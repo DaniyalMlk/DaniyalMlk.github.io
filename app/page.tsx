@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Ecosystem from "@/components/Ecosystem";
 import { chartFor } from "@/components/Charts";
 import { about, nav, profile, projects, skills, summary, work, type Job, type Project } from "@/lib/content";
-import repoStats from "@/lib/repo-stats.json";
 
 function useTheme() {
   const [dark, setDark] = useState(true);
@@ -53,20 +52,6 @@ function useActiveSection(ids: readonly string[]) {
   return active;
 }
 
-// Per-repository "last push" comes from lib/repo-stats.json, which
-// scripts/repo-stats.mjs refreshes at build time with an authenticated call.
-// Nothing is fetched in the browser: a reader behind a rate-limited office
-// network sees the same numbers as everyone else, and the date is a fixed
-// string, so server and client render it identically.
-type Stats = { pushed: string; stars: number };
-const stats: Record<string, Stats | undefined> = repoStats;
-
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-function day(iso: string) {
-  const d = new Date(iso);
-  return `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
-}
-
 // Scroll to a section without putting "#section" in the address bar, so a
 // reload or a shared link to the site lands at the top. Links keep their href
 // for middle-click, copy-link and no-JS readers.
@@ -104,7 +89,6 @@ function CopyLine({ text }: { text: string }) {
 // Featured rows show their output on the page. The rest are one row each until
 // opened, so the page reads in the time a screener gives it.
 function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle: () => void }) {
-  const s = stats[p.name];
   const Chart = chartFor[p.name];
   const compact = !p.featured;
   const showOutput = !compact || open;
@@ -133,18 +117,13 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
           </>
         )}
         <div className="meta">
-          <span className="meta-text">
-            captured {p.captured}
-            {s && <>{" · "}last push {day(s.pushed)}</>}
-            {p.docs && (
-              <>
-                {" · "}
-                <a className="meta-link" href={p.docs} target="_blank" rel="noreferrer noopener">
-                  docs ↗
-                </a>
-              </>
-            )}
-          </span>
+          {p.docs && (
+            <span className="meta-text">
+              <a className="meta-link" href={p.docs} target="_blank" rel="noreferrer noopener">
+                docs ↗
+              </a>
+            </span>
+          )}
           <button type="button" className="toggle" aria-expanded={open} onClick={onToggle}>
             {open ? "less ↑" : compact ? "show output ↓" : "full output and notes ↓"}
           </button>
@@ -157,7 +136,7 @@ function ProjectRow({ p, open, onToggle }: { p: Project; open: boolean; onToggle
               <code>{p.receipt}</code>
             </pre>
             <div className="receipt-note">
-              Verbatim output. Every number here is produced by the code, not written into this page. Test suite: {p.tests}.
+              Verbatim output, captured {p.captured}. Every number here is produced by the code, not written into this page. Test suite: {p.tests}.
             </div>
             <button
               type="button"
@@ -323,7 +302,7 @@ export default function Page() {
         </section>
 
         <section id="projects" className="ledger">
-          <SectionHead n="03" title="Open source" note="Nine libraries. Under each name is the program's own output, dated when it was captured. The five that abacus wraps are collapsed; open any for its output." />
+          <SectionHead n="03" title="Open source" note="Nine libraries. Under each name is the program's own output, not a description of it. The five that abacus wraps are collapsed; open any for its output." />
           <div className="th th-grid">
             <span>Lang</span>
             <span>Library</span>

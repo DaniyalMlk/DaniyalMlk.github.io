@@ -168,7 +168,7 @@ export type Project = {
   tests: string;
   receipt: string;
   docs?: string; // a hosted documentation site, if the library has one
-  captured: string; // when this library's receipt was captured; per library, so re-capturing one does not imply the rest
+  captured: string; // when this library's receipt was captured; shown in the expanded notes
   featured?: boolean; // shown with its output open on the page; the rest collapse to a row until opened
 };
 
