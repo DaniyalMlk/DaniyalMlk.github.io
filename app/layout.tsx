@@ -41,7 +41,10 @@ export const viewport: Viewport = {
 };
 
 // Applies the saved (or system) theme before first paint, so there is no flash.
-const themeScript = `try{var t=localStorage.getItem('theme')||'dark';document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='dark'}`;
+// Also turns off the browser's scroll restoration, so a reload starts at the
+// top instead of wherever the reader was; a link with #section in it still
+// lands on that section.
+const themeScript = `try{var t=localStorage.getItem('theme')||'dark';document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='dark'};try{history.scrollRestoration='manual'}catch(e){}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
