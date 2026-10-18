@@ -92,7 +92,7 @@ export const work: Job[] = [
       "Designed the appointment lifecycle, from request to payment, with a database constraint that makes double-booking impossible.",
       "29 row-level security policies across 11 tables, six roles with an approval workflow, and a trigger that blocks privilege escalation.",
     ],
-    figure: { n: "29", unit: "RLS policies on 11 tables, six roles" },
+    figure: { n: "request → paid", unit: "one appointment lifecycle; double-booking blocked in the database" },
     stack: "Next.js · Supabase · Deno · Postgres",
   },
   {
