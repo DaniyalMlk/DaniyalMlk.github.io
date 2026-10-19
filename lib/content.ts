@@ -34,9 +34,9 @@ export const summary = [
 export const about = {
   path: ["Astana", "Shanghai", "New York"],
   paragraphs: [
-    "From Astana, Kazakhstan. Two years at NYU Shanghai, then the New York campus for 2026–27, on a full-tuition scholarship; programs the VEX U robotics team's robot in C++. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate). Plays poker, for the same reason the holdout library below exists: it punishes anyone who confuses a good result with a good decision.",
-    "Full-stack engineer on platforms where records and money change hands: a career platform for MBA students, a bilingual patient portal for a dental clinic, and earlier data and research work in Kazakhstan. Author of nine open-source finance libraries, each published with the output that proves it.",
-    "Co-founder and mentor of a robotics club in Astana since 2022; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
+    "From Astana, Kazakhstan. Two years at NYU Shanghai, then the New York campus for 2026–27. Programs the VEX U robotics team's robot in C++. Speaks Kazakh (native), Russian and English (fluent), Chinese and Turkish (intermediate).",
+    "In the past year, founding engineer, engineering lead and co-founder on three early-stage products in New York, Shanghai and France: a career platform for MBA students, a bilingual patient portal for a dental clinic, and a timed case-interview simulator. Most of that work was the part of a product that handles money and permissions, which in practice means billing, bookings and role systems on Next.js and PostgreSQL. Earlier, data and research work in Kazakhstan.",
+    "Author of nine open-source finance libraries, each published with the output that proves it. Since 2022, also co-founder and mentor of a robotics club in Astana; its FIRST team won the Connect Award at the FIRST Asia Pacific Open.",
   ],
 };
 
